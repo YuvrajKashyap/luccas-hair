@@ -1,96 +1,53 @@
 # Roadmap
 
-This roadmap keeps the project moving in clear phases so the brand, UX, assets, and technical choices are settled before production implementation.
+This roadmap keeps planning, mockups, implementation, integrations, and launch work in clear phases.
 
-## 1. Brand Foundation And Repo Setup
+## Phase 1: Foundation, Complete
 
-- Initialize the repository.
-- Document the project brief, brand direction, and planning notes.
-- Create asset folders for references, logo exports, mockups, and products.
-- Capture early decisions in decision records.
+- Repository initialized.
+- Project brief, brand direction, and planning notes documented.
+- Asset folders created for references, logo exports, mockups, and products.
+- Initial decision records captured.
+- Guardrails established for unknown client details and future implementation.
 
-## 2. Sitemap And User Flows
+## Phase 2: Product Blueprint, Complete
 
-- Define the final page list.
-- Map appointment booking paths.
-- Map future product browsing and purchase paths.
-- Identify shared navigation and footer needs.
+- MVP scope selected: Home, Services, Book, Products, About, Contact, and FAQ / Policies.
+- Booking confirmed as the primary conversion goal.
+- Products confirmed as the secondary conversion goal and future commerce path.
+- Sitemap, user flows, content requirements, client questionnaire, mockup plan, and technical direction documented.
+- Unknown client details remain marked as `TBD`.
+- No website implementation has started.
 
-## 3. Page Mockups
+## Phase 3: Mockups And Asset Lock
 
-- Create page-specific mockups before implementation.
-- Cover desktop and mobile layouts.
-- Prioritize Home, Services, Booking, Products, and Contact.
-- Review selected mockups one page at a time.
+- Generate page mockups in the approved order.
+- Review desktop and mobile layouts for priority pages.
+- Select one reference mockup per page before implementation.
+- Generate or collect approved logo, photography, product, and supporting assets.
+- Avoid mixing visual directions after a page direction is locked.
 
-## 4. Asset Extraction And Generation
+## Phase 4: Next.js Implementation
 
-- Collect approved references and screenshots.
-- Prepare final logo exports when available.
-- Generate or source visual assets only when needed.
-- Organize product imagery once product details are confirmed.
+- Create the Next.js application after mockups and assets are ready.
+- Build the MVP pages from approved mockups.
+- Implement responsive layouts, accessible navigation, and reusable components.
+- Keep booking actions prominent across desktop and mobile.
+- Keep product content flexible until real details are confirmed.
 
-## 5. Technical Architecture
+## Phase 5: Booking And Product Integrations
 
-- Confirm framework and tooling.
-- Define app structure, routes, metadata, and reusable components.
-- Decide how booking and products will integrate.
-- Prepare deployment plan.
+- Select the booking platform, TBD.
+- Integrate booking through an embed, external link, direct text or call, or another approved flow.
+- Select the product path, TBD.
+- Support product inquiry, Shopify, Stripe Checkout, or another confirmed commerce approach.
+- Validate booking and product paths on mobile and desktop.
 
-## 6. Frontend Implementation
+## Phase 6: QA, SEO, Deployment, Launch
 
-- Create the application after planning is complete.
-- Build pages from approved mockups.
-- Implement responsive layouts and core interactions.
-- Keep components maintainable and recruiter-friendly.
-
-## 7. Booking Integration
-
-- Select booking approach, TBD.
-- Integrate the chosen platform or custom booking flow.
-- Validate mobile and desktop booking paths.
-- Confirm user-facing copy and confirmation behavior.
-
-## 8. Product And Ecommerce Integration
-
-- Select ecommerce approach, TBD.
-- Add product listing and product detail flows.
-- Confirm checkout, inquiry, pickup, or external purchase behavior.
-- Keep product content data-driven where practical.
-
-## 9. Mobile Optimization
-
-- Review every core page on mobile.
-- Ensure booking remains easy from small screens.
-- Tune spacing, typography, navigation, and touch targets.
-- Verify images and motion perform well.
-
-## 10. SEO And Local Business Polish
-
-- Add page metadata.
-- Prepare local business content once details are confirmed.
-- Add structured data if useful.
-- Improve share previews and search snippets.
-
-## 11. Deployment
-
-- Configure Vercel deployment.
-- Confirm production environment variables.
-- Connect domain, TBD.
-- Verify production build behavior.
-
-## 12. QA And Launch
-
-- Test core user flows.
-- Review accessibility basics.
-- Check responsive layouts.
-- Confirm booking, contact, and product paths.
-- Prepare final launch checklist.
-
-## 13. Future Upgrades
-
-- Add blog or grooming education content.
-- Add customer testimonials if approved.
-- Add product recommendations by service.
-- Add email capture or loyalty features.
-- Add analytics and conversion tracking.
+- Run responsive, accessibility, and performance QA.
+- Add SEO metadata and local business content once details are confirmed.
+- Configure analytics and conversion tracking.
+- Deploy on Vercel.
+- Connect final domain, TBD.
+- Verify production booking, contact, and product paths before launch.

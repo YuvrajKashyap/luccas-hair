@@ -2,11 +2,11 @@
 
 ## Brand Name
 
-Lucca’s Hair.
+Lucca's Hair.
 
 ## Logo Direction
 
-The logo direction is an illustrated barber or salon mascot mark. The original inspiration was a black and cream circular logo, but the Lucca’s Hair version should use an `L` instead of a `T`.
+The logo direction is an illustrated barber or salon mascot mark. The earlier concept should be updated so the Lucca's Hair version uses an `L` instead of the earlier `T` concept.
 
 Final logo assets are TBD.
 
@@ -30,8 +30,8 @@ The site should feel suitable for appointments, grooming, personal care, and tru
 
 - Dark base colors for a cinematic foundation.
 - Warm cream for contrast and readability.
-- Gold or brass accents for premium details.
-- Muted neutrals to keep the palette grounded.
+- Tan, gold, or brass accents for premium details.
+- Black accents and muted neutrals to keep the palette grounded.
 
 Exact color values are TBD.
 

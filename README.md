@@ -1,55 +1,55 @@
-# Lucca’s Hair
+# Lucca's Hair
 
-Lucca’s Hair is a premium salon and barber-style business website project focused on appointment booking, service presentation, and future product sales.
+Lucca's Hair is a premium salon and barber-style website project focused on appointment booking, service presentation, and future product sales.
 
 ## Project Status
 
-Current status: Phase 1, project foundation and planning.
+Phase 1 foundation is complete.
+Phase 2 product blueprint is complete.
 
-This repository does not contain the website application yet. The current work establishes the project context, brand direction, documentation, asset organization, and GitHub-ready structure before implementation begins.
+The repository is implementation-ready from a planning standpoint, but no website application has been created yet. The next step is to generate page mockups, lock selected visual assets, and confirm remaining client details before building the Next.js app.
 
 ## Business Objective
 
-The primary objective is to make it easy for clients to book appointments with Lucca. The secondary objective is to prepare the website for showcasing and eventually selling hair and grooming products.
+The primary objective is to make it easy and obvious for clients to book appointments with Lucca.
 
-The site should feel like a real business website for a premium, trusted hair professional. It should also demonstrate thoughtful product planning, UX strategy, frontend architecture, and production intent for portfolio and recruiter review.
+The secondary objective is to showcase and eventually sell hair and grooming products once product, pricing, and fulfillment details are confirmed.
 
-## Planned User Flows
+The project should read as real client and product work: brand direction, UX strategy, conversion planning, appointment flow design, commerce planning, technical readiness, and clean documentation.
 
-- Book an appointment
-- Review available services
-- Learn about Lucca and the business
-- Browse products
-- View product details
-- Contact the business
-- Review FAQs and policies
-
-## Planned Pages
+## MVP Scope
 
 - Home
-- About
 - Services
-- Booking
+- Book
 - Products
-- Product detail
+- About
 - Contact
-- FAQ
-- Policies, optional but likely useful later
+- FAQ / Policies
+
+Future scope can include product detail pages, gallery, testimonials, memberships, gift cards, a style journal, and a client portal.
 
 ## Planned Technical Direction
 
 - Next.js
 - TypeScript
 - Tailwind CSS
-- Framer Motion or Motion
+- Motion or Framer Motion
 - Vercel deployment
 - Booking integration, TBD
 - Product or ecommerce flow, TBD
 
-## Repository Structure
+## Current Documentation
 
 ```text
 docs/
+  product-blueprint.md
+  sitemap.md
+  user-flows.md
+  content-requirements.md
+  client-questionnaire.md
+  mockup-plan.md
+  technical-direction.md
   project-brief.md
   roadmap.md
   client-notes.md
@@ -63,6 +63,7 @@ docs/
   decisions/
     0001-project-name-and-repo-direction.md
     0002-phase-based-build-process.md
+    0003-product-blueprint-and-mvp-scope.md
 
 assets/
   references/
@@ -71,19 +72,10 @@ assets/
   products/
 ```
 
-## Current Phase
+## Next Step
 
-Phase 1 is focused on brand foundation, repo setup, planning docs, asset folders, and clear project guardrails.
-
-## Next Steps
-
-1. Confirm business details with Lucca.
-2. Define sitemap and user flows.
-3. Collect or create visual references.
-4. Create selected page mockups.
-5. Choose booking and product commerce approaches.
-6. Plan the technical architecture before creating the application.
+Generate and review page mockups in the approved order, lock one selected visual direction per page, collect missing client details, and prepare assets before implementation begins.
 
 ## Business Details Policy
 
-Business details that have not been confirmed must stay marked as `TBD`. Do not fabricate services, prices, appointment platforms, products, address, phone number, hours, policies, logo assets, or ecommerce details.
+Business details that have not been confirmed must stay marked as `TBD`. Do not fabricate services, prices, appointment platforms, products, address, phone number, hours, policies, logo assets, domain, social links, or ecommerce details.

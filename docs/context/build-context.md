@@ -1,21 +1,21 @@
 # Build Context
 
-This document is the handoff source for future Codex threads working on Lucca’s Hair.
+This document is the handoff source for future Codex threads working on Lucca's Hair.
 
 ## Project Vision
 
-Lucca’s Hair is a real client-style small business website for a premium salon and barber-style brand. The site should make appointment booking feel immediate and trustworthy while giving the business a polished digital presence.
+Lucca's Hair is a real client-style small business website for a premium salon and barber-style brand. The site should make appointment booking feel immediate and trustworthy while giving the business a polished digital presence.
 
-The site should eventually support service discovery, booking, product browsing, product detail pages, contact information, FAQ content, and policies. The current repository is intentionally in Phase 1 only. No application code has been created yet.
+The site should support service discovery, booking, product browsing, contact information, FAQ content, and policies in the MVP. Future phases can add product detail pages, ecommerce, gallery, testimonials, memberships, gift cards, style journal content, and a client portal.
 
 ## Brand Direction
 
-- Business name: Lucca’s Hair.
+- Business name: Lucca's Hair.
 - Personality: premium, warm, masculine, stylish, Italian-inspired, approachable, and clean.
-- Visual vibe: dark cinematic base with warm cream and gold accents.
+- Visual vibe: dark cinematic base with warm cream, tan, brass, gold, and black accents.
 - Atmosphere: polished barbershop and salon experience.
-- Logo direction: illustrated barber or salon mascot logo, inspired by a black and cream circular reference, updated to use an `L` instead of a `T`.
-- Avoid: generic cheap barber templates, fake luxury, cluttered visuals, unconfirmed business claims, and disposable placeholder content.
+- Logo direction: illustrated barber or salon mascot logo, updated to use an `L` instead of the earlier `T` concept.
+- Avoid: generic barber templates, fake luxury, cluttered visuals, unconfirmed business claims, and disposable placeholder content.
 
 ## Site Purpose
 
@@ -27,9 +27,9 @@ The site should support real business needs and also show strong process for por
 
 ## Current Status
 
-Current phase: Phase 1, project foundation.
+Current phase: Phase 2 product blueprint complete.
 
-Completed in this phase:
+Completed:
 
 - Repository initialized.
 - Project README added.
@@ -38,14 +38,20 @@ Completed in this phase:
 - Design notes added.
 - Decision records added.
 - Asset placeholder folders added.
+- Product blueprint documented.
+- Sitemap documented.
+- User flows documented.
+- Content requirements documented.
+- Client questionnaire documented.
+- Mockup plan documented.
+- Technical direction documented.
 
 Not completed yet:
 
 - Next.js app.
-- Sitemap.
-- Detailed user flows.
 - Page mockups.
 - Final logo assets.
+- Final photography.
 - Booking integration.
 - Product data.
 - Ecommerce integration.
@@ -57,53 +63,57 @@ Keep these marked as `TBD` until confirmed by the client:
 
 - Exact services.
 - Prices.
+- Service durations.
 - Appointment platform.
 - Product names.
 - Product prices.
+- Product photos.
+- Shipping or pickup method.
 - Business address.
 - Phone number.
 - Email address.
 - Hours.
-- Policies.
+- Cancellation policy.
+- Refund or product return policy.
 - Final logo assets.
-- Exact ecommerce approach.
-- Domain.
+- Final domain.
 - Social links.
-- Photography permissions.
 
 ## Implementation Rules
 
 - Do not invent real business details.
 - Use `TBD` for unknowns.
 - Do not create the full website until the user asks for the implementation phase.
-- Do not create a Next.js app during Phase 1.
+- Do not create a Next.js app before Phase 4.
 - Base future implementation on selected mockups, one page at a time.
 - Keep the booking path central in navigation, layout, and calls to action.
 - Keep product planning flexible until the ecommerce approach is selected.
 - Preserve the premium, warm, masculine, Italian-inspired tone.
 - Avoid generic barber template styling.
 
+## Recommended MVP Sitemap
+
+- Home.
+- Services.
+- Book.
+- Products.
+- About.
+- Contact.
+- FAQ / Policies.
+
 ## Expected Future Tech Direction
 
 - Next.js.
 - TypeScript.
 - Tailwind CSS.
-- Framer Motion or Motion.
+- Motion or Framer Motion.
 - Vercel deployment.
 - Booking integration, TBD.
 - Product or ecommerce flow, TBD.
 
-## Future Page List
+## Next Phase
 
-- Home.
-- About.
-- Services.
-- Booking.
-- Products.
-- Product detail.
-- Contact.
-- FAQ.
-- Policies, optional but likely useful later.
+Phase 3 is mockups and asset lock. Generate page mockups in the approved order, select one reference mockup per page, gather client details, and prepare assets before implementation begins.
 
 ## Recruiter-Friendly Positioning
 

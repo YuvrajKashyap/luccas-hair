@@ -2,21 +2,21 @@
 
 ## Current Mockup Strategy
 
-The project should use page mockups before frontend implementation. Mockups should define layout, visual hierarchy, content structure, and booking emphasis before any Next.js app is created.
+Phase 3 should generate page mockups before frontend implementation. Mockups should define layout, visual hierarchy, content structure, asset direction, and booking emphasis before any Next.js app is created.
 
-Mockups may be created from selected visual references, generated design explorations, or hand-built layout studies. Final implementation should follow approved mockups one page at a time.
+Final implementation should follow approved mockups one page at a time.
 
-## Pages That Need Mockups
+## Priority Pages
 
 - Home.
-- About.
 - Services.
-- Booking.
+- Book.
 - Products.
-- Product detail.
+- About.
 - Contact.
-- FAQ.
-- Policies, optional.
+- FAQ / Policies.
+
+Future mockups can cover Product Detail, Gallery, Testimonials, Memberships, Gift Cards, Blog / Style Journal, and Client Portal if those features are approved.
 
 ## Desktop And Mobile Reminder
 
@@ -25,3 +25,5 @@ Each core page should have desktop and mobile mockup coverage before implementat
 ## Implementation Instruction
 
 Final implementation should be based on selected reference mockups one page at a time. Do not build the full site from vague direction alone. Confirm page structure, assets, and content needs before turning each mockup into code.
+
+Use `docs/mockup-plan.md` as the source for mockup order, asset extraction notes, and the rule that each page gets one selected reference mockup before implementation.

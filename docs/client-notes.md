@@ -21,7 +21,7 @@ This file tracks open questions for Lucca. Unknown details should remain `TBD` u
 ## Booking Method
 
 - What booking platform will be used?
-- Options to evaluate: Fresha, Square, Calendly, custom form, or another tool.
+- Options to evaluate: Fresha, Square, Calendly, Squire, direct text or call, custom form, or another tool.
 - Should booking happen on-site, through an embed, or through an external link?
 - What information should clients provide before booking?
 - What should happen after a booking request or appointment confirmation?

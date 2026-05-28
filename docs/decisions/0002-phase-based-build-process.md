@@ -16,7 +16,8 @@ A phase-based process helps avoid messy implementation, unclear design decisions
 
 ## Impact
 
-- Phase 1 focuses on foundation and documentation.
-- Future phases can address sitemap, mockups, technical architecture, and implementation in order.
+- Phase 1 established the foundation and documentation.
+- Phase 2 completed the product blueprint and MVP scope.
+- Future phases can address mockups, asset lock, technical implementation, integrations, QA, deployment, and launch in order.
 - Unknown client details remain marked as `TBD` until confirmed.
 - The final website should be easier to build, explain, and maintain.
