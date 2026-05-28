@@ -4,7 +4,7 @@
 
 Lucca's Hair is an appointment-first website for a premium salon and barber-style brand. The MVP should help visitors understand the brand, review services, book an appointment, browse product offerings, and contact the business.
 
-The project is currently in planning. No website implementation has started yet.
+The project now has production app infrastructure, but the final high-fidelity website UI has not been implemented yet.
 
 ## Business Objective
 
@@ -72,9 +72,9 @@ Future pages can include Product Detail, Gallery, Testimonials, Memberships, Gif
 - Booking CTA.
 - Services link.
 - Products link.
-- Contact details, all TBD until confirmed.
-- Hours, TBD.
-- Location, TBD.
+- Contact details for Tony Lucca.
+- Hours: Tuesday to Saturday, 10 AM to 5 PM. Closed Sunday and Monday.
+- Location: Inside Salon Boutique, 5701 E SH-121 Access Rd, Suite TBD, The Colony, TX.
 - Social links, TBD.
 - FAQ / Policies link.
 - Copyright line using the confirmed business name.
@@ -98,10 +98,10 @@ Future pages can include Product Detail, Gallery, Testimonials, Memberships, Gif
 
 ## Risks And Unknowns
 
-- Booking platform is TBD.
+- Booking platform is Square. Final booking link or embed details are TBD.
 - Services, prices, and durations are TBD.
 - Product names, prices, photos, inventory, and fulfillment are TBD.
-- Address, phone, email, hours, and social links are TBD.
+- Final suite number, postal code, service area, and social links are TBD.
 - Policies are TBD.
 - Final logo files and approved photography are TBD.
 - Domain is TBD.
@@ -110,9 +110,9 @@ Future pages can include Product Detail, Gallery, Testimonials, Memberships, Gif
 ## What Must Be Confirmed With Lucca
 
 - Final service list, prices, and durations.
-- Booking platform and preferred booking behavior.
+- Final Square booking link or embed behavior.
 - Product list, pricing, photos, and fulfillment method.
-- Business address, phone number, email, hours, and service area.
+- Final suite number, postal code, and service area.
 - Cancellation, late arrival, deposit, refund, return, shipping, and pickup policies.
 - Final logo assets, photography permissions, and visual references.
 - Domain and social links.

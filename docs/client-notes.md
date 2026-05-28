@@ -44,10 +44,12 @@ This file tracks open questions for Lucca. Unknown details should remain `TBD` u
 
 ## Hours, Location, And Contact
 
-- Business address: TBD.
-- Phone number: TBD.
-- Email address: TBD.
-- Hours: TBD.
+- Business address: Inside Salon Boutique, 5701 E SH-121 Access Rd, Suite TBD, The Colony, TX.
+- Phone number: 972-207-9215.
+- Email address: tlucca65@yahoo.com.
+- Hours: Tuesday to Saturday, 10 AM to 5 PM. Closed Sunday and Monday.
+- Final suite number: TBD.
+- Postal code: TBD.
 - Service area or neighborhood: TBD.
 - Parking or arrival details: TBD.
 

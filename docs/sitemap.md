@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | Home | MVP | Introduce Lucca's Hair, communicate premium positioning, and drive booking. |
 | Services | MVP | Help visitors compare services before booking. Exact services, prices, and durations are TBD. |
-| Book | MVP | Provide the clearest booking path using an embed, external link, direct text or call, or another confirmed method. Booking platform is TBD. |
+| Book | MVP | Provide the clearest booking path using Square through an embed, external link, direct text or call, or another confirmed method. Final Square link or embed details are TBD. |
 | Products | MVP | Showcase future hair or grooming products and support inquiry or future commerce. Product details are TBD. |
 | About | MVP | Build trust through Lucca's story, approach, and brand personality once details are confirmed. |
 | Contact | MVP | Provide confirmed contact, location, hours, and social details. All details are TBD until confirmed. |

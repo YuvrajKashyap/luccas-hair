@@ -56,21 +56,18 @@ The project should feel warm, stylish, masculine, clean, and Italian-inspired. I
 - Services are easy to scan on mobile and desktop.
 - Product planning can support future sales without restructuring the site.
 - Content and design decisions are documented well enough for handoff.
-- No implementation starts until mockups and assets are locked.
+- Production app infrastructure may exist before mockups, but final high-fidelity UI implementation waits until mockups and assets are locked.
 
 ## Constraints And Open Questions
 
 - Exact services are TBD.
 - Prices are TBD.
 - Service durations are TBD.
-- Appointment platform is TBD.
+- Appointment platform is Square. Final booking link or embed details are TBD.
 - Product names and inventory are TBD.
 - Product prices are TBD.
 - Product photos are TBD.
-- Business address is TBD.
-- Phone number is TBD.
-- Email address is TBD.
-- Hours are TBD.
+- Final suite number and postal code are TBD.
 - Policies are TBD.
 - Final logo assets are TBD.
 - Exact ecommerce approach is TBD.

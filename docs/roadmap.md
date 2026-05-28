@@ -1,6 +1,6 @@
 # Roadmap
 
-This roadmap keeps planning, mockups, implementation, integrations, and launch work in clear phases.
+This roadmap keeps planning, infrastructure, mockups, implementation, integrations, and launch work in clear phases.
 
 ## Phase 1: Foundation, Complete
 
@@ -17,9 +17,17 @@ This roadmap keeps planning, mockups, implementation, integrations, and launch w
 - Products confirmed as the secondary conversion goal and future commerce path.
 - Sitemap, user flows, content requirements, client questionnaire, mockup plan, and technical direction documented.
 - Unknown client details remain marked as `TBD`.
-- No website implementation has started.
+- No final website UI implementation has started.
 
-## Phase 3: Mockups And Asset Lock
+## Phase 3: Production App Infrastructure, Complete
+
+- Initialize the Next.js App Router application.
+- Add TypeScript, Tailwind CSS, ESLint, Prettier, and CI.
+- Add placeholder public pages and a protected admin scaffold.
+- Add Supabase, contact, custom analytics, SEO, and Vercel readiness scaffolding.
+- Keep UI placeholder-level until mockups and assets are locked.
+
+## Phase 4: Mockups And Asset Lock
 
 - Generate page mockups in the approved order.
 - Review desktop and mobile layouts for priority pages.
@@ -27,23 +35,22 @@ This roadmap keeps planning, mockups, implementation, integrations, and launch w
 - Generate or collect approved logo, photography, product, and supporting assets.
 - Avoid mixing visual directions after a page direction is locked.
 
-## Phase 4: Next.js Implementation
+## Phase 5: Final UI Implementation
 
-- Create the Next.js application after mockups and assets are ready.
 - Build the MVP pages from approved mockups.
 - Implement responsive layouts, accessible navigation, and reusable components.
 - Keep booking actions prominent across desktop and mobile.
 - Keep product content flexible until real details are confirmed.
 
-## Phase 5: Booking And Product Integrations
+## Phase 6: Booking And Product Integrations
 
-- Select the booking platform, TBD.
-- Integrate booking through an embed, external link, direct text or call, or another approved flow.
+Integrate Square booking through an embed, external link, direct text or call, or another approved flow once the final Square details are available.
+
 - Select the product path, TBD.
 - Support product inquiry, Shopify, Stripe Checkout, or another confirmed commerce approach.
 - Validate booking and product paths on mobile and desktop.
 
-## Phase 6: QA, SEO, Deployment, Launch
+## Phase 7: QA, SEO, Deployment, Launch
 
 - Run responsive, accessibility, and performance QA.
 - Add SEO metadata and local business content once details are confirmed.

@@ -6,12 +6,13 @@ Lucca's Hair is a premium salon and barber-style website project focused on appo
 
 Phase 1 foundation is complete.
 Phase 2 product blueprint is complete.
+Phase 3 production app infrastructure is complete.
 
-The repository is implementation-ready from a planning standpoint, but no website application has been created yet. The next step is to generate page mockups, lock selected visual assets, and confirm remaining client details before building the Next.js app.
+The repository now contains the actual Next.js application foundation, placeholder pages, backend scaffolding, and deployment tooling. The final high-fidelity UI has not been implemented yet. The next step is to generate page mockups, lock selected visual assets, and then replace placeholders with the final interface one page at a time.
 
 ## Business Objective
 
-The primary objective is to make it easy and obvious for clients to book appointments with Lucca.
+The primary objective is to make it easy and obvious for clients to book appointments with Tony Lucca through Square.
 
 The secondary objective is to showcase and eventually sell hair and grooming products once product, pricing, and fulfillment details are confirmed.
 
@@ -31,18 +32,59 @@ Future scope can include product detail pages, gallery, testimonials, membership
 
 ## Planned Technical Direction
 
-- Next.js
+- Next.js App Router
 - TypeScript
 - Tailwind CSS
-- Motion or Framer Motion
+- Framer Motion
+- Supabase for auth, contact submissions, and custom analytics events
+- Zod validation
+- Vercel Analytics and Speed Insights
 - Vercel deployment
-- Booking integration, TBD
+- Square booking integration, final link TBD
 - Product or ecommerce flow, TBD
+
+## App Setup
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+Run checks:
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+npm run format:check
+```
+
+## Environment Variables
+
+Copy `.env.example` to `.env.local` when local integration work begins.
+
+Required later for Supabase and booking integration:
+
+- `NEXT_PUBLIC_SITE_URL`
+- `NEXT_PUBLIC_SQUARE_BOOKING_URL`
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`, optional legacy fallback
+- `SUPABASE_SERVICE_ROLE_KEY`, server-only persistence key
+- `ADMIN_EMAIL_ALLOWLIST`
 
 ## Current Documentation
 
 ```text
 docs/
+  technical-implementation.md
   product-blueprint.md
   sitemap.md
   user-flows.md
@@ -70,12 +112,24 @@ assets/
   logo/
   mockups/
   products/
+
+src/
+  app/
+  components/
+  data/
+  lib/
+  server/
+  styles/
+  types/
+
+supabase/
+  migration-drafts/
 ```
 
 ## Next Step
 
-Generate and review page mockups in the approved order, lock one selected visual direction per page, collect missing client details, and prepare assets before implementation begins.
+Generate and review page mockups in the approved order, lock one selected visual direction per page, collect missing client details, and replace placeholder pages with final UI after assets are approved.
 
 ## Business Details Policy
 
-Business details that have not been confirmed must stay marked as `TBD`. Do not fabricate services, prices, appointment platforms, products, address, phone number, hours, policies, logo assets, domain, social links, or ecommerce details.
+Business details that have not been confirmed must stay marked as `TBD`. Do not fabricate final services, prices, products, policies, logo assets, domain, social links, or ecommerce details.

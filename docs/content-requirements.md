@@ -194,10 +194,10 @@
 
 **Required content:**
 
-- Address, TBD.
-- Phone number, TBD.
-- Email, TBD.
-- Hours, TBD.
+- Address: Inside Salon Boutique, 5701 E SH-121 Access Rd, Suite TBD, The Colony, TX.
+- Phone number: 972-207-9215.
+- Email: tlucca65@yahoo.com.
+- Hours: Tuesday to Saturday, 10 AM to 5 PM. Closed Sunday and Monday.
 - Social links, TBD.
 - Booking CTA.
 
@@ -214,7 +214,7 @@
 
 **Client info needed:**
 
-- Full business contact details.
+- Final suite number and postal code.
 - Preferred contact methods.
 - Google Business Profile URL, TBD.
 

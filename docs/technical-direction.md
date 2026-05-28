@@ -2,24 +2,27 @@
 
 ## Recommended Stack
 
-- Next.js.
+- Next.js App Router.
 - TypeScript.
 - Tailwind CSS.
-- Motion or Framer Motion.
+- Framer Motion or Motion.
+- Supabase.
+- Zod.
+- Vercel Analytics and Speed Insights.
 - Vercel.
 
-No Next.js app has been created yet. Implementation should wait until mockups and assets are locked.
+The production app infrastructure has now been initialized with placeholder pages only. Final high-fidelity UI implementation should still wait until mockups and assets are locked.
 
 ## Possible Booking Integrations
 
-- Fresha.
 - Square.
+- Fresha.
 - Calendly.
 - Squire.
 - Direct text or call.
 - Another booking platform selected by Lucca.
 
-The booking platform is TBD. The MVP should be designed so the Book page can support an embed, external booking link, or direct contact CTA without restructuring the site.
+The booking platform is Square. The final Square booking link or embed details are TBD. The Book page should support an embed, external booking link, or direct contact CTA without restructuring the site.
 
 ## Possible Product Integrations
 
@@ -86,8 +89,8 @@ Product names, prices, photos, inventory, shipping, pickup, and return details a
 
 ## What Not To Implement Yet
 
-- Do not create the Next.js app before mockups and assets are locked.
+- Do not build the final high-fidelity UI before mockups and assets are locked.
 - Do not build real booking integration until the platform is confirmed.
 - Do not build ecommerce checkout until product and fulfillment details are confirmed.
-- Do not invent services, prices, durations, policies, address, phone, email, hours, products, or social links.
+- Do not invent final services, prices, durations, policies, products, or social links.
 - Do not publish unapproved logo, photography, or product assets as final.

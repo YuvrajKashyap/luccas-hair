@@ -1,0 +1,12 @@
+node_modules
+.next
+.vercel
+coverage
+out
+dist
+assets
+docs
+supabase
+.codex-goal-*.md
+AGENTS.md
+package-lock.json

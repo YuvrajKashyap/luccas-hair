@@ -2,7 +2,7 @@
 
 ## Current Mockup Strategy
 
-Phase 3 should generate page mockups before frontend implementation. Mockups should define layout, visual hierarchy, content structure, asset direction, and booking emphasis before any Next.js app is created.
+The next phase should generate page mockups before final UI implementation. Mockups should define layout, visual hierarchy, content structure, asset direction, and booking emphasis before placeholder pages are replaced.
 
 Final implementation should follow approved mockups one page at a time.
 

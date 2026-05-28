@@ -27,7 +27,7 @@ The site should support real business needs and also show strong process for por
 
 ## Current Status
 
-Current phase: Phase 2 product blueprint complete.
+Current phase: Phase 3 production app infrastructure complete.
 
 Completed:
 
@@ -45,15 +45,18 @@ Completed:
 - Client questionnaire documented.
 - Mockup plan documented.
 - Technical direction documented.
+- Next.js App Router infrastructure initialized.
+- Placeholder MVP routes created.
+- Supabase, contact, analytics, admin, SEO, CI, and Vercel readiness scaffolding added.
 
 Not completed yet:
 
-- Next.js app.
 - Page mockups.
+- Final high-fidelity UI.
 - Final logo assets.
 - Final photography.
-- Booking integration.
-- Product data.
+- Final Square booking link or embed.
+- Final product data.
 - Ecommerce integration.
 - Deployment.
 
@@ -64,15 +67,13 @@ Keep these marked as `TBD` until confirmed by the client:
 - Exact services.
 - Prices.
 - Service durations.
-- Appointment platform.
+- Final Square booking link or embed details.
 - Product names.
 - Product prices.
 - Product photos.
 - Shipping or pickup method.
-- Business address.
-- Phone number.
-- Email address.
-- Hours.
+- Final suite number.
+- Postal code.
 - Cancellation policy.
 - Refund or product return policy.
 - Final logo assets.
@@ -83,9 +84,8 @@ Keep these marked as `TBD` until confirmed by the client:
 
 - Do not invent real business details.
 - Use `TBD` for unknowns.
-- Do not create the full website until the user asks for the implementation phase.
-- Do not create a Next.js app before Phase 4.
-- Base future implementation on selected mockups, one page at a time.
+- Do not build the final high-fidelity UI until mockups and assets are locked.
+- Base future final UI implementation on selected mockups, one page at a time.
 - Keep the booking path central in navigation, layout, and calls to action.
 - Keep product planning flexible until the ecommerce approach is selected.
 - Preserve the premium, warm, masculine, Italian-inspired tone.
@@ -106,14 +106,17 @@ Keep these marked as `TBD` until confirmed by the client:
 - Next.js.
 - TypeScript.
 - Tailwind CSS.
-- Motion or Framer Motion.
+- Framer Motion or Motion.
+- Supabase.
+- Zod.
+- Vercel Analytics and Speed Insights.
 - Vercel deployment.
-- Booking integration, TBD.
+- Square booking integration, final link TBD.
 - Product or ecommerce flow, TBD.
 
 ## Next Phase
 
-Phase 3 is mockups and asset lock. Generate page mockups in the approved order, select one reference mockup per page, gather client details, and prepare assets before implementation begins.
+The next phase is mockups and asset lock. Generate page mockups in the approved order, select one reference mockup per page, gather remaining client details, and prepare assets before final UI implementation begins.
 
 ## Recruiter-Friendly Positioning
 
