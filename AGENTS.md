@@ -886,35 +886,434 @@ Rules:
 - Public Supabase anon or publishable keys are acceptable in client code when used with correct Row Level Security.
 - Secret keys must stay server-side.
 
-## 30. Supabase Rules
+## 30. Supabase Architecture Requirements for Lucca's Hair
 
-Use Supabase Auth for admin protection.
+This project uses Supabase as part of Yuvraj's shared app ecosystem. Future Codex work must follow this architecture exactly. Do not fall back to generic Supabase defaults.
 
-Use Supabase Postgres for:
+Before implementing any Supabase feature, verify current Supabase docs and changelog. Supabase APIs, CLI behavior, Data API settings, and auth helpers change over time.
 
-- Contact submissions if configured.
-- Custom analytics events if configured.
-- Admin insights data if configured.
+### Shared Supabase Project Model
 
-Before implementing Supabase features, verify current Supabase docs and changelog. Supabase APIs and CLI behavior change over time.
+- The Supabase project is shared across Yuvraj's app ecosystem.
+- The shared Supabase project is called `yk-portfolio`.
+- One physical Supabase project contains many isolated app backends.
+- Each app must have its own SQL schema.
+- Lucca's Hair must not pollute the `public` schema.
+- Lucca's Hair must not touch the schemas for Axis, Capital, Arcade, Jasiverse, or any other app.
+- This repo owns only the Lucca's Hair schema and related app-specific resources.
+- Shared auth does not mean shared app tables.
 
-Security requirements:
+Never create Lucca's Hair contact, analytics, service, product, or admin tables in the `public` schema.
 
-- Enable Row Level Security on exposed tables.
-- Do not expose service role or secret keys in public clients.
-- Do not use user-editable metadata for authorization decisions.
-- Do not put privileged database functions in exposed schemas.
-- Protect contact submissions from public reads.
-- Validate inputs with Zod before inserting.
-- Use server-side writes for sensitive data.
-- Keep admin-only reads behind authenticated server checks.
+### Canonical App Namespace
 
-If the Supabase project is not configured yet:
+- Public brand name: `Lucca's Hair`.
+- Repo slug: `luccas-hair`.
+- Supabase SQL schema: `luccas_hair`.
+- Possible future storage bucket, only if needed: `luccas-hair-assets`.
 
-- Keep public pages buildable.
-- Show graceful disabled states for admin data or forms.
-- Document missing env vars.
-- Do not fake stored data.
+SQL schema names use snake_case because SQL identifiers should not use apostrophes or hyphens.
+
+Code, URLs, package naming, and repo references can use `luccas-hair` as the product slug.
+
+Database objects must be created under `luccas_hair.*`.
+
+Never create Lucca's Hair app tables in the `public` schema. Contact submissions and analytics events belong under `luccas_hair`.
+
+### App Classification
+
+Lucca's Hair is:
+
+- A public local business website with a private owner and admin area.
+- Low to medium sensitivity.
+- Not high-sensitivity like Capital.
+- Not a finance app.
+- Not a multi-user SaaS app.
+- Mostly static and marketing-oriented on public pages.
+
+Private admin data includes:
+
+- Contact submissions.
+- Analytics events.
+- Admin activity or audit events if added later.
+
+Admin access must be owner-only or allowlist-only.
+
+Runtime model:
+
+- Public content should mostly come from code and editable TypeScript data files in the repo.
+- Supabase is used for admin auth, contact submissions, analytics events, and private insights.
+- Sensitive admin reads and writes should be server-controlled.
+- Private tables must not have broad direct browser access.
+
+### Auth Rules
+
+Use Supabase Auth only.
+
+Do not use Auth.js.
+
+Do not use NextAuth.
+
+Do not create custom password auth.
+
+Do not create fake shadow auth systems.
+
+Supabase `auth.users.id` is the identity anchor.
+
+If app-specific users are needed, they belong in `luccas_hair.users`.
+
+Admin access should be allowlist-based.
+
+Admin should be protected by real auth, not hidden routes or secret clicks.
+
+`/admin` must not be in public navigation.
+
+`/admin` must not rely on obscurity for security.
+
+Recommended owner-only pattern:
+
+- `luccas_hair.allowed_emails`
+- `luccas_hair.users`
+- `luccas_hair.user_state`
+- Helper function such as `luccas_hair.is_active_user(uid uuid)`
+
+### Data Model Boundaries
+
+Public business content should initially live in editable TypeScript data files, including:
+
+- Services.
+- Prices.
+- Hours.
+- Navigation links.
+- FAQs.
+- Policies.
+- Products coming soon content.
+- Contact display data.
+
+Do not move public business content into Supabase unless a real admin CMS or editor is later requested.
+
+V1 admin is insights only, not a CMS.
+
+Tony will request content updates from Yuvraj, so content editing in Supabase is not needed for V1.
+
+Supabase should be used for:
+
+- Admin users and access if needed.
+- Contact form submissions.
+- Analytics events.
+- Admin audit events, optional.
+- Future lead or product interest tracking.
+
+Supabase should not be used in V1 for:
+
+- Real ecommerce inventory.
+- Square booking confirmation data.
+- Fake product catalog management.
+- Fake testimonials.
+- Public gallery proof.
+- CMS tables unless explicitly requested later.
+
+### Recommended Lucca's Hair Schema Tables
+
+This is the expected migration direction when backend scaffolding happens. These objects are planned architecture, not proof that the tables already exist.
+
+Expected schema:
+
+- `luccas_hair`
+
+Expected access foundation:
+
+- `luccas_hair.allowed_emails`
+  - Owner and admin allowlist.
+  - Zero client-facing policies.
+  - Server-only access unless a specific secure admin workflow is added.
+- `luccas_hair.users`
+  - `id uuid primary key references auth.users(id) on delete cascade`
+  - `email`
+  - `display_name`
+  - `role`
+  - `access_status`
+  - `created_at`
+  - `updated_at`
+- `luccas_hair.user_state`
+  - Admin or user state such as `last_seen_at`.
+  - References `luccas_hair.users`.
+
+Expected business and admin tables:
+
+- `luccas_hair.contact_submissions`
+  - General contact form messages.
+  - Not booking appointments.
+  - Fields may include `name`, `email`, `phone`, `message`, `source_page`, `status`, `user_agent`, `ip_hash`, and `created_at`.
+- `luccas_hair.analytics_events`
+  - Custom event tracking for booking clicks, text clicks, call clicks, directions clicks, product interest clicks, and contact submits.
+  - Fields may include `event_type`, `page_path`, `metadata jsonb`, `session_id`, `user_agent`, `ip_hash`, and `created_at`.
+- `luccas_hair.admin_audit_events`, optional
+  - Records important admin actions if needed later.
+
+Do not create services, products, or testimonials tables unless a CMS is explicitly requested later.
+
+Do not create Square bookings tables unless Square API or webhook integration is explicitly added later.
+
+Admin analytics can track booking intent, not confirmed bookings.
+
+### RLS Rules
+
+RLS must be enabled on every `luccas_hair` table.
+
+Sensitive or internal tables should have zero client-facing policies.
+
+Contact submissions and analytics events should not be readable by the public.
+
+Admin-only data should be readable only by authenticated active admins.
+
+Broad public read or write policies are not allowed.
+
+Never create permissive policies just to "make it work."
+
+If a table is only accessed through server-side route handlers or server actions, keep client policies extremely narrow or absent.
+
+RLS is defense in depth, not a replacement for server-side checks.
+
+Recommended table categories:
+
+- `luccas_hair.allowed_emails`: zero-policy sensitive server-only table.
+- `luccas_hair.users`: owner/admin scoped, no broad access.
+- `luccas_hair.user_state`: owner/admin scoped.
+- `luccas_hair.contact_submissions`: server insert only, admin read only.
+- `luccas_hair.analytics_events`: server insert only, admin read only.
+- `luccas_hair.admin_audit_events`: server insert only, admin read only.
+
+### Server-Only And Client-Safe Boundaries
+
+Always server-only:
+
+- Service role usage.
+- Admin access checks.
+- Contact form persistence.
+- Analytics event persistence if using service role.
+- Admin dashboard aggregation.
+- Any future Square API integration.
+- Any future Stripe or Shopify integration.
+- Any future webhook handling.
+
+Client-safe:
+
+- Public page rendering from static data files.
+- Clicking CTAs.
+- Submitting forms to server actions or route handlers.
+- Calling a safe internal analytics endpoint that validates and stores events server-side.
+
+Never:
+
+- Expose the service role key in the browser.
+- Write directly to private tables from public client code.
+- Let the browser read contact submissions.
+- Let the browser read analytics events.
+- Trust client-submitted metadata without validation.
+
+### Environment Variables
+
+Browser-safe:
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `NEXT_PUBLIC_SITE_URL`, if used
+
+Server-only:
+
+- `SUPABASE_SERVICE_ROLE_KEY`, only if needed for server-side inserts or admin aggregation.
+- Future Square secrets.
+- Future Stripe or Shopify secrets.
+
+Admin and access:
+
+- Seed `luccas_hair.allowed_emails`, preferred for durable allowlist access.
+- Or use a server-only env var such as `LUCCAS_ADMIN_EMAILS` only as a bootstrap helper.
+
+Rules:
+
+- Never commit secrets.
+- `.env.example` should document required variables without real values.
+- Production env vars should live in Vercel.
+- Local env may live in `.env.local`.
+- The app should build without real Supabase keys when possible, using clear placeholder or fallback behavior.
+- Never expose service role or secret keys to browser code.
+
+### Custom Schema Runtime Reminders
+
+Because `luccas_hair` is a custom schema, Codex must remember Supabase custom schema setup.
+
+The schema may need to be exposed in Supabase API/Data API settings depending on runtime access pattern.
+
+Grants on schema, tables, sequences, and functions matter.
+
+App code must be schema-aware.
+
+Supabase helpers should query `luccas_hair`, not `public`.
+
+When debugging runtime errors, check these before changing architecture:
+
+- Schema exposure.
+- Schema grants.
+- Table grants.
+- Sequence grants.
+- Function grants.
+- RLS.
+- Schema-qualified queries.
+- Server-only vs client-side access path.
+
+Do not "fix" custom schema issues by moving tables into `public`.
+
+### Migration Rules
+
+Migration files in this repo may only create or modify `luccas_hair.*` objects and necessary grants or functions for that schema.
+
+Do not alter `axis.*`, `capital.*`, `arcade.*`, `jasiverse.*`, or unrelated schemas.
+
+Do not create app business tables in `public`.
+
+Do not leave half-migration states.
+
+Create access foundation first before business tables.
+
+Create tables in logical groups.
+
+Add foreign keys, uniqueness constraints, delete behavior, and indexes deliberately.
+
+Enable RLS immediately.
+
+Add policies deliberately by table category.
+
+Keep migrations idempotent where reasonable.
+
+Do not rely on runtime app code to patch missing schema design.
+
+Expected migration order for Lucca's Hair:
+
+1. Create schema `luccas_hair`.
+2. Create `set_updated_at` helper if needed.
+3. Create `allowed_emails` if admin allowlist is database-backed.
+4. Create `users`.
+5. Create `user_state`, if useful.
+6. Create helper function such as `is_active_user(uid uuid)`.
+7. Enable RLS on access tables.
+8. Create contact and analytics tables.
+9. Enable RLS on all tables.
+10. Add carefully scoped policies or keep zero client policies when server-only.
+11. Add indexes for admin dashboards and time-series event queries.
+12. Verify grants and custom schema runtime behavior.
+
+### Contact Form Rules
+
+Contact form is for general questions only.
+
+Appointment booking goes through Square.
+
+Contact submissions should be validated with Zod or equivalent before persistence.
+
+Store contact submissions in `luccas_hair.contact_submissions` only.
+
+Do not email-spam Tony without explicit email provider setup.
+
+If email sending is added later, use a proper transactional email provider such as Resend.
+
+Do not store sensitive unnecessary data.
+
+Consider hashing IP if stored for spam or rate-limit context.
+
+### Analytics Rules
+
+Custom analytics should track business-intent events:
+
+- `booking_click`
+- `text_click`
+- `call_click`
+- `directions_click`
+- `product_interest_click`
+- `contact_submit`
+- `square_booking_opened`, if useful
+
+Analytics events go in `luccas_hair.analytics_events`.
+
+Admin dashboard can show booking intent, not confirmed appointments.
+
+Do not claim confirmed Square bookings unless Square API or webhooks are implemented.
+
+Store only useful metadata.
+
+Avoid storing raw personally sensitive data unless necessary.
+
+If Vercel Analytics is also used, it complements but does not replace custom business-intent events.
+
+### Square Boundary
+
+Square is the booking engine.
+
+The custom site is the premium front door.
+
+Do not build a custom booking scheduler unless explicitly requested later.
+
+Do not write Square appointment data into Supabase unless Square API or webhooks are intentionally implemented.
+
+Do not claim Square appointments are confirmed in this app unless that integration exists.
+
+Booking clicks should be tracked as intent only.
+
+The `/book` page should send users to Square or embed Square if supported cleanly.
+
+### Storage Rules
+
+Do not create Supabase storage buckets unless the app actually needs them.
+
+For V1, most assets should live in the repo or public asset folder.
+
+If Supabase storage is needed later, use an app-specific bucket such as `luccas-hair-assets`.
+
+Do not mix Lucca's Hair assets with Axis, Capital, Arcade, Jasiverse, or other app buckets.
+
+Default private unless public access is clearly needed.
+
+Do not store client or gallery proof photos as "real work" unless Tony provides them.
+
+### Supabase Anti-Patterns
+
+Never:
+
+- Create Lucca's Hair tables in `public`.
+- Do not use Auth.js.
+- Do not use NextAuth.
+- Do not use runtime Prisma for app data.
+- Create global `public.profiles`.
+- Expose service-role keys to the browser.
+- Make admin accessible through secret URL only.
+- Add broad public RLS policies.
+- Touch another app's schema.
+- Fake Square booking confirmations.
+- Fake reviews or testimonials.
+- Fake product inventory.
+- Add ecommerce tables before real products exist.
+- Overbuild a CMS in V1.
+- Ignore custom schema exposure or grants.
+- Use generic Supabase defaults that break Yuvraj's ecosystem rules.
+
+### Supabase Backend Verification Checklist
+
+Before finishing any Supabase or backend task, verify:
+
+- All app tables are under `luccas_hair.*`.
+- No new app tables were created in `public`.
+- No unrelated schemas were changed.
+- RLS is enabled where appropriate.
+- Client policies are narrow or absent.
+- Service role is server-only.
+- Admin routes are auth-protected.
+- Contact form data cannot be read publicly.
+- Analytics events cannot be read publicly.
+- Public pages still build without real Supabase data.
+- Migrations are clean and focused.
+- `.env.example` is updated if env vars changed.
+- `npm run lint`, `npm run typecheck`, and `npm run build` pass when the app exists.
 
 ## 31. SEO Requirements
 
