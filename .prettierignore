@@ -10,3 +10,4 @@ supabase
 .codex-goal-*.md
 AGENTS.md
 package-lock.json
+next-env.d.ts

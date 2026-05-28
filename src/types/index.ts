@@ -11,6 +11,7 @@ export type BusinessHour = {
 export type Service = {
   id: string;
   name: string;
+  category: string;
   summary: string;
   price: string;
   duration: string;
