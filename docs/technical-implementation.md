@@ -14,30 +14,28 @@
 
 ## Booking Direction
 
-Square will handle appointment booking. The custom website is the premium front door and should send clients into a Square embed or external Square booking link once the final URL is confirmed.
+Square handles appointment booking. The custom website is the premium front door and should send clients to Tony Lucca's Square booking site through the Book Appointment CTA.
 
-The current Book page includes a Square placeholder area and tracking-ready booking CTAs. The final Square link is TBD.
+The current site scope does not include a standalone `/book` page. Booking CTAs should point to `https://square.site/book/DT4HT5QD699RJ/lucca`, unless `NEXT_PUBLIC_SQUARE_BOOKING_URL` provides a future override.
 
 ## Supabase Usage
 
 Supabase is scaffolded for:
 
 - Admin authentication.
-- Contact form submissions.
 - Custom analytics events.
 - Future admin visibility into booking, text, call, directions, product interest, and contact activity.
 
-Lucca's Hair data uses the custom `luccas_hair` schema in Supabase. Contact submissions and custom analytics events are designed for server-only writes through `SUPABASE_SERVICE_ROLE_KEY`, not broad browser writes.
+Lucca's Hair data uses the custom `luccas_hair` schema in Supabase. Custom analytics events are designed for server-only writes through `SUPABASE_SERVICE_ROLE_KEY`, not broad browser writes.
 
-Local builds do not require Supabase keys. If env vars are missing, admin access is blocked and contact or analytics storage runs in placeholder mode.
+Local builds do not require Supabase keys. If env vars are missing, admin access is blocked and analytics storage runs in placeholder mode.
 
 ## Scaffolded Now
 
-- Public routes for Home, Services, Book, Products, About, Contact, and FAQ / Policies.
+- Public routes for Home, Services, Products, and FAQ / Policies.
 - Hidden admin route and admin login route.
 - Root layout, navbar, footer, mobile sticky booking CTA, button, container, and section components.
 - Editable data files for business info, services, products, FAQs, and navigation.
-- Contact form with Zod validation and Supabase insert path.
 - Analytics event endpoint and client tracking helper.
 - Supabase browser, server, and proxy helpers.
 - Server-only Supabase service role helper for persistence.
@@ -49,7 +47,6 @@ Local builds do not require Supabase keys. If env vars are missing, admin access
 
 - Final high-fidelity UI.
 - Final animation system.
-- Final Square embed or external booking link.
 - Product detail pages or ecommerce checkout.
 - Full admin dashboard.
 - Final logo, photography, or product assets.

@@ -6,7 +6,7 @@ This document is the handoff source for future Codex threads working on Lucca's 
 
 Lucca's Hair is a real client-style small business website for a premium salon and barber-style brand. The site should make appointment booking feel immediate and trustworthy while giving the business a polished digital presence.
 
-The site should support service discovery, booking, product browsing, contact information, FAQ content, and policies in the MVP. Future phases can add product detail pages, ecommerce, gallery, testimonials, memberships, gift cards, style journal content, and a client portal.
+The site should support service discovery, direct Square booking, product browsing, contact information in shared sections, FAQ content, and policies in the MVP. Future phases can add product detail pages, ecommerce, gallery, testimonials, memberships, gift cards, style journal content, and a client portal.
 
 ## Brand Direction
 
@@ -55,7 +55,6 @@ Not completed yet:
 - Final high-fidelity UI.
 - Final logo assets.
 - Final photography.
-- Final Square booking link or embed.
 - Final product data.
 - Ecommerce integration.
 - Deployment.
@@ -67,7 +66,6 @@ Keep these marked as `TBD` until confirmed by the client:
 - Exact services.
 - Prices.
 - Service durations.
-- Final Square booking link or embed details.
 - Product names.
 - Product prices.
 - Product photos.
@@ -95,10 +93,7 @@ Keep these marked as `TBD` until confirmed by the client:
 
 - Home.
 - Services.
-- Book.
 - Products.
-- About.
-- Contact.
 - FAQ / Policies.
 
 ## Expected Future Tech Direction
@@ -111,7 +106,7 @@ Keep these marked as `TBD` until confirmed by the client:
 - Zod.
 - Vercel Analytics and Speed Insights.
 - Vercel deployment.
-- Square booking integration, final link TBD.
+- Square booking integration through `https://square.site/book/DT4HT5QD699RJ/lucca`.
 - Product or ecommerce flow, TBD.
 
 ## Next Phase

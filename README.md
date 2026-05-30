@@ -22,11 +22,10 @@ The project should read as real client and product work: brand direction, UX str
 
 - Home
 - Services
-- Book
 - Products
-- About
-- Contact
 - FAQ / Policies
+
+Booking is handled through the primary Book Appointment CTA, which opens Tony Lucca's Square booking site. There is no standalone `/book`, `/about`, or `/contact` page in the current site scope.
 
 Future scope can include product detail pages, gallery, testimonials, memberships, gift cards, a style journal, and a client portal.
 
@@ -40,7 +39,7 @@ Future scope can include product detail pages, gallery, testimonials, membership
 - Zod validation
 - Vercel Analytics and Speed Insights
 - Vercel deployment
-- Square booking integration, final link TBD
+- Square booking integration through Tony Lucca's public Square booking URL
 - Product or ecommerce flow, TBD
 
 ## App Setup

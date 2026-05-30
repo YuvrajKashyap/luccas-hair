@@ -107,7 +107,7 @@ These facts are confirmed enough to use in product planning and implementation u
 - Closed: Sunday and Monday.
 - Last appointment selection should be around 5 PM.
 - Suite number: TBD.
-- Square booking link: TBD.
+- Square booking link: https://square.site/book/DT4HT5QD699RJ/lucca.
 - Domain: TBD.
 - Google Business or review link: TBD.
 - Real photos and gallery assets: TBD.
@@ -118,7 +118,6 @@ These facts are confirmed enough to use in product planning and implementation u
 Use `TBD` for these until confirmed:
 
 - Suite number.
-- Square booking link.
 - Whether Square provides a clean embed or only an external booking link.
 - Final domain.
 - Google Business Profile and review link.
@@ -190,11 +189,14 @@ The MVP public sitemap is:
 
 1. Home
 2. Services
-3. Book
-4. Products
-5. About
-6. Contact
-7. FAQ / Policies
+3. Products
+4. FAQ / Policies
+
+Current route decision:
+
+- Do not create or restore standalone `/book`, `/about`, or `/contact` pages unless the user explicitly changes this decision.
+- Booking should happen through the primary Book Appointment CTA, which opens Tony Lucca's public Square booking site.
+- About, trust, location, hours, and contact details should be handled on Home, Services, Products, FAQ / Policies, footer, and relevant content sections instead of separate pages.
 
 Future public pages can include:
 
@@ -232,16 +234,13 @@ Public navigation should include:
 
 - Home.
 - Services.
-- Book.
 - Products.
-- About.
-- Contact.
 
 Public navigation should include a clear primary CTA:
 
-- Book Appointment.
+- Book Appointment, linked directly to Tony Lucca's Square booking site.
 
-FAQ / Policies can appear in the footer and in relevant page links from Book, Contact, Services, and Products.
+FAQ / Policies can appear in the footer and in relevant page links from Services, Products, and booking-related sections.
 
 Admin must never appear in public nav, footer nav, sitemap links shown to public users, or public marketing sections.
 
@@ -282,9 +281,8 @@ Expected flow:
 2. Visitor sees that Tony is a hair stylist and men's grooming specialist in The Colony, TX.
 3. Visitor sees a clear Book Appointment CTA.
 4. Visitor optionally reviews services and pricing.
-5. Visitor opens Book.
-6. Visitor uses Square-powered CTA or embed.
-7. Visitor completes appointment booking in Square.
+5. Visitor opens Tony Lucca's Square booking site through the Book Appointment CTA.
+6. Visitor completes appointment booking in Square.
 
 Important boundary: the custom site tracks booking intent. It must not claim a confirmed booking unless Square API integration or webhooks are implemented and verified.
 
@@ -296,7 +294,7 @@ Expected flow:
 
 1. Returning client opens the site.
 2. Client uses nav, sticky mobile CTA, or Home CTA.
-3. Client opens Square through Book.
+3. Client opens Tony Lucca's Square booking site.
 4. Client completes booking in Square.
 
 Do not force returning clients through marketing content.
@@ -310,7 +308,7 @@ Expected flow:
 1. Visitor opens Services.
 2. Visitor scans service cards or rows.
 3. Visitor sees confirmed and placeholder status clearly.
-4. Visitor chooses Book.
+4. Visitor chooses Book Appointment.
 5. Visitor books through Square.
 
 ### Visitor Browses Products
@@ -325,15 +323,15 @@ Expected flow:
 
 No live checkout should exist until real products and fulfillment are confirmed.
 
-### Visitor Contacts Tony
+### Visitor Finds Contact Details
 
 Goal: ask a question, get directions, call, text, or email.
 
 Expected flow:
 
-1. Visitor opens Contact.
+1. Visitor uses the footer or a location/details section.
 2. Visitor sees Book, Text, Call, Email, and Directions options.
-3. Visitor can submit a general question.
+3. Visitor can call, text, email, or open directions.
 4. Visitor is reminded that appointments should be booked through Square.
 
 ### Visitor Checks FAQ / Policies
@@ -342,7 +340,7 @@ Goal: understand appointment, timing, cancellation, pricing, and product rules.
 
 Expected flow:
 
-1. Visitor opens FAQ / Policies from footer, Book, Contact, or Services.
+1. Visitor opens FAQ / Policies from the footer, Services, Products, or a policy-related link.
 2. Visitor reads clear, friendly policies.
 3. Visitor books or contacts Tony.
 
@@ -370,7 +368,15 @@ Do not build a full custom booking scheduler unless explicitly requested later.
 
 Do not claim that the custom site can confirm Square appointments unless Square API integration or webhooks are actually implemented and verified.
 
-The `/book` page should present:
+There is no standalone `/book` page in the current site scope.
+
+All primary Book Appointment CTAs should point directly to:
+
+- `https://square.site/book/DT4HT5QD699RJ/lucca`
+
+The app may allow `NEXT_PUBLIC_SQUARE_BOOKING_URL` to override this if the booking URL changes.
+
+Booking-related sections should still make these details easy to find:
 
 - Tony's name.
 - Public role: Hair Stylist & Men's Grooming Specialist.
@@ -379,14 +385,12 @@ The `/book` page should present:
 - Hours.
 - Services and prices.
 - Phone and text action.
-- Square-powered CTA or embed.
-- Clear note that booking is completed through Square if using an external Square link.
 - FAQ / Policies link.
 
 Square implementation rules:
 
-- Use a clean Square embed or advanced widget if Square supports one.
-- Use a clean external Square booking link if embed support is limited.
+- Use the clean external Square booking link as the current booking path.
+- Do not add or restore a Square embed unless explicitly requested later.
 - Do not depend on fragile undocumented URL parameters for exact date, time, service, or provider preselection.
 - Track booking CTA clicks in custom analytics.
 - Track booking embed opens or external link clicks when possible.
@@ -405,7 +409,7 @@ Secondary action:
 
 - Text.
 
-Directions should be available on Contact and location cards, but not the main sticky CTA.
+Directions should be available in the footer and location cards, but not the main sticky CTA.
 
 Mobile CTA should:
 
@@ -518,15 +522,17 @@ Recommended product data fields for future use:
 
 Use `TBD` or coming soon states for missing product facts.
 
-## 18. About Page Strategy
+## 18. About Content Strategy
 
-About should be both Tony-focused and brand-focused.
+There is no standalone About page in the current site scope.
+
+About content should be both Tony-focused and brand-focused when it appears on Home or another approved public page.
 
 Do not fabricate a personal biography.
 
 Use respectful placeholder copy until Tony provides real background.
 
-About should emphasize:
+About content should emphasize:
 
 - Trust.
 - Craft.
@@ -581,11 +587,12 @@ Do not add fake review schema, fake ratings, or fake aggregate reviews for SEO.
 
 ## 21. Contact Strategy
 
-Contact should include buttons and a contact form.
+There is no standalone Contact page in the current site scope.
 
-Buttons:
+Confirmed contact details should still be visible in the footer and relevant location sections.
 
-- Book.
+Contact actions can include:
+
 - Text.
 - Call.
 - Email.
@@ -598,7 +605,7 @@ Confirmed contact values:
 - Address: 5701 E SH-121 Access Rd, Suite TBD, The Colony, TX.
 - Location: inside Salon Boutique.
 
-Contact form rules:
+Contact form rules, only if a form is explicitly reintroduced later:
 
 - Contact form is for general questions, not appointment scheduling.
 - Appointment booking should go through Square.
@@ -1260,7 +1267,7 @@ Do not claim Square appointments are confirmed in this app unless that integrati
 
 Booking clicks should be tracked as intent only.
 
-The `/book` page should send users to Square or embed Square if supported cleanly.
+Book Appointment CTAs should send users directly to Square. Do not restore an internal `/book` page unless the user explicitly requests it later.
 
 ### Storage Rules
 
@@ -1470,12 +1477,10 @@ Recommended mockup order:
 1. Home desktop.
 2. Home mobile.
 3. Services desktop.
-4. Book desktop.
-5. Products desktop.
-6. About desktop.
-7. Contact / FAQ / Policies desktop.
-8. Admin dashboard desktop.
-9. Mobile versions for Services, Book, Products, and Contact.
+4. Products desktop.
+5. FAQ / Policies desktop.
+6. Admin dashboard desktop.
+7. Mobile versions for Services, Products, and FAQ / Policies.
 
 For each page:
 
@@ -1510,7 +1515,7 @@ Home should:
 - Surface services and pricing preview.
 - Include product coming soon or product inquiry preview.
 - Build trust without fake reviews or credentials.
-- Point to Contact and Book.
+- Point to Services, Products, FAQ / Policies, and the external Square booking CTA.
 
 ### Services
 
@@ -1520,19 +1525,8 @@ Services should:
 - Make confirmed vs placeholder data clear during early implementation.
 - Keep men's cuts and grooming central.
 - Use simple comparison cards or rows.
-- Link each service group to Book.
+- Link each service group to the external Square booking CTA.
 - Avoid making complex salon services central unless confirmed.
-
-### Book
-
-Book should:
-
-- Use Square as booking engine.
-- Include Square CTA or embed.
-- Show services, hours, location, and Tony's info.
-- Track booking CTA clicks.
-- Link to FAQ / Policies.
-- Avoid claiming bookings are confirmed inside the custom site.
 
 ### Products
 
@@ -1544,21 +1538,21 @@ Products should:
 - Use Ask About Products, Text Tony, and Book Appointment CTAs.
 - Be future-ready for ecommerce.
 
-### About
+### About Content
 
-About should:
+About content should:
 
 - Focus on Tony and the brand.
 - Avoid fabricated biography.
 - Use respectful placeholder copy until real background is provided.
 - Emphasize trust, craft, personal service, consistency, and local presence.
 
-### Contact
+### Contact Content
 
-Contact should:
+Contact content should:
 
 - Include Book, Text, Call, Email, and Directions buttons.
-- Include a general questions form if forms are implemented.
+- Avoid a general questions form unless explicitly reintroduced.
 - Make clear that appointments should be booked through Square.
 - Use the confirmed phone, email, location, and hours.
 

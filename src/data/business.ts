@@ -1,5 +1,8 @@
 import type { BusinessHour } from "@/types";
 
+export const squareBookingUrl = "https://square.site/book/DT4HT5QD699RJ/lucca";
+export const bookingPageHref = "/book";
+
 export const businessInfo = {
   name: "Lucca's Hair",
   publicPerson: "Tony Lucca",
@@ -14,7 +17,7 @@ export const businessInfo = {
   phone: "972-207-9215",
   email: "tlucca65@yahoo.com",
   bookingPlatform: "Square",
-  bookingUrl: process.env.NEXT_PUBLIC_SQUARE_BOOKING_URL || null,
+  bookingUrl: process.env.NEXT_PUBLIC_SQUARE_BOOKING_URL || squareBookingUrl,
 } as const;
 
 export const businessHours: BusinessHour[] = [
@@ -34,6 +37,10 @@ export function getDisplayAddress(): string {
   return `${businessInfo.locationLabel}, ${businessInfo.streetAddress}, ${businessInfo.suite}, ${businessInfo.city}, ${businessInfo.region}`;
 }
 
+export function getSquareBookingHref(): string {
+  return businessInfo.bookingUrl;
+}
+
 export function getBookingHref(): string {
-  return businessInfo.bookingUrl ?? "/book#square-booking";
+  return bookingPageHref;
 }

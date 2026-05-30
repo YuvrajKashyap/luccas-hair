@@ -1,53 +1,44 @@
-import { productTeasers } from "@/data/products";
+import type { CSSProperties } from "react";
+import productsBackground from "../../../assets/mockups/products/products-background-asset.png";
 import { createPageMetadata } from "@/lib/seo/metadata";
-import { Container } from "@/components/ui/container";
-import { Section } from "@/components/ui/section";
-import { TrackableLink } from "@/components/ui/trackable-link";
 
 export const metadata = createPageMetadata({
   title: "Products",
   description:
-    "Placeholder product showcase page for Lucca's Hair. Product names, prices, photos, and fulfillment are TBD.",
+    "Premium grooming products are coming soon to Lucca's Hair in The Colony, TX.",
   path: "/products",
 });
 
+function productsPageStyle(): CSSProperties {
+  return {
+    "--products-hero-image": `url(${productsBackground.src})`,
+  } as CSSProperties;
+}
+
 export default function ProductsPage() {
   return (
-    <Section>
-      <Container>
-        <div className="max-w-3xl">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-accent">
-            Products
-          </p>
-          <h1 className="font-serif text-5xl leading-tight text-foreground sm:text-6xl">
-            Product showcase scaffold.
-          </h1>
-          <p className="mt-6 text-lg leading-8 text-muted">
-            Products are secondary to appointment booking. This page is ready for future
-            product names, images, prices, and inquiry or ecommerce flow once confirmed.
-          </p>
-        </div>
+    <div className="products-page" style={productsPageStyle()}>
+      <section className="products-hero" aria-label="Lucca's Hair product preview" />
 
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
-          {productTeasers.map((product) => (
-            <article
-              key={product.id}
-              className="rounded-[var(--radius-lg)] border border-border bg-card p-5"
-            >
-              <h2 className="font-serif text-3xl text-foreground">{product.name}</h2>
-              <p className="mt-3 text-sm leading-7 text-muted">{product.summary}</p>
-              <TrackableLink
-                href="/contact"
-                eventName="product_interest_click"
-                metadata={{ productId: product.id }}
-                className="mt-5 inline-flex text-sm font-semibold text-accent hover:text-foreground"
-              >
-                Ask about this
-              </TrackableLink>
-            </article>
-          ))}
+      <section className="products-coming-soon" aria-labelledby="products-heading">
+        <div className="products-coming-soon__inner">
+          <p className="products-kicker">Coming Soon</p>
+          <h1 id="products-heading">
+            Great products take time.
+            <br />
+            Ours are on the way.
+          </h1>
+          <span className="products-title-rule" aria-hidden="true" />
+          <p className="products-coming-soon__copy">
+            We&apos;re working behind the scenes to bring you
+            <br />
+            premium grooming products that live up
+            <br />
+            to the standards you know and trust.
+          </p>
+          <p className="products-stay-tuned">Stay tuned.</p>
         </div>
-      </Container>
-    </Section>
+      </section>
+    </div>
   );
 }

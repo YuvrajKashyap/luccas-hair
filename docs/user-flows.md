@@ -10,13 +10,13 @@
 
 1. Visitor lands on Home.
 2. Visitor sees premium brand positioning and the Book Appointment CTA.
-3. Visitor reviews services or opens Book directly.
-4. Visitor follows the booking method, TBD.
-5. Visitor receives confirmation or next steps through the selected booking or contact flow.
+3. Visitor reviews services or clicks Book Appointment directly.
+4. Visitor opens Tony Lucca's Square booking site.
+5. Visitor completes booking through Square.
 
-**Conversion point:** Book Appointment CTA or booking module interaction.
+**Conversion point:** Book Appointment CTA.
 
-**Friction points:** Unknown booking platform, incomplete service details, missing prices or durations, unclear location or hours.
+**Friction points:** Incomplete service details, missing prices or durations, unclear location or hours.
 
 **UX notes:** Keep booking visible in the first viewport, navigation, page sections, and mobile sticky CTA.
 
@@ -30,8 +30,8 @@
 
 1. Returning client opens the site.
 2. Client taps Book Appointment from navigation or sticky CTA.
-3. Client uses the confirmed booking platform or contact method, TBD.
-4. Client completes booking or receives next steps.
+3. Client opens Tony Lucca's Square booking site.
+4. Client completes booking through Square.
 
 **Conversion point:** Direct booking CTA interaction.
 
@@ -51,7 +51,7 @@
 2. Visitor scans service categories, descriptions, prices, and durations once confirmed.
 3. Visitor identifies the most relevant service.
 4. Visitor follows the Book Appointment CTA.
-5. Visitor completes the selected booking path, TBD.
+5. Visitor completes booking through Square.
 
 **Conversion point:** Service-level or page-level booking CTA.
 
@@ -79,15 +79,15 @@
 
 **UX notes:** Keep products secondary to booking, but make the section feel credible and commerce-ready.
 
-## Visitor Contacts Lucca
+## Visitor Finds Contact Details
 
 **User goal:** Ask a question, confirm details, or find location and hours.
 
-**Entry point:** Contact page, footer, FAQ / Policies page, or booking friction point.
+**Entry point:** Footer, FAQ / Policies page, or booking friction point.
 
 **Steps:**
 
-1. Visitor opens Contact.
+1. Visitor uses the footer or a location/details section.
 2. Visitor reviews address, phone, email, hours, and social links once confirmed.
 3. Visitor chooses the preferred contact method.
 4. Visitor asks a question or gets location details.
@@ -97,13 +97,13 @@
 
 **Friction points:** Contact details are TBD; missing hours or location can reduce trust.
 
-**UX notes:** Contact should support booking rather than distract from it.
+**UX notes:** Contact details should support booking rather than distract from it.
 
 ## Visitor Checks FAQ / Policies
 
 **User goal:** Understand expectations before booking or buying.
 
-**Entry point:** Footer, Book page, Contact page, Products page, or policy-related question.
+**Entry point:** Footer, Products page, or policy-related question.
 
 **Steps:**
 

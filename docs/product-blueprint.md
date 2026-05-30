@@ -2,7 +2,7 @@
 
 ## Product Summary
 
-Lucca's Hair is an appointment-first website for a premium salon and barber-style brand. The MVP should help visitors understand the brand, review services, book an appointment, browse product offerings, and contact the business.
+Lucca's Hair is an appointment-first website for a premium salon and barber-style brand. The MVP should help visitors understand the brand, review services, book an appointment through Square, and browse product offerings.
 
 The project now has production app infrastructure, but the final high-fidelity website UI has not been implemented yet.
 
@@ -22,11 +22,10 @@ Make appointment booking easy, obvious, and trustworthy for new and returning cl
 
 - Home page with clear booking entry points and premium brand positioning.
 - Services page with confirmed services, prices, and durations once available.
-- Book page designed for an embedded booking module, external booking CTA, or direct contact path.
 - Products page for a premium product catalog or showcase.
-- About page for trust, background, and brand story once details are confirmed.
-- Contact page with address, phone, email, hours, and social links once confirmed.
 - FAQ / Policies page for booking, cancellation, product, and visit expectations once confirmed.
+
+There is no standalone Book, About, or Contact page in the current site scope. Booking should open Tony Lucca's Square booking site from the primary CTA.
 
 ## Non-MVP Future Scope
 
@@ -52,17 +51,14 @@ The secondary conversion is product interest. The MVP should support browsing or
 
 - Home
 - Services
-- Book
 - Products
-- About
-- Contact
 - FAQ / Policies
 
 Future pages can include Product Detail, Gallery, Testimonials, Memberships, Gift Cards, Blog / Style Journal, and Client Portal.
 
 ## Recommended Navigation
 
-- Primary links: Home, Services, Products, About, Contact.
+- Primary links: Home, Services, Products.
 - Primary CTA: Book Appointment.
 - Mobile navigation should keep Book Appointment visible without requiring deep menu exploration.
 - If the booking platform is external, the CTA should clearly indicate that the user is leaving the site or opening the booking tool.
@@ -92,13 +88,11 @@ Future pages can include Product Detail, Gallery, Testimonials, Memberships, Gif
 
 - Persistent Book Appointment CTA across desktop and mobile.
 - Services page should guide users toward booking after comparing options.
-- Book page should reduce friction by explaining the current booking method, TBD.
-- Contact page should support users who are not ready to book online.
 - Product page should invite inquiry or future purchase without pretending ecommerce is live.
 
 ## Risks And Unknowns
 
-- Booking platform is Square. Final booking link or embed details are TBD.
+- Booking platform is Square. Current booking URL: `https://square.site/book/DT4HT5QD699RJ/lucca`.
 - Services, prices, and durations are TBD.
 - Product names, prices, photos, inventory, and fulfillment are TBD.
 - Final suite number, postal code, service area, and social links are TBD.
@@ -110,7 +104,7 @@ Future pages can include Product Detail, Gallery, Testimonials, Memberships, Gif
 ## What Must Be Confirmed With Lucca
 
 - Final service list, prices, and durations.
-- Final Square booking link or embed behavior.
+- Any future Square embed behavior if the user later wants more than an external CTA.
 - Product list, pricing, photos, and fulfillment method.
 - Final suite number, postal code, and service area.
 - Cancellation, late arrival, deposit, refund, return, shipping, and pickup policies.

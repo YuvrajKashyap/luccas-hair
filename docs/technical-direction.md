@@ -22,7 +22,7 @@ The production app infrastructure has now been initialized with placeholder page
 - Direct text or call.
 - Another booking platform selected by Lucca.
 
-The booking platform is Square. The final Square booking link or embed details are TBD. The Book page should support an embed, external booking link, or direct contact CTA without restructuring the site.
+The booking platform is Square. The current booking link is `https://square.site/book/DT4HT5QD699RJ/lucca`. The site should use an external Book Appointment CTA and should not include a standalone Book page unless explicitly requested later.
 
 ## Possible Product Integrations
 
@@ -38,15 +38,15 @@ Product names, prices, photos, inventory, shipping, pickup, and return details a
 ## Recommended MVP Approach If Details Remain Unknown
 
 - Build content models that allow `TBD` values without fake data.
-- Use a booking CTA and booking module placeholder tied to the final platform once confirmed.
+- Use a booking CTA tied to the external Square booking site.
 - Use a product showcase or inquiry flow instead of live checkout.
 - Keep services and products data-driven.
-- Make Contact and FAQ / Policies easy to update.
+- Make FAQ / Policies easy to update.
 - Keep the application focused on booking as the primary conversion.
 
 ## SEO And Local Business Needs
 
-- Page titles and descriptions for Home, Services, Book, Products, About, Contact, and FAQ / Policies.
+- Page titles and descriptions for Home, Services, Products, and FAQ / Policies.
 - Local business details once confirmed.
 - Structured data after address, phone, hours, and service details are confirmed.
 - Open Graph images after brand assets are locked.
@@ -85,7 +85,7 @@ Product names, prices, photos, inventory, shipping, pickup, and return details a
 - Connect final domain, TBD.
 - Use environment variables for integration keys if needed.
 - Run build, lint, and QA checks before launch.
-- Verify booking, contact, and product paths in production.
+- Verify booking and product paths in production.
 
 ## What Not To Implement Yet
 

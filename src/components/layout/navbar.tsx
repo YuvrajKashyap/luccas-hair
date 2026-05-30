@@ -1,37 +1,57 @@
+"use client";
+
 import Link from "next/link";
-import { getBookingHref } from "@/data/business";
+import { usePathname } from "next/navigation";
+import { getBookingHref, getSquareBookingHref } from "@/data/business";
 import { publicNavLinks } from "@/data/nav";
-import { buttonClassName } from "@/components/ui/button";
-import { Container } from "@/components/ui/container";
+import { LuccaLogo } from "@/components/brand/lucca-logo";
+import { Icon } from "@/components/ui/icons";
 import { TrackableLink } from "@/components/ui/trackable-link";
 
 export function Navbar() {
+  const pathname = usePathname();
+  const bookingHref = pathname.startsWith("/book")
+    ? getSquareBookingHref()
+    : getBookingHref();
+
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
-      <Container className="flex min-h-16 items-center justify-between gap-6">
-        <Link href="/" className="font-serif text-2xl font-semibold text-foreground">
-          Lucca&apos;s Hair
-        </Link>
-        <nav className="hidden items-center gap-5 text-sm text-muted md:flex">
+    <header className="site-header">
+      <div className="site-header__inner">
+        <LuccaLogo variant="header" />
+        <nav className="site-nav" aria-label="Primary navigation">
           {publicNavLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="transition hover:text-foreground"
+              className={
+                link.href === "/"
+                  ? pathname === "/"
+                    ? "site-nav__link site-nav__link--active"
+                    : "site-nav__link"
+                  : pathname.startsWith(link.href)
+                    ? "site-nav__link site-nav__link--active"
+                    : "site-nav__link"
+              }
             >
               {link.label}
             </Link>
           ))}
         </nav>
-        <TrackableLink
-          href={getBookingHref()}
-          eventName="booking_click"
-          metadata={{ placement: "navbar" }}
-          className={buttonClassName({ className: "hidden md:inline-flex" })}
-        >
-          Book Appointment
-        </TrackableLink>
-      </Container>
+        <div className="site-header__actions">
+          <Link href="/products" className="site-header__cart" aria-label="View products">
+            <Icon name="cart" />
+          </Link>
+          <TrackableLink
+            href={bookingHref}
+            eventName="booking_click"
+            metadata={{ placement: "navbar" }}
+            className="home-button home-button--primary site-header__book"
+          >
+            <Icon name="calendar" />
+            <span>Book Appointment</span>
+          </TrackableLink>
+        </div>
+      </div>
     </header>
   );
 }

@@ -5,11 +5,9 @@
 1. Home desktop.
 2. Home mobile.
 3. Services desktop.
-4. Book desktop.
-5. Products desktop.
-6. About desktop.
-7. Contact / FAQ / Policies desktop.
-8. Mobile versions for Services, Book, Products, and Contact.
+4. Products desktop.
+5. FAQ / Policies desktop.
+6. Mobile versions for Services, Products, and FAQ / Policies.
 
 ## What Each Page Mockup Must Show
 
@@ -29,14 +27,6 @@
 - Clear booking path from service comparison.
 - Mobile-friendly service grouping.
 
-## Book
-
-- Booking module area or external booking CTA.
-- Booking method marked as TBD until confirmed.
-- Short next-step explanation.
-- Link to FAQ / Policies.
-- Mobile sticky booking behavior.
-
 ## Products
 
 - Product catalog or showcase layout.
@@ -44,15 +34,8 @@
 - Product inquiry or future purchase CTA.
 - A path back to booking.
 
-## About
+## FAQ / Policies
 
-- Trust-building content structure.
-- Space for Lucca's story, portrait, credentials, and brand values, all TBD until confirmed.
-- Booking CTA.
-
-## Contact / FAQ / Policies
-
-- Contact detail layout with address, phone, email, hours, and socials marked TBD.
 - FAQ and policy structure.
 - Booking CTA.
 - Product and appointment policy sections.

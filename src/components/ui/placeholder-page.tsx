@@ -1,6 +1,7 @@
 import { LinkButton } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
+import { getBookingHref } from "@/data/business";
 
 type PlaceholderPageProps = {
   eyebrow: string;
@@ -16,7 +17,7 @@ export function PlaceholderPage({
   title,
   description,
   bullets,
-  ctaHref = "/book",
+  ctaHref = getBookingHref(),
   ctaLabel = "Book Appointment",
 }: PlaceholderPageProps) {
   return (
@@ -32,8 +33,8 @@ export function PlaceholderPage({
           <p className="mt-6 text-lg leading-8 text-muted">{description}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <LinkButton href={ctaHref}>{ctaLabel}</LinkButton>
-            <LinkButton href="/contact" variant="secondary">
-              Contact Tony
+            <LinkButton href="/services" variant="secondary">
+              View Services
             </LinkButton>
           </div>
         </div>

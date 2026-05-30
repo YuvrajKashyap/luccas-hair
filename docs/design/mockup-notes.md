@@ -10,11 +10,10 @@ Final implementation should follow approved mockups one page at a time.
 
 - Home.
 - Services.
-- Book.
 - Products.
-- About.
-- Contact.
 - FAQ / Policies.
+
+Book, About, and Contact are not standalone pages in the current scope. Booking should be represented through the primary external Square CTA.
 
 Future mockups can cover Product Detail, Gallery, Testimonials, Memberships, Gift Cards, Blog / Style Journal, and Client Portal if those features are approved.
 

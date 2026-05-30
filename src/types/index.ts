@@ -29,4 +29,13 @@ export type FaqPolicyItem = {
   question: string;
   answer: string;
   status: "confirmed" | "tbd";
+  defaultOpen?: boolean;
+};
+
+export type FaqPolicyCategory = {
+  id: string;
+  label: string;
+  icon: "calendar" | "x-circle" | "credit-card" | "scissors" | "shield";
+  defaultOpen?: boolean;
+  items: FaqPolicyItem[];
 };

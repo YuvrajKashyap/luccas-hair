@@ -4,6 +4,7 @@ export const analyticsEventNames = [
   "booking_click",
   "text_click",
   "call_click",
+  "email_click",
   "directions_click",
   "product_interest_click",
   "contact_submit",

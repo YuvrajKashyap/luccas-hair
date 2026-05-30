@@ -2,7 +2,9 @@
 
 ## Status
 
-Accepted.
+Superseded in part.
+
+Later update: Book, About, and Contact were removed as standalone public pages. The current MVP scope is Home, Services, Products, and FAQ / Policies, with booking handled through the primary external Square CTA.
 
 ## Decision
 
@@ -12,10 +14,7 @@ The MVP scope is:
 
 - Home.
 - Services.
-- Book.
 - Products.
-- About.
-- Contact.
 - FAQ / Policies.
 
 Booking is the primary conversion. Products are secondary and commerce details remain TBD until Lucca confirms product names, prices, photos, inventory, fulfillment, and platform choice.

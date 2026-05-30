@@ -1,0 +1,68 @@
+{
+  "mens-cuts": {
+    "icon_crop_box_from_uploaded_strip": [
+      34,
+      13,
+      64,
+      47
+    ],
+    "recommended_file": "transparent-png/mens-cuts-256.png",
+    "recommended_css_display_size_px": 40,
+    "notes": "Transparent PNG preserves the exact approved mockup silhouette but is upscaled for crisp implementation."
+  },
+  "fades": {
+    "icon_crop_box_from_uploaded_strip": [
+      142,
+      12,
+      176,
+      47
+    ],
+    "recommended_file": "transparent-png/fades-256.png",
+    "recommended_css_display_size_px": 40,
+    "notes": "Transparent PNG preserves the exact approved mockup silhouette but is upscaled for crisp implementation."
+  },
+  "beard-trim": {
+    "icon_crop_box_from_uploaded_strip": [
+      253,
+      12,
+      288,
+      47
+    ],
+    "recommended_file": "transparent-png/beard-trim-256.png",
+    "recommended_css_display_size_px": 40,
+    "notes": "Transparent PNG preserves the exact approved mockup silhouette but is upscaled for crisp implementation."
+  },
+  "cut-and-beard": {
+    "icon_crop_box_from_uploaded_strip": [
+      363,
+      12,
+      405,
+      47
+    ],
+    "recommended_file": "transparent-png/cut-and-beard-256.png",
+    "recommended_css_display_size_px": 40,
+    "notes": "Transparent PNG preserves the exact approved mockup silhouette but is upscaled for crisp implementation."
+  },
+  "grooming": {
+    "icon_crop_box_from_uploaded_strip": [
+      482,
+      12,
+      508,
+      47
+    ],
+    "recommended_file": "transparent-png/grooming-256.png",
+    "recommended_css_display_size_px": 40,
+    "notes": "Transparent PNG preserves the exact approved mockup silhouette but is upscaled for crisp implementation."
+  },
+  "kids-seniors": {
+    "icon_crop_box_from_uploaded_strip": [
+      582,
+      11,
+      615,
+      47
+    ],
+    "recommended_file": "transparent-png/kids-seniors-256.png",
+    "recommended_css_display_size_px": 40,
+    "notes": "Transparent PNG preserves the exact approved mockup silhouette but is upscaled for crisp implementation."
+  }
+}

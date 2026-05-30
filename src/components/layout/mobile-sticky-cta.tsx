@@ -1,28 +1,38 @@
-import { contactLinks, getBookingHref } from "@/data/business";
-import { buttonClassName } from "@/components/ui/button";
+"use client";
+
+import { usePathname } from "next/navigation";
+import { contactLinks, getBookingHref, getSquareBookingHref } from "@/data/business";
+import { Icon } from "@/components/ui/icons";
 import { TrackableLink } from "@/components/ui/trackable-link";
 
 export function MobileStickyCta() {
+  const pathname = usePathname();
+  const bookingHref = pathname.startsWith("/book")
+    ? getSquareBookingHref()
+    : getBookingHref();
+
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-background/95 p-3 backdrop-blur md:hidden">
-      <div className="grid grid-cols-[1fr_auto] gap-2">
+    <div className="mobile-cta">
+      <div className="mobile-cta__inner">
         <TrackableLink
-          href={getBookingHref()}
+          href={bookingHref}
           eventName="booking_click"
           metadata={{ placement: "mobile_sticky_cta" }}
-          className={buttonClassName({ className: "w-full" })}
+          className="home-button home-button--primary mobile-cta__book"
           ariaLabel="Book an appointment"
         >
-          Book
+          <Icon name="calendar" />
+          <span>Book</span>
         </TrackableLink>
         <TrackableLink
           href={contactLinks.text}
           eventName="text_click"
           metadata={{ placement: "mobile_sticky_cta" }}
-          className={buttonClassName({ variant: "secondary", className: "px-4" })}
+          className="home-button home-button--secondary mobile-cta__text"
           ariaLabel="Text Tony"
         >
-          Text
+          <Icon name="phone" />
+          <span>Text</span>
         </TrackableLink>
       </div>
     </div>

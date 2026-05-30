@@ -1,54 +1,191 @@
-import { services } from "@/data/services";
+import type { CSSProperties } from "react";
+import beardTrimImage from "../../../assets/mockups/services/service-card-beard-trim.jpg";
+import facialImage from "../../../assets/mockups/services/service-card-facial.jpg";
+import fadeImage from "../../../assets/mockups/services/service-card-fade.jpg";
+import haircutImage from "../../../assets/mockups/services/service-card-haircut.jpg";
+import kidsCutImage from "../../../assets/mockups/services/service-card-kids-cut-fixed.jpg";
+import stylingImage from "../../../assets/mockups/services/service-card-styling-fixed.jpg";
+import brickTexture from "../../../assets/mockups/services/services-brick-wall-texture.jpg";
+import ctaImage from "../../../assets/mockups/services/services-cta-barber-cutting-fixed.jpg";
+import heroInteriorImage from "../../../assets/mockups/services/services-hero-interior-bg.jpg";
+import plantImage from "../../../assets/mockups/services/services-plant-detail.jpg";
+import windowLogoImage from "../../../assets/mockups/services/services-window-logo-hero-bg.jpg";
+import blackMarbleTexture from "../../../assets/mockups/services/texture-black-marble.jpg";
+import { getBookingHref } from "@/data/business";
 import { createPageMetadata } from "@/lib/seo/metadata";
-import { Container } from "@/components/ui/container";
-import { Section } from "@/components/ui/section";
+import { Icon } from "@/components/ui/icons";
+import { TrackableLink } from "@/components/ui/trackable-link";
 
 export const metadata = createPageMetadata({
   title: "Services",
   description:
-    "Placeholder services page for Lucca's Hair. Final service details, prices, and durations remain editable.",
+    "Explore premium haircut and men's grooming services from Lucca's Hair in The Colony, TX.",
   path: "/services",
 });
 
+type MockupImage = {
+  src: string;
+};
+
+type ServiceCard = {
+  name: string;
+  description: string;
+  price: string;
+  image: MockupImage;
+  position: string;
+  size?: string;
+};
+
+const serviceCards: ServiceCard[] = [
+  {
+    name: "Haircut",
+    description: "Classic or modern cuts tailored to your style.",
+    price: "$20",
+    image: haircutImage,
+    position: "center 42%",
+  },
+  {
+    name: "Fade",
+    description: "Clean, sharp fades that elevate your look.",
+    price: "FREE",
+    image: fadeImage,
+    position: "center 43%",
+  },
+  {
+    name: "Beard Trim",
+    description: "Shape, define, and maintain your beard.",
+    price: "$35+",
+    image: beardTrimImage,
+    position: "center 44%",
+  },
+  {
+    name: "Facial",
+    description: "Deep cleanse and skin revitalization.",
+    price: "$60+",
+    image: facialImage,
+    position: "center 42%",
+  },
+  {
+    name: "Styling",
+    description: "Professional styling for any occasion.",
+    price: "$30+",
+    image: stylingImage,
+    position: "center center",
+  },
+  {
+    name: "Kids Cut",
+    description: "Precision cuts for the little ones.",
+    price: "$30+",
+    image: kidsCutImage,
+    position: "center center",
+  },
+];
+
+function servicesPageStyle(): CSSProperties {
+  return {
+    "--services-hero-interior": `url(${heroInteriorImage.src})`,
+    "--services-window-logo": `url(${windowLogoImage.src})`,
+    "--services-plant": `url(${plantImage.src})`,
+    "--services-brick": `url(${brickTexture.src})`,
+    "--services-marble": `url(${blackMarbleTexture.src})`,
+    "--services-cta": `url(${ctaImage.src})`,
+  } as CSSProperties;
+}
+
+function serviceCardStyle(service: ServiceCard): CSSProperties {
+  return {
+    "--service-card-image": `url(${service.image.src})`,
+    "--service-card-position": service.position,
+    "--service-card-size": service.size ?? "cover",
+  } as CSSProperties;
+}
+
 export default function ServicesPage() {
   return (
-    <Section>
-      <Container>
-        <div className="max-w-3xl">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-accent">
-            Services
-          </p>
-          <h1 className="font-serif text-5xl leading-tight text-foreground sm:text-6xl">
-            Editable service foundation.
-          </h1>
-          <p className="mt-6 text-lg leading-8 text-muted">
-            This placeholder page will become the service comparison and booking support
-            page after final copy, prices, durations, and mockups are locked.
-          </p>
-        </div>
+    <div className="services-page" style={servicesPageStyle()}>
+      <section className="services-hero" aria-labelledby="services-heading">
+        <span
+          className="services-hero__layer services-hero__layer--interior"
+          aria-hidden="true"
+        />
+        <span
+          className="services-hero__layer services-hero__layer--window"
+          aria-hidden="true"
+        />
+        <span
+          className="services-hero__layer services-hero__layer--brick"
+          aria-hidden="true"
+        />
+        <span
+          className="services-hero__layer services-hero__layer--plant"
+          aria-hidden="true"
+        />
+        <div className="services-hero__shade" aria-hidden="true" />
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2">
-          {services.map((service) => (
-            <article
-              key={service.id}
-              className="rounded-[var(--radius-lg)] border border-border bg-card p-5"
-            >
-              <h2 className="font-serif text-3xl text-foreground">{service.name}</h2>
-              <p className="mt-3 text-sm leading-7 text-muted">{service.summary}</p>
-              <dl className="mt-5 grid grid-cols-2 gap-3 text-sm">
-                <div>
-                  <dt className="text-muted">Price</dt>
-                  <dd className="text-foreground">{service.price}</dd>
-                </div>
-                <div>
-                  <dt className="text-muted">Duration</dt>
-                  <dd className="text-foreground">{service.duration}</dd>
-                </div>
-              </dl>
-            </article>
-          ))}
+        <div className="services-hero__inner">
+          <div className="services-hero__content">
+            <p className="services-kicker">Premium Care. Personalized For You.</p>
+            <h1 id="services-heading">Services</h1>
+            <p>
+              Expert cuts. Timeless style.
+              <br />
+              Tailored to you.
+            </p>
+          </div>
         </div>
-      </Container>
-    </Section>
+      </section>
+
+      <section className="services-offer" aria-labelledby="services-offer-heading">
+        <div className="services-offer__inner">
+          <p className="services-kicker services-kicker--center">What We Offer</p>
+          <h2 id="services-offer-heading">
+            Precision in every cut.
+            <br />
+            Excellence in every detail.
+          </h2>
+          <span className="services-title-rule" aria-hidden="true" />
+
+          <div className="services-card-grid">
+            {serviceCards.map((service) => (
+              <article
+                key={service.name}
+                className="services-card"
+                style={serviceCardStyle(service)}
+              >
+                <div className="services-card__content">
+                  <h3>{service.name}</h3>
+                  <p>{service.description}</p>
+                  <strong>{service.price}</strong>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="services-booking-strip"
+        aria-labelledby="services-booking-heading"
+      >
+        <div className="services-booking-strip__inner">
+          <div className="services-booking-strip__image" aria-hidden="true" />
+          <div className="services-booking-strip__content">
+            <h2 id="services-booking-heading">Ready For Your Next Cut?</h2>
+            <p>
+              Book your appointment today and experience the Lucca&apos;s Hair difference.
+            </p>
+            <TrackableLink
+              href={getBookingHref()}
+              eventName="booking_click"
+              metadata={{ placement: "services_bottom_cta" }}
+              className="home-button home-button--primary"
+            >
+              <Icon name="calendar" />
+              <span>Book Appointment</span>
+            </TrackableLink>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

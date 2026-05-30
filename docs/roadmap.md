@@ -12,7 +12,8 @@ This roadmap keeps planning, infrastructure, mockups, implementation, integratio
 
 ## Phase 2: Product Blueprint, Complete
 
-- MVP scope selected: Home, Services, Book, Products, About, Contact, and FAQ / Policies.
+- MVP scope selected: Home, Services, Products, and FAQ / Policies.
+- Book, About, and Contact were removed as standalone public pages by later user decision.
 - Booking confirmed as the primary conversion goal.
 - Products confirmed as the secondary conversion goal and future commerce path.
 - Sitemap, user flows, content requirements, client questionnaire, mockup plan, and technical direction documented.
@@ -44,7 +45,7 @@ This roadmap keeps planning, infrastructure, mockups, implementation, integratio
 
 ## Phase 6: Booking And Product Integrations
 
-Integrate Square booking through an embed, external link, direct text or call, or another approved flow once the final Square details are available.
+Integrate Square booking through the primary external Book Appointment CTA.
 
 - Select the product path, TBD.
 - Support product inquiry, Shopify, Stripe Checkout, or another confirmed commerce approach.
@@ -57,4 +58,4 @@ Integrate Square booking through an embed, external link, direct text or call, o
 - Configure analytics and conversion tracking.
 - Deploy on Vercel.
 - Connect final domain, TBD.
-- Verify production booking, contact, and product paths before launch.
+- Verify production booking and product paths before launch.

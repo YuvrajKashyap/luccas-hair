@@ -1,32 +1,123 @@
-import type { FaqPolicyItem } from "@/types";
+import type { FaqPolicyCategory, FaqPolicyItem } from "@/types";
 
-export const faqItems: FaqPolicyItem[] = [
+export const faqPolicySections: FaqPolicyCategory[] = [
   {
-    question: "How do clients book an appointment?",
-    answer:
-      "Booking will be powered by Square. The final booking embed or external link is TBD.",
-    status: "tbd",
+    id: "appointments",
+    label: "Appointments",
+    icon: "calendar",
+    defaultOpen: true,
+    items: [
+      {
+        question: "How do I book an appointment?",
+        answer:
+          "Use any Book Appointment button to open Tony Lucca's Square booking page. Square handles available times, service selection, and appointment details.",
+        status: "confirmed",
+        defaultOpen: true,
+      },
+      {
+        question: "Do I need to create an account to book?",
+        answer:
+          "You do not need an account on Lucca's Hair. Square may ask for the contact details needed to manage your appointment.",
+        status: "confirmed",
+      },
+      {
+        question: "Can I reschedule my appointment?",
+        answer:
+          "Use your Square appointment details when available, or contact Tony directly if you need help changing your time.",
+        status: "tbd",
+      },
+      {
+        question: "Do you accept walk-ins?",
+        answer:
+          "Appointments are recommended. Same-day availability may be limited, so booking through Square is the cleanest path.",
+        status: "tbd",
+      },
+      {
+        question: "What if I'm running late?",
+        answer:
+          "Please text or call Tony as soon as you can. Final late-arrival rules are still TBD and will be updated once confirmed.",
+        status: "tbd",
+      },
+    ],
   },
   {
-    question: "Where is Lucca's Hair located?",
-    answer:
-      "Tony Lucca is located inside Salon Boutique at 5701 E SH-121 Access Rd, Suite TBD, The Colony, TX.",
-    status: "confirmed",
+    id: "cancellation-policy",
+    label: "Cancellation Policy",
+    icon: "x-circle",
+    items: [
+      {
+        question: "What is the cancellation policy?",
+        answer:
+          "The final cancellation and rescheduling policy is TBD. Please contact Tony if you need to cancel or move an appointment.",
+        status: "tbd",
+      },
+      {
+        question: "Is there a no-show fee?",
+        answer:
+          "No-show rules are TBD. This page will stay editable until Tony confirms the final policy language.",
+        status: "tbd",
+      },
+    ],
   },
   {
-    question: "What are the business hours?",
-    answer: "Hours are Tuesday to Saturday, 10 AM to 5 PM. Closed Sunday and Monday.",
-    status: "confirmed",
+    id: "payments",
+    label: "Payments",
+    icon: "credit-card",
+    items: [
+      {
+        question: "How do I pay?",
+        answer:
+          "Payment details are handled through Tony and Square. Final payment policy language is TBD.",
+        status: "tbd",
+      },
+      {
+        question: "Are prices final?",
+        answer:
+          "The confirmed current service is Cuts at $20 for 20 minutes. Placeholder services and starting-at prices are not final until Tony confirms them.",
+        status: "confirmed",
+      },
+    ],
   },
   {
-    question: "What is the cancellation policy?",
-    answer: "Cancellation and rescheduling policy is TBD.",
-    status: "tbd",
+    id: "services",
+    label: "Services",
+    icon: "scissors",
+    items: [
+      {
+        question: "What services are confirmed?",
+        answer:
+          "The confirmed current Square service is Cuts, listed at $20 for 20 minutes.",
+        status: "confirmed",
+      },
+      {
+        question: "Where can I see service details?",
+        answer:
+          "Visit the Services page for the current menu. Anything marked as placeholder or TBD should not be treated as final.",
+        status: "confirmed",
+      },
+    ],
   },
   {
-    question: "Will products be available online?",
-    answer:
-      "Products are planned for a future showcase or commerce flow. Product names, pricing, and fulfillment are TBD.",
-    status: "tbd",
+    id: "store-policies",
+    label: "Store Policies",
+    icon: "shield",
+    items: [
+      {
+        question: "Can I buy products online?",
+        answer:
+          "Products are planned for the future, but live checkout is not available yet. Product names, pricing, inventory, fulfillment, and return rules are TBD.",
+        status: "tbd",
+      },
+      {
+        question: "Can I ask Tony about products?",
+        answer:
+          "Yes. Use the text option or ask during your appointment for product recommendations.",
+        status: "confirmed",
+      },
+    ],
   },
 ];
+
+export const faqItems: FaqPolicyItem[] = faqPolicySections.flatMap(
+  (section) => section.items,
+);
