@@ -2,6 +2,7 @@ import type { BusinessHour } from "@/types";
 
 export const squareBookingUrl = "https://square.site/book/DT4HT5QD699RJ/lucca";
 export const bookingPageHref = "/book";
+export const instagramUrl = "https://www.instagram.com/luccahairco/";
 
 export const businessInfo = {
   name: "Lucca's Hair",
@@ -16,6 +17,7 @@ export const businessInfo = {
   country: "US",
   phone: "972-207-9215",
   email: "tlucca65@yahoo.com",
+  instagramHandle: "@luccahairco",
   bookingPlatform: "Square",
   bookingUrl: process.env.NEXT_PUBLIC_SQUARE_BOOKING_URL || squareBookingUrl,
 } as const;
@@ -29,6 +31,7 @@ export const contactLinks = {
   call: `tel:+1${businessInfo.phone.replace(/\D/g, "")}`,
   text: `sms:+1${businessInfo.phone.replace(/\D/g, "")}`,
   email: `mailto:${businessInfo.email}`,
+  instagram: instagramUrl,
   directions:
     "https://www.google.com/maps/search/?api=1&query=5701%20E%20SH-121%20Access%20Rd%2C%20The%20Colony%2C%20TX",
 } as const;

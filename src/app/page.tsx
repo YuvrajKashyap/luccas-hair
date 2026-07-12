@@ -121,7 +121,7 @@ export default function HomePage() {
                 <h3>{service.name}</h3>
                 <p>{service.summary}</p>
                 <div className="home-service-card__price">
-                  Starting At <span>{service.price}</span>
+                  Price <span>{service.price}</span>
                 </div>
               </article>
             ))}

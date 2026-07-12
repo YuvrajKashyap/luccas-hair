@@ -1224,11 +1224,24 @@ textarea {
   line-height: 1.42;
 }
 
-.services-card strong {
+.services-card__price {
+  display: grid;
+  gap: 5px;
+}
+
+.services-card__price strong {
   color: var(--color-accent-strong);
   font-size: 0.91rem;
   font-weight: 500;
   line-height: 1;
+}
+
+.services-card__price span {
+  color: #efe3d0;
+  font-size: 0.55rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: uppercase;
 }
 
 .services-booking-strip {
@@ -1874,6 +1887,12 @@ textarea {
   margin-top: 2px;
 }
 
+.footer-contact-item__icon-link {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+}
+
 .footer-contact-item > div {
   min-width: 0;
 }
@@ -2026,6 +2045,21 @@ textarea {
 .footer-legal__socials svg {
   width: 22px;
   height: 22px;
+}
+
+.footer-legal__socials a,
+.footer-legal__socials span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-legal__socials a {
+  transition: color 160ms ease;
+}
+
+.footer-legal__socials a:hover {
+  color: var(--color-accent-strong);
 }
 
 @media (max-width: 1180px) {

@@ -88,14 +88,28 @@ export function Footer() {
           </div>
 
           <div className="footer-contact-item">
-            <Icon name="instagram" className="footer-contact-item__icon" />
+            <TrackableLink
+              href={contactLinks.instagram}
+              eventName="instagram_click"
+              metadata={{ placement: "footer_contact_icon" }}
+              className="footer-contact-item__icon-link"
+              ariaLabel="Visit Lucca's Hair on Instagram"
+            >
+              <Icon name="instagram" className="footer-contact-item__icon" />
+            </TrackableLink>
             <div>
               <p className="footer-kicker">Follow Tony</p>
-              <p>@luccas.hair</p>
+              <p>{businessInfo.instagramHandle}</p>
               <p>Stay up to date on styles, news, and product drops.</p>
-              <span className="footer-inline-link">
+              <TrackableLink
+                href={contactLinks.instagram}
+                eventName="instagram_click"
+                metadata={{ placement: "footer_contact_link" }}
+                className="footer-inline-link"
+                ariaLabel="Follow Lucca's Hair on Instagram"
+              >
                 Follow On Instagram <span aria-hidden="true">-&gt;</span>
-              </span>
+              </TrackableLink>
             </div>
           </div>
         </div>
@@ -157,9 +171,18 @@ export function Footer() {
           <Link href="/faq-policies">Privacy Policy</Link>
           <Link href="/faq-policies">Terms of Service</Link>
         </div>
-        <div className="footer-legal__socials" aria-hidden="true">
-          <Icon name="instagram" />
-          <Icon name="facebook" />
+        <div className="footer-legal__socials">
+          <TrackableLink
+            href={contactLinks.instagram}
+            eventName="instagram_click"
+            metadata={{ placement: "footer_legal_social" }}
+            ariaLabel="Visit Lucca's Hair on Instagram"
+          >
+            <Icon name="instagram" />
+          </TrackableLink>
+          <span aria-hidden="true">
+            <Icon name="facebook" />
+          </span>
         </div>
       </section>
     </footer>

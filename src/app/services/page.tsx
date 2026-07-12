@@ -31,6 +31,7 @@ type ServiceCard = {
   name: string;
   description: string;
   price: string;
+  priceNote?: string;
   image: MockupImage;
   position: string;
   size?: string;
@@ -48,34 +49,38 @@ const serviceCards: ServiceCard[] = [
     name: "Fade",
     description: "Clean, sharp fades that elevate your look.",
     price: "FREE",
+    priceNote: "Comes with the haircut",
     image: fadeImage,
     position: "center 43%",
   },
   {
     name: "Beard Trim",
     description: "Shape, define, and maintain your beard.",
-    price: "$35+",
+    price: "FREE",
+    priceNote: "Comes with the haircut",
     image: beardTrimImage,
     position: "center 44%",
   },
   {
     name: "Facial",
     description: "Deep cleanse and skin revitalization.",
-    price: "$60+",
+    price: "$20",
     image: facialImage,
     position: "center 42%",
   },
   {
     name: "Styling",
     description: "Professional styling for any occasion.",
-    price: "$30+",
+    price: "FREE",
+    priceNote: "Comes with the haircut",
     image: stylingImage,
     position: "center center",
   },
   {
     name: "Kids Cut",
     description: "Precision cuts for the little ones.",
-    price: "$30+",
+    price: "FREE",
+    priceNote: "Comes with the haircut",
     image: kidsCutImage,
     position: "center center",
   },
@@ -155,7 +160,10 @@ export default function ServicesPage() {
                 <div className="services-card__content">
                   <h3>{service.name}</h3>
                   <p>{service.description}</p>
-                  <strong>{service.price}</strong>
+                  <div className="services-card__price">
+                    <strong>{service.price}</strong>
+                    {service.priceNote ? <span>{service.priceNote}</span> : null}
+                  </div>
                 </div>
               </article>
             ))}

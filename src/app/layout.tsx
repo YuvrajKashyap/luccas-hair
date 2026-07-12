@@ -3,6 +3,7 @@ import { Bebas_Neue, Cormorant_Garamond, Montserrat } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "@/styles/globals.css";
+import "@/styles/mobile.css";
 import { defaultMetadata } from "@/lib/seo/metadata";
 import { Footer } from "@/components/layout/footer";
 import { MobileStickyCta } from "@/components/layout/mobile-sticky-cta";
