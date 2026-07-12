@@ -120,9 +120,6 @@ export default function HomePage() {
                 />
                 <h3>{service.name}</h3>
                 <p>{service.summary}</p>
-                <div className="home-service-card__price">
-                  Price <span>{service.price}</span>
-                </div>
               </article>
             ))}
           </div>

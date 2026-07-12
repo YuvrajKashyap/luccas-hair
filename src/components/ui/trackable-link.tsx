@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { getSquareBookingHref } from "@/data/business";
 import { trackEvent } from "@/lib/analytics/client";
 import type { AnalyticsEventName } from "@/lib/analytics/events";
 
@@ -25,6 +26,7 @@ export function TrackableLink({
   const handleClick = () => {
     trackEvent(eventName, metadata);
   };
+  const opensInNewTab = /^https?:\/\//i.test(href) && href !== getSquareBookingHref();
 
   if (href.startsWith("/")) {
     return (
@@ -40,7 +42,14 @@ export function TrackableLink({
   }
 
   return (
-    <a href={href} className={className} aria-label={ariaLabel} onClick={handleClick}>
+    <a
+      href={href}
+      className={className}
+      aria-label={ariaLabel}
+      onClick={handleClick}
+      target={opensInNewTab ? "_blank" : undefined}
+      rel={opensInNewTab ? "noopener noreferrer" : undefined}
+    >
       {children}
     </a>
   );

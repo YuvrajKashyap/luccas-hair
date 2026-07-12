@@ -437,22 +437,6 @@ textarea {
   line-height: 1.75;
 }
 
-.home-service-card__price {
-  width: 100%;
-  margin-top: 11px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(216, 155, 60, 0.28);
-  color: #f6efe3;
-  font-size: 0.58rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.home-service-card__price span {
-  color: var(--color-accent-strong);
-}
-
 .home-services__button {
   display: flex;
   width: 150px;
