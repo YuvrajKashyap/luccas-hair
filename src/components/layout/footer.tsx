@@ -1,9 +1,12 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
-  businessHours,
   businessInfo,
   contactLinks,
   getBookingHref,
+  getSquareBookingHref,
 } from "@/data/business";
 import { LuccaLogo } from "@/components/brand/lucca-logo";
 import { Icon } from "@/components/ui/icons";
@@ -16,16 +19,21 @@ const quickLinks = [
   { label: "FAQ & Policies", href: "/faq-policies" },
 ];
 
-function displayTime(value?: string) {
-  if (!value) return null;
-
-  const [hour, minute] = value.split(":").map(Number);
-  const suffix = hour >= 12 ? "PM" : "AM";
-  const displayHour = hour % 12 || 12;
-  return `${displayHour}:${String(minute).padStart(2, "0")} ${suffix}`;
-}
+const footerServices = [
+  "Men's Cuts",
+  "Fades",
+  "Beard Trim",
+  "Cut + Beard",
+  "Grooming",
+  "Kids & Seniors",
+];
 
 export function Footer() {
+  const pathname = usePathname();
+  const bookingHref = pathname.startsWith("/book")
+    ? getSquareBookingHref()
+    : getBookingHref();
+
   return (
     <footer className="site-footer">
       <section className="footer-contact-band" aria-label="Contact details">
@@ -33,11 +41,10 @@ export function Footer() {
           <div className="footer-contact-item">
             <Icon name="map-pin" className="footer-contact-item__icon" />
             <div>
-              <p className="footer-kicker">{businessInfo.locationLabel}</p>
-              <p>{businessInfo.streetAddress}</p>
-              <p>
-                {businessInfo.city}, {businessInfo.region}
-              </p>
+              <p className="footer-kicker">Inside Salon Boutique</p>
+              <p>5701 E SH-121 Access Rd</p>
+              <p>Suite TBD</p>
+              <p>The Colony, TX</p>
               <TrackableLink
                 href={contactLinks.directions}
                 eventName="directions_click"
@@ -49,18 +56,13 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="footer-contact-item footer-contact-item--hours">
+          <div className="footer-contact-item">
             <Icon name="clock" className="footer-contact-item__icon" />
             <div>
-              <p className="footer-kicker">Current Hours</p>
-              {businessHours.map((hours) => (
-                <p key={hours.label}>
-                  {hours.label}:{" "}
-                  {hours.opens
-                    ? `${displayTime(hours.opens)} - ${displayTime(hours.closes)}`
-                    : "Closed"}
-                </p>
-              ))}
+              <p className="footer-kicker">Hours</p>
+              <p>Tuesday - Saturday</p>
+              <p>10:00 AM - 5:00 PM</p>
+              <p>Closed Sunday &amp; Monday</p>
             </div>
           </div>
 
@@ -71,7 +73,7 @@ export function Footer() {
               <TrackableLink href={contactLinks.call} eventName="call_click">
                 {businessInfo.phone}
               </TrackableLink>
-              <p>Text preferred</p>
+              <p>Text Preferred</p>
             </div>
           </div>
 
@@ -98,7 +100,7 @@ export function Footer() {
             <div>
               <p className="footer-kicker">Follow Tony</p>
               <p>{businessInfo.instagramHandle}</p>
-              <p>See Tony&apos;s latest work and updates.</p>
+              <p>Stay up to date on styles, news, and product drops.</p>
               <TrackableLink
                 href={contactLinks.instagram}
                 eventName="instagram_click"
@@ -131,24 +133,29 @@ export function Footer() {
           </div>
 
           <div className="footer-column footer-column--split">
-            <p className="footer-kicker">Verified Service</p>
+            <p className="footer-kicker">Services</p>
             <div className="footer-link-grid">
-              <Link href="/services">Cuts</Link>
-              <Link href="/services">$20 / 20 minutes</Link>
+              {footerServices.map((service) => (
+                <Link key={service} href="/services">
+                  {service}
+                </Link>
+              ))}
+              <Link href="/services">View All Services</Link>
             </div>
           </div>
 
           <div className="footer-column footer-book">
             <p className="footer-kicker">Book Now</p>
-            <p>Choose an available time on Tony&apos;s live Square calendar.</p>
+            <p>Appointments are recommended.</p>
+            <p>Walk-ins may be limited.</p>
             <TrackableLink
-              href={getBookingHref()}
+              href={bookingHref}
               eventName="booking_click"
               metadata={{ placement: "footer_book_now" }}
               className="home-button home-button--primary footer-book__button"
             >
               <Icon name="calendar" />
-              <span>View Availability</span>
+              <span>Book Appointment</span>
             </TrackableLink>
             <p className="powered-by">
               <Icon name="square" />
@@ -159,7 +166,11 @@ export function Footer() {
       </section>
 
       <section className="footer-legal">
-        <p>© {new Date().getFullYear()} Lucca&apos;s Hair. All rights reserved.</p>
+        <p>© 2024 Lucca&apos;s Hair. All rights reserved.</p>
+        <div className="footer-legal__links">
+          <Link href="/faq-policies">Privacy Policy</Link>
+          <Link href="/faq-policies">Terms of Service</Link>
+        </div>
         <div className="footer-legal__socials">
           <TrackableLink
             href={contactLinks.instagram}
@@ -169,6 +180,9 @@ export function Footer() {
           >
             <Icon name="instagram" />
           </TrackableLink>
+          <span aria-hidden="true">
+            <Icon name="facebook" />
+          </span>
         </div>
       </section>
     </footer>

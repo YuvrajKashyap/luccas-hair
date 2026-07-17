@@ -1,13 +1,11 @@
 import type { CSSProperties } from "react";
-import productsBackground from "../../../assets/mockups/home/home-book-background.png";
-import { contactLinks, getBookingHref } from "@/data/business";
+import productsBackground from "../../../assets/mockups/products/products-background-asset.png";
 import { createPageMetadata } from "@/lib/seo/metadata";
-import { TrackableLink } from "@/components/ui/trackable-link";
 
 export const metadata = createPageMetadata({
   title: "Products",
   description:
-    "Product details are not live yet. Contact Tony directly for current grooming recommendations.",
+    "Premium grooming products are coming soon to Lucca's Hair in The Colony, TX.",
   path: "/products",
 });
 
@@ -32,27 +30,13 @@ export default function ProductsPage() {
           </h1>
           <span className="products-title-rule" aria-hidden="true" />
           <p className="products-coming-soon__copy">
-            No product names, prices, inventory, or checkout are live yet. This page stays
-            intentionally simple until Tony confirms a real collection.
+            We&apos;re working behind the scenes to bring you
+            <br />
+            premium grooming products that live up
+            <br />
+            to the standards you know and trust.
           </p>
-          <div className="products-actions">
-            <TrackableLink
-              href={contactLinks.text}
-              eventName="product_interest_click"
-              metadata={{ placement: "products_page" }}
-              className="home-button home-button--secondary"
-            >
-              Ask Tony About Products
-            </TrackableLink>
-            <TrackableLink
-              href={getBookingHref()}
-              eventName="booking_click"
-              metadata={{ placement: "products_page" }}
-              className="home-button home-button--primary"
-            >
-              Book A Cut
-            </TrackableLink>
-          </div>
+          <p className="products-stay-tuned">Stay tuned.</p>
         </div>
       </section>
     </div>

@@ -1,7 +1,5 @@
 # Project Brief
 
-> Historical planning artifact. For the current shipped state and verified business facts, use `README.md`, `docs/architecture.md`, and `docs/data-provenance.md`.
-
 ## Overview
 
 Lucca's Hair is a premium salon and barber-style website project. The site will support a real small business presence with an appointment-first experience, polished service presentation, and a future path for product sales.

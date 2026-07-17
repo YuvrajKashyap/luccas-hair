@@ -1,7 +1,4 @@
-import { notFound } from "next/navigation";
 import { requestAdminLogin } from "@/server/actions/auth";
-import { hasSupabaseConfig } from "@/lib/supabase/config";
-import { getAdminAllowlist } from "@/server/admin";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
@@ -23,10 +20,6 @@ const statusMessages: Record<string, string> = {
 };
 
 export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
-  if (!hasSupabaseConfig() || getAdminAllowlist().length === 0) {
-    notFound();
-  }
-
   const { status } = await searchParams;
   const message = status ? statusMessages[status] : null;
 
@@ -41,7 +34,8 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
             Private access.
           </h1>
           <p className="mt-5 text-sm leading-7 text-muted">
-            Access requires a configured Supabase project and an allowlisted admin email.
+            Supabase auth scaffold for the hidden admin page. Access requires configured
+            Supabase env vars and an allowlisted admin email.
           </p>
           {message ? (
             <p className="mt-5 rounded-[var(--radius-md)] border border-border bg-card p-4 text-sm text-muted">

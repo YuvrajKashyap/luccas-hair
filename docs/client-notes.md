@@ -1,7 +1,5 @@
 # Client Notes
 
-> Historical planning artifact. For the current shipped state and verified business facts, use `README.md`, `docs/architecture.md`, and `docs/data-provenance.md`.
-
 This file tracks open questions for Lucca. Unknown details should remain `TBD` until confirmed.
 
 ## Services

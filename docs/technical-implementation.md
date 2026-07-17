@@ -1,38 +1,57 @@
 # Technical Implementation
 
-## Current stack
+## Stack Chosen
 
-- Next.js 16 App Router with React 19 and TypeScript
-- Hand-authored responsive CSS
-- Supabase SSR and Auth for optional private features
-- Vercel Analytics and Speed Insights
-- Vitest, ESLint, Prettier, npm audit, and GitHub Actions
+- Next.js App Router.
+- TypeScript.
+- Tailwind CSS.
+- Framer Motion installed for later motion work.
+- Supabase for auth, contact submissions, and custom analytics events.
+- Zod for validation.
+- Vercel Analytics and Speed Insights.
+- Vercel deployment readiness.
+- ESLint, Prettier, and GitHub Actions.
 
-## Public application
+## Booking Direction
 
-Home, Services, Products, and FAQ / Policies are production UI, not placeholders. All primary booking actions point to Tony's live Square page. `/book` remains as a redirect for compatibility with older links.
+Square handles appointment booking. The custom website is the premium front door and should send clients to Tony Lucca's Square booking site through the Book Appointment CTA.
 
-Business facts, services, policies, and navigation are typed data rather than copy scattered across components. The local-business JSON-LD uses the same source and omits unknown address fragments.
+The current site scope does not include a standalone `/book` page. Booking CTAs should point to `https://square.site/book/DT4HT5QD699RJ/lucca`, unless `NEXT_PUBLIC_SQUARE_BOOKING_URL` provides a future override.
 
-## Private application
+## Supabase Usage
 
-Supabase supports allowlisted admin authentication, custom event persistence, and a 30-day private conversion summary in the `luccas_hair` schema. It is deliberately optional:
+Supabase is scaffolded for:
 
-- Public routes build without Supabase keys.
-- Missing Supabase configuration makes admin routes return 404.
-- Service-role credentials are used only on the server.
-- Auth callback redirects accept internal paths only.
+- Admin authentication.
+- Custom analytics events.
+- Future admin visibility into booking, text, call, directions, product interest, and contact activity.
 
-## Quality system
+Lucca's Hair data uses the custom `luccas_hair` schema in Supabase. Custom analytics events are designed for server-only writes through `SUPABASE_SERVICE_ROLE_KEY`, not broad browser writes.
 
-`npm run verify` is the single local and CI gate. It checks format, lint, types, tests, the production build, and production dependencies. Regression tests cover the Square booking URL and listing, known/unknown location fields, current hours, safe auth redirects, and structured-data output.
+Local builds do not require Supabase keys. If env vars are missing, admin access is blocked and analytics storage runs in placeholder mode.
 
-## Deliberately inactive
+## Scaffolded Now
 
-- Product commerce and checkout
-- A custom booking engine
-- Public client gallery, reviews, or testimonials
-- Private admin and event persistence without valid configuration
-- Unverified policies, services, product facts, and address details
+- Public routes for Home, Services, Products, and FAQ / Policies.
+- Hidden admin route and admin login route.
+- Root layout, navbar, footer, mobile sticky booking CTA, button, container, and section components.
+- Editable data files for business info, services, products, FAQs, and navigation.
+- Analytics event endpoint and client tracking helper.
+- Supabase browser, server, and proxy helpers.
+- Server-only Supabase service role helper for persistence.
+- SEO metadata defaults, sitemap route, robots route, and local business schema helper.
+- SQL migration drafts for the `luccas_hair` schema, contact submissions, analytics events, and admin allowlist.
+- CI workflow for install, lint, typecheck, and build.
 
-See [architecture](architecture.md), [data provenance](data-provenance.md), and [verification](verification.md) for the complete release evidence.
+## Intentionally Not Built Yet
+
+- Final high-fidelity UI.
+- Final animation system.
+- Product detail pages or ecommerce checkout.
+- Full admin dashboard.
+- Final logo, photography, or product assets.
+- Final service prices, durations, policies, or product details beyond confirmed client info.
+
+## Next Step
+
+Create and lock page mockups and asset direction, then replace placeholder pages with the final UI one page at a time.

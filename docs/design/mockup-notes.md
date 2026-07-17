@@ -1,7 +1,5 @@
 # Mockup Notes
 
-> Historical planning artifact. For the current shipped state and verified business facts, use `README.md`, `docs/architecture.md`, and `docs/data-provenance.md`.
-
 ## Current Mockup Strategy
 
 The next phase should generate page mockups before final UI implementation. Mockups should define layout, visual hierarchy, content structure, asset direction, and booking emphasis before placeholder pages are replaced.

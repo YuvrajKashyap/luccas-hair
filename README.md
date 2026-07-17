@@ -1,118 +1,134 @@
 # Lucca's Hair
 
-[![CI](https://github.com/YuvrajKashyap/luccas-hair/actions/workflows/ci.yml/badge.svg)](https://github.com/YuvrajKashyap/luccas-hair/actions/workflows/ci.yml)
+Lucca's Hair is a premium salon and barber-style website project focused on appointment booking, service presentation, and future product sales.
 
-[Live site](https://luccas-hair.vercel.app) · [Square booking](https://square.site/book/DT4HT5QD699RJ/lucca) · [Architecture](docs/architecture.md) · [Data provenance](docs/data-provenance.md)
+## Project Status
 
-An appointment-first website for a working stylist that turns a scattered local-business journey into one trustworthy path: see the verified service, check the facts, and book on Square.
+Phase 1 foundation is complete.
+Phase 2 product blueprint is complete.
+Phase 3 production app infrastructure is complete.
 
-![Lucca's Hair homepage with a direct Square booking path](screenshots/portfolio-hero.png)
+The repository now contains the actual Next.js application foundation, placeholder pages, backend scaffolding, and deployment tooling. The final high-fidelity UI has not been implemented yet. The next step is to generate page mockups, lock selected visual assets, and then replace placeholders with the final interface one page at a time.
 
-## The work
+## Business Objective
 
-|                  |                                                                                                  |
-| ---------------- | ------------------------------------------------------------------------------------------------ |
-| Product          | Live client website for Tony Lucca in The Colony, Texas                                          |
-| Role             | Product strategy, UX, visual design, frontend engineering, data verification, QA, and deployment |
-| Primary user job | Find the current service and reserve an available time                                           |
-| Core constraint  | Improve the custom experience without replacing or risking the working Square booking system     |
-| Outcome          | A responsive, production-deployed booking front door with a direct Square handoff                |
+The primary objective is to make it easy and obvious for clients to book appointments with Tony Lucca through Square.
 
-The repository is intentionally honest about what the business has confirmed. As of July 17, 2026, Tony's live Square page lists one service, **Cuts**, at **$20** for **20 minutes**. Unconfirmed services, policies, product inventory, client photos, reviews, and address fragments are not presented as fact.
+The secondary objective is to showcase and eventually sell hair and grooming products once product, pricing, and fulfillment details are confirmed.
 
-## What changed
+The project should read as real client and product work: brand direction, UX strategy, conversion planning, appointment flow design, commerce planning, technical readiness, and clean documentation.
 
-- Reframed every primary call to action around live Square availability.
-- Preserved `/book` as a compatibility redirect so old links keep working.
-- Replaced placeholder service claims with the one current Square listing.
-- Added current opening hours and accurate local-business structured data.
-- Removed misleading cart, policy, social, walk-in, suite, founding-year, and product claims.
-- Made the private admin surface fail closed when Supabase is not configured.
-- Added safe internal auth redirects to prevent open-redirect behavior.
-- Added Vitest coverage for business facts, redirects, and SEO schema.
-- Added a single CI gate for formatting, linting, types, tests, production build, and production-dependency security.
-- Upgraded Next.js and React patch releases and resolved the dependency audit to zero known vulnerabilities.
+## MVP Scope
 
-## System design
+- Home
+- Services
+- Products
+- FAQ / Policies
 
-```mermaid
-flowchart LR
-    V["Visitor"] --> N["Next.js public site"]
-    N --> D["Typed business data"]
-    N --> S["Square booking page"]
-    N --> E["First-party event route"]
-    E --> DB["Supabase luccas_hair schema"]
-    A["Allowlisted admin"] --> AUTH["Supabase Auth"]
-    AUTH --> P["Protected admin route"]
-    P --> DB
-```
+Booking is handled through the primary Book Appointment CTA, which opens Tony Lucca's Square booking site. There is no standalone `/book`, `/about`, or `/contact` page in the current site scope.
 
-The custom site owns discovery, trust, SEO, and conversion tracking. Square remains the booking system of record. Supabase is optional for local builds and isolated behind server-side configuration. See [the architecture note](docs/architecture.md) for trust boundaries and failure behavior.
+Future scope can include product detail pages, gallery, testimonials, memberships, gift cards, a style journal, and a client portal.
 
-## Key decisions
+## Planned Technical Direction
 
-1. **Handoff, not reimplementation.** A custom scheduler would duplicate availability logic and create risk for a site Tony already uses. The site links directly to the current Square calendar.
-2. **Verified data only.** Business data lives in typed modules and is covered by regression tests. Unknowns are omitted or turned into a direct contact path.
-3. **Fail closed.** Missing private configuration hides admin routes with a 404. It never exposes a public analytics scaffold.
-4. **Concept visuals, factual content.** Atmospheric imagery establishes the brand direction, but the UI explicitly states that it is not a client-work gallery.
-5. **Compatibility over churn.** Existing `/book` links still work through a server redirect even though new calls to action point to Square directly.
-
-## Stack
-
-- Next.js 16 App Router, React 19, TypeScript
-- Hand-authored responsive CSS with Montserrat, Cormorant Garamond, and Bebas Neue
-- Supabase SSR and Auth for the optional private surface
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Supabase for auth, contact submissions, and custom analytics events
+- Zod validation
 - Vercel Analytics and Speed Insights
-- Vitest, ESLint, Prettier, and GitHub Actions
-- Vercel deployment with Square as the booking system of record
+- Vercel deployment
+- Square booking integration through Tony Lucca's public Square booking URL
+- Product or ecommerce flow, TBD
 
-## Run locally
+## App Setup
 
-Requires Node.js 22 or newer.
+Install dependencies:
 
 ```bash
-npm ci
+npm install
+```
+
+Run the development server:
+
+```bash
 npm run dev
 ```
 
-The public site and production build work without secrets. Copy `.env.example` to `.env.local` only when testing an integration.
+Run checks:
 
 ```bash
-npm run verify
+npm run lint
+npm run typecheck
+npm run build
+npm run format:check
 ```
 
-`verify` runs formatting, linting, TypeScript, 10 regression tests, a production build, and a production-dependency audit. The same command runs in CI.
+## Environment Variables
 
-## Environment
+Copy `.env.example` to `.env.local` when local integration work begins.
 
-| Variable                               | Purpose                                 | Public site required? |
-| -------------------------------------- | --------------------------------------- | --------------------- |
-| `NEXT_PUBLIC_SITE_URL`                 | Canonical production URL                | No                    |
-| `NEXT_PUBLIC_SQUARE_BOOKING_URL`       | Optional Square booking override        | No                    |
-| `NEXT_PUBLIC_SUPABASE_URL`             | Supabase project URL                    | No                    |
-| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Current public Supabase key             | No                    |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY`        | Legacy key fallback                     | No                    |
-| `SUPABASE_SERVICE_ROLE_KEY`            | Server-only event persistence           | No                    |
-| `ADMIN_EMAIL_ALLOWLIST`                | Emails allowed into the private surface | No                    |
+Required later for Supabase and booking integration:
 
-## Data and research
+- `NEXT_PUBLIC_SITE_URL`
+- `NEXT_PUBLIC_SQUARE_BOOKING_URL`
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`, optional legacy fallback
+- `SUPABASE_SERVICE_ROLE_KEY`, server-only persistence key
+- `ADMIN_EMAIL_ALLOWLIST`
 
-The shipped business facts were checked against Tony's public Square booking page on July 17, 2026. The implementation also follows current primary-source guidance for [Square Bookings](https://developer.squareup.com/docs/bookings-api/what-it-is), [Google local-business structured data](https://developers.google.com/search/docs/appearance/structured-data/local-business), [Supabase redirect URLs](https://supabase.com/docs/guides/auth/redirect-urls), [Supabase SSR](https://supabase.com/docs/guides/auth/server-side/advanced-guide), and [Next.js 16.2](https://nextjs.org/blog/next-16-2).
+## Current Documentation
 
-The precise source, confidence, and update rule for each public fact are documented in [data provenance](docs/data-provenance.md).
+```text
+docs/
+  technical-implementation.md
+  product-blueprint.md
+  sitemap.md
+  user-flows.md
+  content-requirements.md
+  client-questionnaire.md
+  mockup-plan.md
+  technical-direction.md
+  project-brief.md
+  roadmap.md
+  client-notes.md
+  context/
+    build-context.md
+  brand/
+    brand-foundation.md
+  design/
+    design-system-notes.md
+    mockup-notes.md
+  decisions/
+    0001-project-name-and-repo-direction.md
+    0002-phase-based-build-process.md
+    0003-product-blueprint-and-mvp-scope.md
 
-## Deliberate limitations
+assets/
+  references/
+  logo/
+  mockups/
+  products/
 
-- Square owns live availability, appointment details, rescheduling, and cancellation flows.
-- No ecommerce or product inventory is live.
-- No client gallery, testimonials, ratings, suite number, postal code, or unverified policies are published.
-- The admin and event store remain inactive until valid Supabase configuration is supplied; when connected, the private page summarizes 30-day conversion counts.
-- No license is included; this is client work, not a reusable template.
+src/
+  app/
+  components/
+  data/
+  lib/
+  server/
+  styles/
+  types/
 
-## More proof
+supabase/
+  migration-drafts/
+```
 
-![Verified service page showing the current Square listing](screenshots/verified-services.png)
+## Next Step
 
-- [Verification record](docs/verification.md)
-- [Technical implementation](docs/technical-implementation.md)
-- [Historical product and design planning](docs/product-blueprint.md)
+Generate and review page mockups in the approved order, lock one selected visual direction per page, collect missing client details, and replace placeholder pages with final UI after assets are approved.
+
+## Business Details Policy
+
+Business details that have not been confirmed must stay marked as `TBD`. Do not fabricate final services, prices, products, policies, logo assets, domain, social links, or ecommerce details.

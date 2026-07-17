@@ -10,11 +10,8 @@
     "build": "next build",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
     "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "security:check": "npm audit --omit=dev --audit-level=moderate",
-    "verify": "npm run format:check && npm run lint && npm run typecheck && npm run test && npm run build && npm run security:check"
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.3",
@@ -22,9 +19,9 @@
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "framer-motion": "^12.40.0",
-    "next": "^16.2.10",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
+    "next": "^16.2.6",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
     "server-only": "^0.0.1",
     "zod": "^4.4.3"
   },
@@ -35,17 +32,9 @@
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.1",
-    "eslint-config-next": "^16.2.10",
+    "eslint-config-next": "^16.2.6",
     "prettier": "^3.8.3",
     "tailwindcss": "^4.3.0",
-    "typescript": "^6.0.3",
-    "vitest": "^3.2.4"
-  },
-  "optionalDependencies": {
-    "@emnapi/core": "1.11.2",
-    "@emnapi/runtime": "1.11.2"
-  },
-  "overrides": {
-    "postcss": "8.5.19"
+    "typescript": "^6.0.3"
   }
 }

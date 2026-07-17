@@ -5,7 +5,9 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "@/styles/globals.css";
 import "@/styles/mobile.css";
 import { defaultMetadata } from "@/lib/seo/metadata";
-import { PublicShell } from "@/components/layout/public-shell";
+import { Footer } from "@/components/layout/footer";
+import { MobileStickyCta } from "@/components/layout/mobile-sticky-cta";
+import { Navbar } from "@/components/layout/navbar";
 
 const headingFont = Cormorant_Garamond({
   subsets: ["latin"],
@@ -40,7 +42,10 @@ export default function RootLayout({
       className={`${headingFont.variable} ${bodyFont.variable} ${displayFont.variable}`}
     >
       <body>
-        <PublicShell>{children}</PublicShell>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+        <MobileStickyCta />
         <Analytics />
         <SpeedInsights />
       </body>

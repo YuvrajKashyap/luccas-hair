@@ -1,45 +1,118 @@
 # Build Context
 
-Current handoff for future work on Lucca's Hair. Older phase documents remain useful design history, but this file describes the shipped application as of July 17, 2026.
+This document is the handoff source for future Codex threads working on Lucca's Hair.
 
-## Product
+## Project Vision
 
-Lucca's Hair is Tony Lucca's deployed appointment-first website for clients in The Colony, Texas. The custom site owns brand presentation, factual service discovery, local SEO, and conversion intent. Square owns live availability and appointment state.
+Lucca's Hair is a real client-style small business website for a premium salon and barber-style brand. The site should make appointment booking feel immediate and trustworthy while giving the business a polished digital presence.
 
-## Shipped
+The site should support service discovery, direct Square booking, product browsing, contact information in shared sections, FAQ content, and policies in the MVP. Future phases can add product detail pages, ecommerce, gallery, testimonials, memberships, gift cards, style journal content, and a client portal.
 
-- Responsive Home, Services, Products, and FAQ / Policies pages
-- Direct Square booking actions and a compatible `/book` redirect
-- Typed business, service, hours, policy, and navigation data
-- Current metadata, sitemap, robots, and local-business JSON-LD
-- Optional server-side analytics persistence and protected Supabase admin scaffold
-- Fail-closed private routes and safe auth redirects
-- Vitest regression coverage and a complete CI verification gate
-- Vercel deployment, Analytics, and Speed Insights
-- Canonical screenshots and social preview image
+## Brand Direction
 
-## Current verified facts
+- Business name: Lucca's Hair.
+- Personality: premium, warm, masculine, stylish, Italian-inspired, approachable, and clean.
+- Visual vibe: dark cinematic base with warm cream, tan, brass, gold, and black accents.
+- Atmosphere: polished barbershop and salon experience.
+- Logo direction: illustrated barber or salon mascot logo, updated to use an `L` instead of the earlier `T` concept.
+- Avoid: generic barber templates, fake luxury, cluttered visuals, unconfirmed business claims, and disposable placeholder content.
 
-- Cuts: $20, 20 minutes
-- Booking: `https://square.site/book/DT4HT5QD699RJ/lucca`
-- Location: inside Salon Boutique, 5701 E SH-121 Access Rd, The Colony, TX
-- Hours: Tue/Wed 10-5, Thu 10-5:30, Fri 10-5, Sat 9-4:30; Sun/Mon closed
-- Instagram: `@luccahairco`
+## Site Purpose
 
-See `docs/data-provenance.md` before changing any business fact.
+Primary purpose: make booking appointments extremely easy.
 
-## Non-negotiable rules
+Secondary purpose: showcase and eventually sell hair or grooming products.
 
-- Do not break or replace the working Square booking flow.
-- Do not invent services, policies, products, photos, reviews, or location fragments.
-- Do not represent atmospheric concept imagery as Tony's client work.
-- Keep the public application usable and buildable without Supabase secrets.
-- Keep admin access fail closed when configuration is absent.
-- Preserve unrelated edits and run `npm run verify` before push.
+The site should support real business needs and also show strong process for portfolio and recruiter review. Documentation should make it clear that the work includes product planning, brand identity, UX planning, appointment strategy, commerce planning, frontend architecture, and production deployment intent.
 
-## Honest next opportunities
+## Current Status
 
-- Replace concept imagery with approved real photography when supplied.
-- Add confirmed services or policies only after rechecking the business source.
-- Activate the private event/admin path after production Supabase configuration is verified.
-- Add commerce only after products, inventory, payments, fulfillment, and returns are defined.
+Current phase: Phase 3 production app infrastructure complete.
+
+Completed:
+
+- Repository initialized.
+- Project README added.
+- Planning docs added.
+- Brand foundation added.
+- Design notes added.
+- Decision records added.
+- Asset placeholder folders added.
+- Product blueprint documented.
+- Sitemap documented.
+- User flows documented.
+- Content requirements documented.
+- Client questionnaire documented.
+- Mockup plan documented.
+- Technical direction documented.
+- Next.js App Router infrastructure initialized.
+- Placeholder MVP routes created.
+- Supabase, contact, analytics, admin, SEO, CI, and Vercel readiness scaffolding added.
+
+Not completed yet:
+
+- Page mockups.
+- Final high-fidelity UI.
+- Final logo assets.
+- Final photography.
+- Final product data.
+- Ecommerce integration.
+- Deployment.
+
+## Known Unknowns
+
+Keep these marked as `TBD` until confirmed by the client:
+
+- Exact services.
+- Prices.
+- Service durations.
+- Product names.
+- Product prices.
+- Product photos.
+- Shipping or pickup method.
+- Final suite number.
+- Postal code.
+- Cancellation policy.
+- Refund or product return policy.
+- Final logo assets.
+- Final domain.
+- Social links.
+
+## Implementation Rules
+
+- Do not invent real business details.
+- Use `TBD` for unknowns.
+- Do not build the final high-fidelity UI until mockups and assets are locked.
+- Base future final UI implementation on selected mockups, one page at a time.
+- Keep the booking path central in navigation, layout, and calls to action.
+- Keep product planning flexible until the ecommerce approach is selected.
+- Preserve the premium, warm, masculine, Italian-inspired tone.
+- Avoid generic barber template styling.
+
+## Recommended MVP Sitemap
+
+- Home.
+- Services.
+- Products.
+- FAQ / Policies.
+
+## Expected Future Tech Direction
+
+- Next.js.
+- TypeScript.
+- Tailwind CSS.
+- Framer Motion or Motion.
+- Supabase.
+- Zod.
+- Vercel Analytics and Speed Insights.
+- Vercel deployment.
+- Square booking integration through `https://square.site/book/DT4HT5QD699RJ/lucca`.
+- Product or ecommerce flow, TBD.
+
+## Next Phase
+
+The next phase is mockups and asset lock. Generate page mockups in the approved order, select one reference mockup per page, gather remaining client details, and prepare assets before final UI implementation begins.
+
+## Recruiter-Friendly Positioning
+
+Future work should make the project read as professional client and product work, not a class exercise. Commits and documentation should show a thoughtful process: brief, brand direction, user flows, mockups, architecture, implementation, QA, and deployment.

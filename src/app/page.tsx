@@ -1,11 +1,17 @@
 import type { CSSProperties } from "react";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
+import heroBackground from "../../assets/mockups/home/home-landing-background.png";
 import aboutBackground from "../../assets/mockups/home/home-about-lucca-backgroundpng.png";
 import bookBackground from "../../assets/mockups/home/home-book-background.png";
+import productBackground from "../../assets/mockups/home/home-product.png";
+import beardTrimIcon from "../../assets/mockups/home/luccas_service_icons_exact_hq/transparent-png/beard-trim-64.png";
+import cutAndBeardIcon from "../../assets/mockups/home/luccas_service_icons_exact_hq/transparent-png/cut-and-beard-64.png";
+import fadesIcon from "../../assets/mockups/home/luccas_service_icons_exact_hq/transparent-png/fades-64.png";
+import groomingIcon from "../../assets/mockups/home/luccas_service_icons_exact_hq/transparent-png/grooming-64.png";
+import kidsSeniorsIcon from "../../assets/mockups/home/luccas_service_icons_exact_hq/transparent-png/kids-seniors-64.png";
 import mensCutsIcon from "../../assets/mockups/home/luccas_service_icons_exact_hq/transparent-png/mens-cuts-64.png";
-import heroBackground from "../../assets/mockups/services/services-hero-interior-bg.jpg";
-import { contactLinks, getBookingHref } from "@/data/business";
+import { getBookingHref } from "@/data/business";
 import { services } from "@/data/services";
 import { getLocalBusinessJsonLd } from "@/lib/seo/local-business-schema";
 import { createPageMetadata } from "@/lib/seo/metadata";
@@ -13,11 +19,20 @@ import { Icon, type IconName } from "@/components/ui/icons";
 import { TrackableLink } from "@/components/ui/trackable-link";
 
 export const metadata = createPageMetadata({
-  title: "Men's Haircuts in The Colony, TX",
+  title: "Home",
   description:
-    "Book Tony Lucca's verified $20, 20-minute cut in The Colony, TX through his live Square calendar.",
+    "Lucca's Hair is Tony Lucca's premium haircut and men's grooming website in The Colony, TX, with Square-powered appointment booking.",
   path: "/",
 });
+
+const serviceIcons: Record<string, StaticImageData> = {
+  "mens-cuts": mensCutsIcon,
+  fades: fadesIcon,
+  "beard-trim": beardTrimIcon,
+  "cut-beard": cutAndBeardIcon,
+  grooming: groomingIcon,
+  "kids-seniors": kidsSeniorsIcon,
+};
 
 const featureItems: Array<{
   icon: IconName;
@@ -25,19 +40,19 @@ const featureItems: Array<{
   copy: string;
 }> = [
   {
-    icon: "scissors",
-    title: "$20",
-    copy: "Current price on Square",
+    icon: "seal",
+    title: "Professional Grade",
+    copy: "High quality ingredients for the best results.",
   },
   {
-    icon: "clock",
-    title: "20 minutes",
-    copy: "Current listed duration",
+    icon: "leaf-drop",
+    title: "Conditions & Protects",
+    copy: "Healthy hair, healthy you.",
   },
   {
-    icon: "calendar",
-    title: "Live availability",
-    copy: "Shown and managed by Square",
+    icon: "gentleman",
+    title: "Made For Real Men",
+    copy: "Simple. Effective. No hype.",
   },
 ];
 
@@ -59,11 +74,11 @@ export default function HomePage() {
               <div className="home-hero__headline">
                 <span className="home-rule" aria-hidden="true" />
                 <h1 className="home-hero__title">Take Care.</h1>
-                <p className="home-hero__script">Book your cut.</p>
+                <p className="home-hero__script">Brush your hair.</p>
                 <p className="home-hero__copy">
-                  Cuts with Tony Lucca.
+                  Classic cuts. Modern style.
                   <br />
-                  Live availability through Square.
+                  Bookings by appointment only.
                 </p>
               </div>
               <div className="home-hero__action-stack">
@@ -87,17 +102,17 @@ export default function HomePage() {
         </section>
 
         <section className="home-services" aria-labelledby="home-services-heading">
-          <p className="home-kicker home-kicker--center">Verified On Square</p>
+          <p className="home-kicker home-kicker--center">Services For The Modern Man</p>
           <h2 id="home-services-heading" className="home-section-title">
-            One clear service. No guesswork.
+            Sharp. Clean. Confident.
           </h2>
           <span className="home-title-rule" aria-hidden="true" />
 
-          <div className="home-service-grid home-service-grid--single">
+          <div className="home-service-grid">
             {services.map((service) => (
               <article key={service.id} className="home-service-card">
                 <Image
-                  src={mensCutsIcon}
+                  src={serviceIcons[service.id] ?? mensCutsIcon}
                   alt=""
                   width="48"
                   height="48"
@@ -105,16 +120,6 @@ export default function HomePage() {
                 />
                 <h3>{service.name}</h3>
                 <p>{service.summary}</p>
-                <dl className="home-service-card__facts">
-                  <div>
-                    <dt>Price</dt>
-                    <dd>{service.price}</dd>
-                  </div>
-                  <div>
-                    <dt>Time</dt>
-                    <dd>{service.duration}</dd>
-                  </div>
-                </dl>
               </article>
             ))}
           </div>
@@ -133,11 +138,11 @@ export default function HomePage() {
             style={backgroundStyle(aboutBackground)}
           >
             <div className="home-image-panel__content">
-              <p className="home-kicker">Tony Lucca</p>
-              <h2>Book the person behind the chair.</h2>
+              <p className="home-kicker">About Lucca</p>
+              <h2>It&apos;s more than a haircut.</h2>
               <p>
-                Tony is a hair stylist at Salon Boutique in The Colony. This site gives
-                clients a direct path to his live Square calendar and contact details.
+                Lucca&apos;s Hair is built on the belief that confidence starts with
+                self-care. Every cut is personal. Every client matters.
               </p>
               <Link href="/services" className="home-button home-button--secondary">
                 View Services
@@ -150,11 +155,11 @@ export default function HomePage() {
             style={backgroundStyle(bookBackground)}
           >
             <div className="home-image-panel__content">
-              <p className="home-kicker">Current Availability</p>
-              <h2>Choose a time on Square.</h2>
+              <p className="home-kicker">Your Time. Your Style.</p>
+              <h2>Book Your Appointment</h2>
               <p>
-                Square shows Tony&apos;s current appointment times and collects the
-                details needed to manage your booking.
+                One-on-one attention. Quality time. The best experience. Book online in
+                just a few clicks.
               </p>
               <TrackableLink
                 href={getBookingHref()}
@@ -175,38 +180,28 @@ export default function HomePage() {
 
         <section
           className="home-products"
-          style={backgroundStyle(bookBackground)}
+          style={backgroundStyle(productBackground)}
           aria-labelledby="home-products-heading"
         >
           <div className="home-products__content">
             <p className="home-kicker">Coming Soon</p>
-            <h2 id="home-products-heading">Product guidance, when it is ready.</h2>
+            <h2 id="home-products-heading">Premium Products. Handpicked.</h2>
             <p>
-              No products or checkout are live yet. Ask Tony directly if you want a
-              recommendation before the product collection is confirmed.
+              Professional-grade hair and grooming products curated by Tony Lucca. Quality
+              you can feel. Results you can see.
             </p>
-            <div className="home-products__actions">
-              <TrackableLink
-                href="/products"
-                eventName="product_interest_click"
-                metadata={{ placement: "home_products" }}
-                className="home-button home-button--secondary"
-              >
-                View Product Update
-              </TrackableLink>
-              <TrackableLink
-                href={contactLinks.text}
-                eventName="text_click"
-                metadata={{ placement: "home_products" }}
-                className="home-button home-button--secondary"
-              >
-                Text Tony
-              </TrackableLink>
-            </div>
+            <TrackableLink
+              href="/products"
+              eventName="product_interest_click"
+              metadata={{ placement: "home_products" }}
+              className="home-button home-button--secondary"
+            >
+              View Products
+            </TrackableLink>
           </div>
         </section>
 
-        <section className="home-feature-strip" aria-label="Current booking facts">
+        <section className="home-feature-strip" aria-label="Product benefits">
           <div className="home-feature-grid">
             {featureItems.map((item) => (
               <article key={item.title} className="home-feature-item">
@@ -219,11 +214,6 @@ export default function HomePage() {
             ))}
           </div>
         </section>
-
-        <p className="concept-disclosure">
-          Atmospheric brand visuals are concept imagery. No client haircut gallery is
-          represented on this site.
-        </p>
       </div>
     </>
   );

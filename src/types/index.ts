@@ -4,12 +4,8 @@ export type NavLink = {
 };
 
 export type BusinessHour = {
-  label: string;
-  days: Array<
-    "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday"
-  >;
-  opens?: string;
-  closes?: string;
+  days: string;
+  hours: string;
 };
 
 export type Service = {
@@ -32,7 +28,7 @@ export type ProductTeaser = {
 export type FaqPolicyItem = {
   question: string;
   answer: string;
-  status: "verified" | "contact";
+  status: "confirmed" | "tbd";
   defaultOpen?: boolean;
 };
 

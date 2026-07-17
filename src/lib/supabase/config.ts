@@ -25,20 +25,5 @@ export function hasSupabaseServiceRoleConfig(): boolean {
 }
 
 export function getSiteUrl(): string {
-  const configuredUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    process.env.VERCEL_PROJECT_PRODUCTION_URL ||
-    process.env.VERCEL_URL;
-
-  if (!configuredUrl) {
-    return process.env.NODE_ENV === "production"
-      ? "https://luccas-hair.vercel.app"
-      : "http://localhost:3000";
-  }
-
-  const normalizedUrl = configuredUrl.startsWith("http")
-    ? configuredUrl
-    : `https://${configuredUrl}`;
-
-  return normalizedUrl.replace(/\/$/, "");
+  return process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 }
