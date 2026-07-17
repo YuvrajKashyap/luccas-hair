@@ -67,7 +67,9 @@ export default function FaqPoliciesPage() {
                     <div className="faq-policy-question__answer">
                       <p>{item.answer}</p>
                       <span>
-                        {item.status === "confirmed" ? "Confirmed detail" : "Policy TBD"}
+                        {item.status === "verified"
+                          ? "Verified detail"
+                          : "Contact Tony to confirm"}
                       </span>
                     </div>
                   </details>

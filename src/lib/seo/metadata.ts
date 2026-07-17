@@ -4,7 +4,7 @@ import { getSiteUrl } from "@/lib/supabase/config";
 
 const siteName = businessInfo.name;
 const defaultDescription =
-  "Premium hair and men's grooming website for Tony Lucca in The Colony, TX, with Square-powered appointment booking.";
+  "Book a $20, 20-minute cut with Tony Lucca in The Colony, TX through his live Square calendar.";
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
@@ -19,11 +19,20 @@ export const defaultMetadata: Metadata = {
     title: siteName,
     description: defaultDescription,
     locale: "en_US",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Lucca's Hair appointment website",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteName,
     description: defaultDescription,
+    images: ["/opengraph-image.png"],
   },
 };
 

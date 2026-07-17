@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { getBookingHref, getSquareBookingHref } from "@/data/business";
+import { getBookingHref } from "@/data/business";
 import { publicNavLinks } from "@/data/nav";
 import { LuccaLogo } from "@/components/brand/lucca-logo";
 import { Icon } from "@/components/ui/icons";
@@ -10,9 +10,6 @@ import { TrackableLink } from "@/components/ui/trackable-link";
 
 export function Navbar() {
   const pathname = usePathname();
-  const bookingHref = pathname.startsWith("/book")
-    ? getSquareBookingHref()
-    : getBookingHref();
 
   return (
     <header className="site-header">
@@ -38,11 +35,8 @@ export function Navbar() {
           ))}
         </nav>
         <div className="site-header__actions">
-          <Link href="/products" className="site-header__cart" aria-label="View products">
-            <Icon name="cart" />
-          </Link>
           <TrackableLink
-            href={bookingHref}
+            href={getBookingHref()}
             eventName="booking_click"
             metadata={{ placement: "navbar" }}
             className="home-button home-button--primary site-header__book"

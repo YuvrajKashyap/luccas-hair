@@ -1,7 +1,6 @@
 import type { BusinessHour } from "@/types";
 
 export const squareBookingUrl = "https://square.site/book/DT4HT5QD699RJ/lucca";
-export const bookingPageHref = "/book";
 export const instagramUrl = "https://www.instagram.com/luccahairco/";
 
 export const businessInfo = {
@@ -10,10 +9,10 @@ export const businessInfo = {
   specialty: "Hair stylist and men's grooming specialist",
   locationLabel: "Inside Salon Boutique",
   streetAddress: "5701 E SH-121 Access Rd",
-  suite: "Suite TBD",
+  suite: null,
   city: "The Colony",
   region: "TX",
-  postalCode: "TBD",
+  postalCode: null,
   country: "US",
   phone: "972-207-9215",
   email: "tlucca65@yahoo.com",
@@ -23,8 +22,16 @@ export const businessInfo = {
 } as const;
 
 export const businessHours: BusinessHour[] = [
-  { days: "Tuesday to Saturday", hours: "10 AM to 5 PM" },
-  { days: "Sunday and Monday", hours: "Closed" },
+  {
+    label: "Tuesday and Wednesday",
+    days: ["Tuesday", "Wednesday"],
+    opens: "10:00",
+    closes: "17:00",
+  },
+  { label: "Thursday", days: ["Thursday"], opens: "10:00", closes: "17:30" },
+  { label: "Friday", days: ["Friday"], opens: "10:00", closes: "17:00" },
+  { label: "Saturday", days: ["Saturday"], opens: "09:00", closes: "16:30" },
+  { label: "Sunday and Monday", days: ["Sunday", "Monday"] },
 ];
 
 export const contactLinks = {
@@ -37,7 +44,14 @@ export const contactLinks = {
 } as const;
 
 export function getDisplayAddress(): string {
-  return `${businessInfo.locationLabel}, ${businessInfo.streetAddress}, ${businessInfo.suite}, ${businessInfo.city}, ${businessInfo.region}`;
+  return [
+    businessInfo.locationLabel,
+    businessInfo.streetAddress,
+    businessInfo.suite,
+    `${businessInfo.city}, ${businessInfo.region}`,
+  ]
+    .filter(Boolean)
+    .join(", ");
 }
 
 export function getSquareBookingHref(): string {
@@ -45,5 +59,5 @@ export function getSquareBookingHref(): string {
 }
 
 export function getBookingHref(): string {
-  return bookingPageHref;
+  return getSquareBookingHref();
 }
