@@ -1,5 +1,7 @@
 # Decision 0003: Product Blueprint And MVP Scope
 
+> Historical planning artifact. For the current shipped state and verified business facts, use `README.md`, `docs/architecture.md`, and `docs/data-provenance.md`.
+
 ## Status
 
 Superseded in part.

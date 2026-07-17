@@ -1,5 +1,7 @@
 # Design System Notes
 
+> Historical planning artifact. For the current shipped state and verified business facts, use `README.md`, `docs/architecture.md`, and `docs/data-provenance.md`.
+
 ## Planned Color Palette Direction
 
 - Deep charcoal or near-black base.

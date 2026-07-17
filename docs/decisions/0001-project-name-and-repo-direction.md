@@ -1,5 +1,7 @@
 # Decision 0001: Project Name And Repo Direction
 
+> Historical planning artifact. For the current shipped state and verified business facts, use `README.md`, `docs/architecture.md`, and `docs/data-provenance.md`.
+
 ## Status
 
 Accepted.

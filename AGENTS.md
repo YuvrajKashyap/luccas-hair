@@ -4,6 +4,12 @@ Permanent operating manual for future Codex work on the Lucca's Hair repository.
 
 This file is written for future Codex threads that have zero chat context. Read it before making product, design, content, architecture, database, or implementation decisions in this repository.
 
+## Current-State Override, July 17, 2026
+
+The production Next.js application is implemented and deployed at `https://luccas-hair.vercel.app`. Strategy, mockup, and phase-planning sections later in this manual are retained as historical context. For shipped behavior and verified facts, prefer `README.md`, `docs/architecture.md`, `docs/data-provenance.md`, `docs/technical-implementation.md`, and the current code.
+
+Square remains the booking system of record. New booking actions point directly to Square, while `/book` is a compatibility redirect. Do not replace Square or publish an unconfirmed fact without a new client-backed source.
+
 ## 1. Authority And Scope
 
 This `AGENTS.md` file is the highest-level project operating manual inside the repository. It should guide all future Codex work on Lucca's Hair.
@@ -40,7 +46,7 @@ Do not fabricate business details, services, photos, testimonials, ratings, poli
 - Project name: Lucca's Hair.
 - Repository: `https://github.com/YuvrajKashyap/luccas-hair.git`
 - Repo name: `luccas-hair`
-- Current project type: real local business website, currently in planning and pre-implementation.
+- Current project type: deployed real local business website.
 - Public client brand: Lucca's Hair.
 - Public person: Tony Lucca.
 - Business category: hair stylist and men's grooming specialist.
@@ -48,22 +54,11 @@ Do not fabricate business details, services, photos, testimonials, ratings, poli
 
 ## 3. Current Project Status
 
-Phase 1 foundation is complete.
+The public Next.js application, selected visual direction, responsive UI, direct Square handoff, SEO surfaces, tests, CI, and Vercel deployment are implemented.
 
-Phase 2 product blueprint is complete.
+The product page is intentionally a coming-soon state. Ecommerce, a real client gallery, additional services, and unknown policies remain out of scope until Tony confirms the underlying data and operating model.
 
-No Next.js application has been created yet unless future commits add it. At the time this manual was created, the repository contains documentation and asset folders only.
-
-The intended next phases are:
-
-1. Phase 3: mockups and asset lock.
-2. Phase 4: Next.js implementation.
-3. Phase 5: booking and product integrations.
-4. Phase 6: QA, SEO, deployment, and launch.
-
-Do not start implementation before the user asks for implementation or gives a task that clearly requires it.
-
-Do not build final UI from vague direction. Final page UI should follow selected mockups, one page at a time.
+Protect the live business flow. Preserve the direct Square booking URL and run `npm run verify` before publishing changes.
 
 ## 4. Product Purpose
 
@@ -98,17 +93,16 @@ These facts are confirmed enough to use in product planning and implementation u
 - Public person: Tony Lucca.
 - Best public role or title: Hair Stylist & Men's Grooming Specialist.
 - Location: inside Salon Boutique.
-- Address: 5701 E SH-121 Access Rd, Suite TBD, The Colony, TX.
+- Address: 5701 E SH-121 Access Rd, The Colony, TX. Do not publish a suite or postal code until confirmed.
 - Phone: 972-207-9215.
 - Email: tlucca65@yahoo.com.
 - Current booking system: Square.
 - Current confirmed service from existing Square site: Cuts, $20, 20 minutes.
-- Hours to use unless later corrected: Tuesday to Saturday, 10 AM to 5 PM.
+- Hours verified on Square on July 17, 2026: Tuesday and Wednesday 10 AM to 5 PM; Thursday 10 AM to 5:30 PM; Friday 10 AM to 5 PM; Saturday 9 AM to 4:30 PM.
 - Closed: Sunday and Monday.
-- Last appointment selection should be around 5 PM.
 - Suite number: TBD.
 - Square booking link: https://square.site/book/DT4HT5QD699RJ/lucca.
-- Domain: TBD.
+- Current public URL: https://luccas-hair.vercel.app.
 - Google Business or review link: TBD.
 - Real photos and gallery assets: TBD.
 - Final logo assets: TBD.
@@ -121,7 +115,7 @@ Use `TBD` for these until confirmed:
 - Whether Square provides a clean embed or only an external booking link.
 - Final domain.
 - Google Business Profile and review link.
-- Final social links.
+- Social links beyond the verified Instagram profile.
 - Final logo assets.
 - Real photos of Tony, the space, cuts, or products.
 - Full confirmed service list.
@@ -138,8 +132,7 @@ Use `TBD` for these until confirmed:
 - Deposit policy.
 - No-show policy.
 - Whether email sending will be configured.
-- Whether Supabase is already provisioned.
-- Whether Vercel project and analytics are configured.
+- Whether production Supabase configuration is active. Public builds must continue to work without it.
 
 ## 8. Brand Positioning
 

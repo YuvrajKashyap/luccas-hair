@@ -1,5 +1,7 @@
 # Decision 0002: Phase-Based Build Process
 
+> Historical planning artifact. For the current shipped state and verified business facts, use `README.md`, `docs/architecture.md`, and `docs/data-provenance.md`.
+
 ## Status
 
 Accepted.

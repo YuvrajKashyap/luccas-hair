@@ -1,5 +1,7 @@
 # Content Requirements
 
+> Historical planning artifact. For the current shipped state and verified business facts, use `README.md`, `docs/architecture.md`, and `docs/data-provenance.md`.
+
 ## Home
 
 **Required content:**

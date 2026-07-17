@@ -1,5 +1,7 @@
 # User Flows
 
+> Historical planning artifact. For the current shipped state and verified business facts, use `README.md`, `docs/architecture.md`, and `docs/data-provenance.md`.
+
 ## New Visitor Books An Appointment
 
 **User goal:** Decide whether Lucca's Hair is a good fit and book an appointment.

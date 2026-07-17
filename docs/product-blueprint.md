@@ -1,5 +1,7 @@
 # Product Blueprint
 
+> Historical planning artifact. For the current shipped state and verified business facts, use `README.md`, `docs/architecture.md`, and `docs/data-provenance.md`.
+
 ## Product Summary
 
 Lucca's Hair is an appointment-first website for a premium salon and barber-style brand. The MVP should help visitors understand the brand, review services, book an appointment through Square, and browse product offerings.
