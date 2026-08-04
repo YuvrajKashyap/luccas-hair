@@ -2,13 +2,23 @@
 
 Lucca's Hair is a premium salon and barber-style website project focused on appointment booking, service presentation, and future product sales.
 
+[Open the live site](https://luccas-hair.vercel.app) · [Book through Square](https://square.site/book/DT4HT5QD699RJ/lucca)
+
+## Product Preview
+
+![Lucca's Hair homepage with prominent appointment booking and service navigation](docs/assets/screenshots/homepage.webp)
+
+The homepage keeps booking prominent and hands live appointment availability
+off to Square. Its atmospheric imagery establishes the visual direction and is
+not presented as a gallery of client work.
+
 ## Project Status
 
-Phase 1 foundation is complete.
-Phase 2 product blueprint is complete.
-Phase 3 production app infrastructure is complete.
-
-The repository now contains the actual Next.js application foundation, placeholder pages, backend scaffolding, and deployment tooling. The final high-fidelity UI has not been implemented yet. The next step is to generate page mockups, lock selected visual assets, and then replace placeholders with the final interface one page at a time.
+The Next.js application is implemented and publicly deployed. Its main customer
+journey covers Home, Services, Products, and FAQ / Policies, with appointment
+booking handed off to Square. The repository also contains private admin,
+analytics, SEO, and deployment foundations. Unconfirmed products and business
+details remain intentionally withheld.
 
 ## Business Objective
 
