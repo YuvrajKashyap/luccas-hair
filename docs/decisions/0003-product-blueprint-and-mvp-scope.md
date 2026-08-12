@@ -31,4 +31,4 @@ This keeps the project ready for mockups and implementation without rushing into
 - The booking path stays central across the site.
 - Products are planned without pretending ecommerce is ready.
 - Future implementation can follow approved page directions.
-- The repository remains recruiter-friendly because planning decisions are visible and practical.
+- The repository remains review-friendly because planning decisions are visible and practical.

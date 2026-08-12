@@ -23,7 +23,7 @@ Primary purpose: make booking appointments extremely easy.
 
 Secondary purpose: showcase and eventually sell hair or grooming products.
 
-The site should support real business needs and also show strong process for portfolio and recruiter review. Documentation should make it clear that the work includes product planning, brand identity, UX planning, appointment strategy, commerce planning, frontend architecture, and production deployment intent.
+The site should support real business needs and also show strong process for portfolio and technical review. Documentation should make it clear that the work includes product planning, brand identity, UX planning, appointment strategy, commerce planning, frontend architecture, and production deployment intent.
 
 ## Current Status
 
@@ -113,6 +113,6 @@ Keep these marked as `TBD` until confirmed by the client:
 
 The next phase is mockups and asset lock. Generate page mockups in the approved order, select one reference mockup per page, gather remaining client details, and prepare assets before final UI implementation begins.
 
-## Recruiter-Friendly Positioning
+## Technical-Review Positioning
 
 Future work should make the project read as professional client and product work, not a class exercise. Commits and documentation should show a thoughtful process: brief, brand direction, user flows, mockups, architecture, implementation, QA, and deployment.

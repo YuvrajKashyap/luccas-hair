@@ -16,7 +16,7 @@ Make appointment booking easy, obvious, and trustworthy for new and returning cl
 - Returning clients who want to book again quickly.
 - Visitors comparing services before choosing an appointment.
 - Product-interested clients who want to browse future hair or grooming items.
-- Recruiters or portfolio reviewers evaluating planning, product thinking, UX, and implementation readiness.
+- Technical and portfolio reviewers evaluating planning, product thinking, UX, and implementation readiness.
 
 ## MVP Scope
 

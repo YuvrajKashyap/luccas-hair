@@ -1722,7 +1722,7 @@ Prioritize:
 - Performance.
 - Accessibility.
 - Maintainability.
-- Recruiter-readable engineering process.
+- Reviewer-readable engineering process.
 
 ## 43. Future Codex Task Workflow
 

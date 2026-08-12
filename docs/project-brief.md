@@ -21,7 +21,7 @@ The project should feel warm, stylish, masculine, clean, and Italian-inspired. I
 - New clients evaluating Lucca's services and style.
 - Local visitors comparing premium hair professionals.
 - Product shoppers interested in recommended grooming or hair care items.
-- Recruiters or portfolio reviewers evaluating client-style product work.
+- Technical and portfolio reviewers evaluating client-style product work.
 
 ## Primary User Flow: Book An Appointment
 
