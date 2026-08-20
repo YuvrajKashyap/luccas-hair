@@ -678,3 +678,617 @@
     scroll-behavior: auto;
   }
 }
+
+/* ============================================================================
+ * PREMIUM PHONE LAYER
+ * Everything below is scoped to <=680px (and, for motion, to html[data-mfx]
+ * which is only set by MobileFx on phones without reduced motion). Desktop
+ * and tablet presentation above this line is untouched.
+ * ========================================================================== */
+
+@media (max-width: 680px) {
+  :root {
+    --mfx-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --mfx-snap: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --svc-card-w: min(72vw, 280px);
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    padding-bottom: calc(92px + env(safe-area-inset-bottom));
+  }
+
+  /* --- header: quiet glass, no pipes, glider pill ------------------------ */
+
+  .site-header {
+    padding-top: env(safe-area-inset-top);
+    height: calc(var(--mobile-header-height) + env(safe-area-inset-top));
+    border-bottom: 1px solid rgba(240, 173, 75, 0.14);
+    background: linear-gradient(180deg, rgba(10, 8, 4, 0.9), rgba(3, 3, 3, 0.96));
+    backdrop-filter: blur(22px);
+  }
+
+  .site-nav {
+    position: relative;
+    border-top: 1px solid rgba(246, 239, 227, 0.05);
+  }
+
+  .site-nav__link {
+    position: relative;
+    z-index: 1;
+    transition:
+      color 220ms ease,
+      opacity 220ms ease,
+      transform 180ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .site-nav__link + .site-nav__link {
+    border-left: 0;
+  }
+
+  :root[data-mfx] .site-nav__link--active::after {
+    display: none;
+  }
+
+  :root[data-mfx] .site-nav__glider {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 0;
+    width: var(--glider-w, 0px);
+    height: 34px;
+    border-radius: 999px;
+    background: radial-gradient(
+      70% 120% at 50% 50%,
+      rgba(240, 173, 75, 0.16),
+      rgba(240, 173, 75, 0.05) 68%,
+      transparent
+    );
+    box-shadow: inset 0 0 0 1px rgba(240, 173, 75, 0.22);
+    opacity: var(--glider-o, 0);
+    transform: translate(var(--glider-x, 0px), -50%);
+    transition:
+      transform 520ms var(--mfx-ease),
+      width 520ms var(--mfx-ease),
+      opacity 300ms ease;
+    pointer-events: none;
+  }
+
+  /* --- buttons: rounded, glowing, pressable ------------------------------ */
+
+  .home-button {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    transition:
+      background 220ms ease,
+      border-color 220ms ease,
+      color 220ms ease,
+      transform 180ms cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 260ms ease;
+  }
+
+  .home-button--primary {
+    box-shadow:
+      0 12px 30px rgba(216, 155, 60, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+
+  .site-header__book {
+    border-radius: 11px;
+  }
+
+  /* --- scroll progress hairline ------------------------------------------ */
+
+  :root[data-mfx] .mfx-progress {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 90;
+    height: 2px;
+    background: transparent;
+    pointer-events: none;
+  }
+
+  :root[data-mfx] .mfx-progress span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, #d89b3c, #f6c26b);
+    box-shadow: 0 0 14px rgba(240, 173, 75, 0.55);
+    transform: scaleX(0);
+    transform-origin: left;
+    will-change: transform;
+  }
+
+  /* --- touch ripple ------------------------------------------------------- */
+
+  :root[data-mfx] .mfx-ripple {
+    display: block;
+    position: absolute;
+    z-index: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(240, 173, 75, 0.35), transparent 68%);
+    pointer-events: none;
+    animation: mfxRipple 620ms ease-out both;
+  }
+
+  :root[data-mfx] .site-nav__link,
+  :root[data-mfx] .faq-policy-group__summary,
+  :root[data-mfx] .faq-policy-question__summary,
+  :root[data-mfx] .book-faq-item summary {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* --- floating glass dock ------------------------------------------------ */
+
+  .mobile-cta {
+    right: 14px;
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    left: 14px;
+    padding: 9px;
+    border: 1px solid rgba(240, 173, 75, 0.32);
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(24, 19, 10, 0.88), rgba(6, 5, 3, 0.95));
+    backdrop-filter: blur(24px);
+    box-shadow:
+      0 22px 54px rgba(0, 0, 0, 0.62),
+      0 2px 14px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    transition:
+      transform 520ms var(--mfx-ease),
+      opacity 360ms ease;
+  }
+
+  .mobile-cta--hidden {
+    transform: translateY(calc(100% + 28px + env(safe-area-inset-bottom)));
+    opacity: 0.4;
+  }
+
+  .mobile-cta__inner {
+    grid-template-columns: minmax(0, 1.55fr) minmax(102px, 0.7fr);
+    gap: 8px;
+  }
+
+  .mobile-cta .home-button {
+    min-height: 52px;
+    border-radius: 13px;
+  }
+
+  /* --- home services: centered snap carousel + pager rail ----------------- */
+
+  .home-service-grid {
+    grid-auto-columns: var(--svc-card-w);
+    gap: 12px;
+    padding: 6px calc((100vw - var(--svc-card-w)) / 2) 6px;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0;
+  }
+
+  .home-service-card {
+    border-radius: 16px;
+    border-color: rgba(216, 155, 60, 0.34);
+    background:
+      radial-gradient(120% 90% at 50% -20%, rgba(216, 155, 60, 0.12), transparent 55%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012)),
+      rgba(0, 0, 0, 0.24);
+    box-shadow:
+      0 18px 40px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    transform: scale(var(--fx-depth, 1));
+    opacity: var(--fx-fade, 1);
+  }
+
+  .home-service-card p {
+    font-size: 0.78rem;
+    line-height: 1.7;
+  }
+
+  .home-feature-item h3 {
+    font-size: 0.74rem;
+  }
+
+  .home-feature-item p {
+    font-size: 0.76rem;
+    line-height: 1.6;
+  }
+
+  .svc-pager {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    margin-top: 10px;
+  }
+
+  .svc-pager__dot {
+    position: relative;
+    width: 36px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    overflow: visible;
+  }
+
+  .svc-pager__dot::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(246, 239, 227, 0.28);
+    transform: translate(-50%, -50%);
+    transition:
+      width 420ms var(--mfx-ease),
+      background 320ms ease,
+      box-shadow 320ms ease;
+  }
+
+  .svc-pager__dot--active::before {
+    width: 22px;
+    background: linear-gradient(90deg, #d89b3c, #f0ad4b);
+    box-shadow: 0 0 12px rgba(240, 173, 75, 0.6);
+  }
+
+  /* --- surface polish ------------------------------------------------------ */
+
+  .home-image-panel,
+  .home-products {
+    border-bottom-color: rgba(216, 155, 60, 0.14);
+  }
+
+  .services-card {
+    border-radius: 16px;
+    box-shadow:
+      0 20px 44px rgba(0, 0, 0, 0.4),
+      inset 0 0 0 1px rgba(0, 0, 0, 0.28);
+  }
+
+  .faq-policy-group,
+  .faq-policies-help-card {
+    border-radius: 16px;
+  }
+
+  .book-faq-item {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .book-timezone {
+    border-radius: 14px;
+  }
+
+  /* --- accordion physics --------------------------------------------------- */
+
+  :root[data-mfx] .book-faq-item,
+  :root[data-mfx] .faq-policy-group,
+  :root[data-mfx] .faq-policy-question {
+    interpolate-size: allow-keywords;
+  }
+
+  :root[data-mfx] .book-faq-item::details-content,
+  :root[data-mfx] .faq-policy-group::details-content,
+  :root[data-mfx] .faq-policy-question::details-content {
+    height: 0;
+    overflow: clip;
+    transition:
+      height 460ms var(--mfx-ease),
+      content-visibility 460ms allow-discrete;
+  }
+
+  :root[data-mfx] .book-faq-item[open]::details-content,
+  :root[data-mfx] .faq-policy-group[open]::details-content,
+  :root[data-mfx] .faq-policy-question[open]::details-content {
+    height: auto;
+  }
+
+  :root[data-mfx] .book-faq-item__plus,
+  :root[data-mfx] .faq-policy-group__toggle,
+  :root[data-mfx] .faq-policy-question__toggle {
+    transition:
+      transform 420ms var(--mfx-snap),
+      opacity 260ms ease;
+  }
+
+  :root[data-mfx]
+    .faq-policy-group[open]
+    > .faq-policy-group__summary
+    .faq-policy-group__toggle {
+    transform: rotate(180deg);
+  }
+
+  /* --- hero load choreography ---------------------------------------------- */
+
+  :root[data-mfx] .home-rule {
+    animation: mfxRuleDraw 800ms var(--mfx-ease) both 80ms;
+    transform-origin: left center;
+  }
+
+  :root[data-mfx] .home-hero__title {
+    animation: mfxHeroFocus 1000ms var(--mfx-ease) both 160ms;
+  }
+
+  :root[data-mfx] .home-hero__script {
+    animation: mfxHeroRise 900ms var(--mfx-ease) both 340ms;
+  }
+
+  :root[data-mfx] .home-hero__copy {
+    animation: mfxHeroRise 900ms var(--mfx-ease) both 480ms;
+  }
+
+  :root[data-mfx] .home-hero__actions {
+    animation: mfxHeroRise 950ms var(--mfx-ease) both 620ms;
+  }
+
+  :root[data-mfx] .services-hero__content > *,
+  :root[data-mfx] .book-hero__content > *,
+  :root[data-mfx] .faq-policies-hero__content > * {
+    animation: mfxHeroRise 900ms var(--mfx-ease) both;
+  }
+
+  :root[data-mfx] .services-hero__content > *:nth-child(1),
+  :root[data-mfx] .book-hero__content > *:nth-child(1),
+  :root[data-mfx] .faq-policies-hero__content > *:nth-child(1) {
+    animation-delay: 120ms;
+  }
+
+  :root[data-mfx] .services-hero__content > *:nth-child(2),
+  :root[data-mfx] .book-hero__content > *:nth-child(2),
+  :root[data-mfx] .faq-policies-hero__content > *:nth-child(2) {
+    animation-delay: 260ms;
+  }
+
+  :root[data-mfx] .services-hero__content > *:nth-child(3),
+  :root[data-mfx] .book-hero__content > *:nth-child(3),
+  :root[data-mfx] .faq-policies-hero__content > *:nth-child(3) {
+    animation-delay: 400ms;
+  }
+
+  :root[data-mfx] .book-hero__content > *:nth-child(4),
+  :root[data-mfx] .faq-policies-hero__content > *:nth-child(4) {
+    animation-delay: 540ms;
+  }
+
+  :root[data-mfx] .book-hero__content > *:nth-child(5) {
+    animation-delay: 680ms;
+  }
+
+  /* --- scroll reveal signatures -------------------------------------------- */
+
+  :root[data-mfx] [data-fx="focus"] {
+    filter: blur(0);
+  }
+
+  :root[data-mfx] [data-fx="unseal"] {
+    clip-path: inset(0 0 0 0);
+  }
+
+  :root[data-mfx] [data-fx]:not(.fx-in):not([data-fx="deal-grid"]) {
+    opacity: 0;
+  }
+
+  /* Carousel cards reveal off the grid's own in-view state so peeking
+     neighbours are never individually hidden by the observer. */
+  :root[data-mfx] [data-fx="deal-grid"]:not(.fx-in) .home-service-card {
+    opacity: 0;
+  }
+
+  :root[data-mfx] [data-fx="deal-grid"].fx-in .home-service-card {
+    animation: mfxDeal 950ms var(--mfx-ease) both;
+    animation-delay: calc(var(--fx-i, 0) * 95ms);
+  }
+
+  :root[data-mfx] [data-fx].fx-in {
+    animation-duration: 850ms;
+    animation-timing-function: var(--mfx-ease);
+    animation-fill-mode: both;
+    animation-delay: calc(var(--fx-i, 0) * 95ms);
+  }
+
+  :root[data-mfx] [data-fx="rise"].fx-in {
+    animation-name: mfxRise;
+  }
+
+  :root[data-mfx] [data-fx="unseal"].fx-in {
+    animation-name: mfxUnseal;
+    animation-duration: 1000ms;
+  }
+
+  :root[data-mfx] [data-fx="focus"].fx-in {
+    animation-name: mfxFocus;
+    animation-duration: 1000ms;
+  }
+
+  :root[data-mfx] [data-fx="slide"].fx-in {
+    animation-name: mfxSlide;
+  }
+
+  :root[data-mfx] [data-fx="tilt"].fx-in {
+    animation-name: mfxTilt;
+    animation-duration: 950ms;
+  }
+
+  :root[data-mfx] [data-fx="pop"].fx-in {
+    animation-name: mfxPop;
+    animation-timing-function: var(--mfx-snap);
+    animation-duration: 750ms;
+  }
+
+  :root[data-mfx] [data-fx="glow"].fx-in {
+    animation-name: mfxGlow;
+  }
+
+  @keyframes mfxRipple {
+    from {
+      opacity: 0.6;
+      transform: scale(0);
+    }
+    to {
+      opacity: 0;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes mfxRuleDraw {
+    from {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+  }
+
+  @keyframes mfxHeroFocus {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+      filter: blur(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes mfxHeroRise {
+    from {
+      opacity: 0;
+      transform: translateY(26px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes mfxRise {
+    from {
+      opacity: 0;
+      transform: translateY(26px);
+    }
+  }
+
+  @keyframes mfxDeal {
+    from {
+      opacity: 0;
+      transform: perspective(760px) rotateX(16deg) translateY(36px)
+        scale(var(--fx-depth, 1));
+    }
+  }
+
+  @keyframes mfxUnseal {
+    from {
+      opacity: 0;
+      clip-path: inset(0 100% 0 0);
+      transform: translateX(-12px);
+    }
+  }
+
+  @keyframes mfxFocus {
+    from {
+      opacity: 0;
+      transform: translateY(24px) scale(0.955);
+      filter: blur(6px);
+    }
+  }
+
+  @keyframes mfxSlide {
+    from {
+      opacity: 0;
+      transform: translateX(-32px);
+    }
+  }
+
+  @keyframes mfxTilt {
+    from {
+      opacity: 0;
+      transform: perspective(820px) rotateY(-7deg) translateY(30px);
+    }
+  }
+
+  @keyframes mfxPop {
+    from {
+      opacity: 0;
+      transform: scale(0.86) translateY(20px);
+    }
+  }
+
+  @keyframes mfxGlow {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+      box-shadow: 0 0 0 rgba(216, 155, 60, 0);
+    }
+  }
+}
+
+/* Press physics: only on real touch devices, so desktop hover is untouched. */
+@media (max-width: 680px) and (hover: none) and (pointer: coarse) {
+  .home-button:active {
+    transform: scale(0.965);
+  }
+
+  .home-button--primary:active {
+    box-shadow:
+      0 6px 22px rgba(240, 173, 75, 0.42),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+
+  .site-nav__link:active {
+    transform: scale(0.93);
+    color: var(--color-accent-strong);
+  }
+
+  .home-service-card:active {
+    transform: scale(calc(var(--fx-depth, 1) * 0.975));
+  }
+
+  .services-card:active {
+    transform: scale(0.978);
+    transition: transform 160ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .faq-policy-group__summary:active,
+  .faq-policy-question__summary:active,
+  .book-faq-item summary:active {
+    background: rgba(240, 173, 75, 0.07);
+  }
+
+  .footer-contact-item a:active,
+  .footer-main a:active {
+    color: var(--color-accent-strong);
+  }
+
+  .svc-pager__dot:active::before {
+    transform: translate(-50%, -50%) scale(1.35);
+  }
+}
+
+@media (max-width: 420px) {
+  :root {
+    --svc-card-w: 76vw;
+  }
+
+  .home-service-grid {
+    grid-auto-columns: var(--svc-card-w);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) and (max-width: 680px) {
+  .mobile-cta,
+  .home-button,
+  .site-nav__link,
+  .svc-pager__dot::before {
+    transition: none;
+  }
+}

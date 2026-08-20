@@ -17,6 +17,7 @@ import { getLocalBusinessJsonLd } from "@/lib/seo/local-business-schema";
 import { createPageMetadata } from "@/lib/seo/metadata";
 import { Icon, type IconName } from "@/components/ui/icons";
 import { TrackableLink } from "@/components/ui/trackable-link";
+import { ServiceCarousel } from "@/components/mobile/service-carousel";
 
 export const metadata = createPageMetadata({
   title: "Home",
@@ -108,7 +109,7 @@ export default function HomePage() {
           </h2>
           <span className="home-title-rule" aria-hidden="true" />
 
-          <div className="home-service-grid">
+          <ServiceCarousel labels={services.map((service) => service.name)}>
             {services.map((service) => (
               <article key={service.id} className="home-service-card">
                 <Image
@@ -122,7 +123,7 @@ export default function HomePage() {
                 <p>{service.summary}</p>
               </article>
             ))}
-          </div>
+          </ServiceCarousel>
 
           <Link
             href="/services"

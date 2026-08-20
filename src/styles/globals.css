@@ -69,6 +69,14 @@ textarea {
   outline-offset: 3px;
 }
 
+/* Phone-only instruments — inert everywhere by default, enabled in mobile.css. */
+.site-nav__glider,
+.svc-pager,
+.mfx-progress,
+.mfx-ripple {
+  display: none;
+}
+
 .site-header {
   position: sticky;
   top: 0;

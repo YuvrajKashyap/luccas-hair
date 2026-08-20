@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Cormorant_Garamond, Montserrat } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -8,6 +8,7 @@ import { defaultMetadata } from "@/lib/seo/metadata";
 import { Footer } from "@/components/layout/footer";
 import { MobileStickyCta } from "@/components/layout/mobile-sticky-cta";
 import { Navbar } from "@/components/layout/navbar";
+import { MobileFx } from "@/components/mobile/mobile-fx";
 
 const headingFont = Cormorant_Garamond({
   subsets: ["latin"],
@@ -31,6 +32,13 @@ const displayFont = Bebas_Neue({
 
 export const metadata: Metadata = defaultMetadata;
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#050505",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -46,6 +54,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <MobileStickyCta />
+        <MobileFx />
         <Analytics />
         <SpeedInsights />
       </body>
