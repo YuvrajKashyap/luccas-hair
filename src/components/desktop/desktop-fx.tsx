@@ -418,8 +418,12 @@ export function DesktopFx() {
       const rect = target.getBoundingClientRect();
       const dx = event.clientX - (rect.left + rect.width / 2);
       const dy = event.clientY - (rect.top + rect.height / 2);
-      target.style.setProperty("--mag-x", `${(dx * 0.24).toFixed(1)}px`);
-      target.style.setProperty("--mag-y", `${(dy * 0.34).toFixed(1)}px`);
+      // Subtle lean only: hero buttons sit 19px apart, so the pull is capped
+      // well below that or neighbouring buttons collide.
+      const magX = Math.max(-6, Math.min(6, dx * 0.1));
+      const magY = Math.max(-4, Math.min(4, dy * 0.22));
+      target.style.setProperty("--mag-x", `${magX.toFixed(1)}px`);
+      target.style.setProperty("--mag-y", `${magY.toFixed(1)}px`);
     };
     const onMagneticOut = (event: PointerEvent) => {
       const target = (event.target as Element | null)?.closest?.(MAGNETIC_SELECTOR);
