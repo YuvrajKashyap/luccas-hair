@@ -710,6 +710,30 @@
     border-bottom: 1px solid rgba(240, 173, 75, 0.14);
     background: linear-gradient(180deg, rgba(10, 8, 4, 0.9), rgba(3, 3, 3, 0.96));
     backdrop-filter: blur(22px);
+    transition: transform 480ms var(--mfx-ease);
+  }
+
+  /* One CTA on first paint: the dock and hero own booking on phones. */
+  .site-header__actions {
+    display: none;
+  }
+
+  .site-header__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header .lucca-logo-link {
+    transition: opacity 320ms ease;
+  }
+
+  /* Collapsing chrome: scrolling down slides the logo row out of the frame
+     (pure transform, no reflow), leaving the slim nav rail pinned on top. */
+  :root[data-mfx][data-scroll="down"] .site-header {
+    transform: translateY(-68px);
+  }
+
+  :root[data-mfx][data-scroll="down"] .site-header .lucca-logo-link {
+    opacity: 0;
   }
 
   .site-nav {
@@ -847,9 +871,18 @@
       opacity 360ms ease;
   }
 
-  .mobile-cta--hidden {
+  /* The dock waits offstage until the hero CTA has scrolled past, ducks
+     while scrolling down, and glides back the moment the reader scrolls up. */
+  :root[data-mfx] .mobile-cta {
     transform: translateY(calc(100% + 28px + env(safe-area-inset-bottom)));
-    opacity: 0.4;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  :root[data-mfx][data-past-hero="1"]:not([data-scroll="down"]) .mobile-cta {
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .mobile-cta__inner {
@@ -860,6 +893,20 @@
   .mobile-cta .home-button {
     min-height: 52px;
     border-radius: 13px;
+  }
+
+  /* --- hero: real bottom anchoring, no dead zone --------------------------- */
+
+  /* The desktop rule keeps an explicit vw-based height that collapses on
+     phones, so the inner flex container never filled the section and the
+     content floated with dead space below it. Pin the height explicitly. */
+  .home-hero {
+    height: min(650px, calc(100svh - var(--mobile-header-height)));
+    min-height: 500px;
+  }
+
+  .home-hero__inner {
+    padding-bottom: 34px;
   }
 
   /* --- home services: centered snap carousel + pager rail ----------------- */
@@ -891,6 +938,11 @@
   .home-service-card p {
     font-size: 0.78rem;
     line-height: 1.7;
+  }
+
+  .home-feature-item {
+    min-height: 0;
+    padding: 22px var(--mobile-gutter);
   }
 
   .home-feature-item h3 {

@@ -30,10 +30,8 @@ export default function ProductsPage() {
           </h1>
           <span className="products-title-rule" aria-hidden="true" />
           <p className="products-coming-soon__copy">
-            We&apos;re working behind the scenes to bring you
-            <br />
-            premium grooming products that live up
-            <br />
+            We&apos;re working behind the scenes to bring you <br />
+            premium grooming products that live up <br />
             to the standards you know and trust.
           </p>
           <p className="products-stay-tuned">Stay tuned.</p>

@@ -103,22 +103,34 @@ export function MobileFx() {
       });
     }
 
-    // --- scroll progress hairline ------------------------------------------
+    // --- scroll instruments -------------------------------------------------
+    // One rAF per scroll frame drives the progress hairline plus two html
+    // attributes the CSS keys off: data-scroll (down = collapse chrome) and
+    // data-past-hero (dock only appears after the hero CTA has scrolled by).
     let progressRaf = 0;
-    const paintProgress = () => {
+    let lastY = window.scrollY;
+    const paintScroll = () => {
       progressRaf = 0;
+      const y = window.scrollY;
       const bar = barRef.current;
-      if (!bar) return;
-      const max = root.scrollHeight - window.innerHeight;
-      const ratio = max > 0 ? Math.min(1, window.scrollY / max) : 0;
-      bar.style.transform = `scaleX(${ratio})`;
+      if (bar) {
+        const max = root.scrollHeight - window.innerHeight;
+        bar.style.transform = `scaleX(${max > 0 ? Math.min(1, y / max) : 0})`;
+      }
+      root.dataset.pastHero = y > window.innerHeight * 0.55 ? "1" : "0";
+      const nearBottom = window.innerHeight + y >= root.scrollHeight - 140;
+      const delta = y - lastY;
+      if (Math.abs(delta) > 6) {
+        root.dataset.scroll = delta > 0 && y > 220 && !nearBottom ? "down" : "up";
+        lastY = y;
+      }
     };
     const onScroll = () => {
       if (!mobile.matches) return;
-      if (!progressRaf) progressRaf = requestAnimationFrame(paintProgress);
+      if (!progressRaf) progressRaf = requestAnimationFrame(paintScroll);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    paintProgress();
+    paintScroll();
 
     // --- touch ripples ------------------------------------------------------
     const onPointerDown = (event: PointerEvent) => {
