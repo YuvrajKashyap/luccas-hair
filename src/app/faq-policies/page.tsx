@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import policyHeroBackground from "../../../assets/mockups/faq-policies/asset.png";
 import { contactLinks } from "@/data/business";
 import { faqPolicySections } from "@/data/faq-policies";
+import { getFaqPageJsonLd } from "@/lib/seo/faq-schema";
 import { createPageMetadata } from "@/lib/seo/metadata";
 import { Icon, type IconName } from "@/components/ui/icons";
 import { TrackableLink } from "@/components/ui/trackable-link";
@@ -20,6 +21,10 @@ function backgroundStyle(image: { src: string }): CSSProperties {
 export default function FaqPoliciesPage() {
   return (
     <div className="faq-policies-page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(getFaqPageJsonLd()) }}
+      />
       <section
         className="faq-policies-hero"
         style={backgroundStyle(policyHeroBackground)}

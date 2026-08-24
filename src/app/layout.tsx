@@ -4,10 +4,12 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "@/styles/globals.css";
 import "@/styles/mobile.css";
+import "@/styles/desktop.css";
 import { defaultMetadata } from "@/lib/seo/metadata";
 import { Footer } from "@/components/layout/footer";
 import { MobileStickyCta } from "@/components/layout/mobile-sticky-cta";
 import { Navbar } from "@/components/layout/navbar";
+import { DesktopFx } from "@/components/desktop/desktop-fx";
 import { MobileFx } from "@/components/mobile/mobile-fx";
 
 const headingFont = Cormorant_Garamond({
@@ -55,6 +57,7 @@ export default function RootLayout({
         <Footer />
         <MobileStickyCta />
         <MobileFx />
+        <DesktopFx />
         <Analytics />
         <SpeedInsights />
       </body>

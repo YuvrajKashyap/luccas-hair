@@ -20,9 +20,9 @@ import { TrackableLink } from "@/components/ui/trackable-link";
 import { ServiceCarousel } from "@/components/mobile/service-carousel";
 
 export const metadata = createPageMetadata({
-  title: "Home",
+  title: "Men's Haircuts & Grooming in The Colony, TX",
   description:
-    "Lucca's Hair is Tony Lucca's premium haircut and men's grooming website in The Colony, TX, with Square-powered appointment booking.",
+    "Book a haircut with Tony Lucca at Lucca's Hair, inside Salon Boutique in The Colony, TX. Classic cuts, fades, beard trims, and styling, with online booking through Square.",
   path: "/",
 });
 

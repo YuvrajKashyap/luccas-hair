@@ -7,9 +7,9 @@ import { Icon } from "@/components/ui/icons";
 import { TrackableLink } from "@/components/ui/trackable-link";
 
 export const metadata = createPageMetadata({
-  title: "Book",
+  title: "Book an Appointment",
   description:
-    "Book your next haircut with Tony Lucca at Lucca's Hair in The Colony, TX.",
+    "Book your next haircut with Tony Lucca at Lucca's Hair in The Colony, TX. Pick a service, choose a time, and confirm online in a few clicks through Square.",
   path: "/book",
 });
 

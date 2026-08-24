@@ -77,6 +77,15 @@ textarea {
   display: none;
 }
 
+/* Desktop-only instruments — inert everywhere by default, enabled in desktop.css. */
+.dfx-progress,
+.dfx-cursor-dot,
+.dfx-cursor-ring,
+.dfx-dust,
+.dfx-wave {
+  display: none;
+}
+
 .site-header {
   position: sticky;
   top: 0;

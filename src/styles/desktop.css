@@ -1,0 +1,721 @@
+/*
+ * Desktop experience layer.
+ * Every rule is gated behind :root[data-dfx] (set by DesktopFx only above
+ * 680px without reduced motion) or :root[data-dfx-cursor] (fine pointers
+ * only), so the approved pixel presentation is byte-identical at rest and
+ * for reduced-motion users. Vocabulary and timing follow the phone layer:
+ * gravitational ease for tweens, overshoot snap for micro pops.
+ */
+
+@media (min-width: 681px) {
+  :root {
+    --dfx-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --dfx-snap: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* --- instruments -------------------------------------------------------- */
+
+  :root[data-dfx] .dfx-progress {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 90;
+    height: 2px;
+    pointer-events: none;
+  }
+
+  :root[data-dfx] .dfx-progress span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, #d89b3c, #f6c26b);
+    box-shadow: 0 0 14px rgba(240, 173, 75, 0.55);
+    transform: scaleX(0);
+    transform-origin: left;
+    will-change: transform;
+  }
+
+  :root[data-dfx] .dfx-progress--flare span {
+    animation: dfxProgressFlare 900ms var(--dfx-ease);
+  }
+
+  :root[data-dfx] .dfx-dust {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  /* --- custom cursor ------------------------------------------------------- */
+
+  :root[data-dfx-cursor][data-dfx-cursor-seen] .dfx-cursor-dot,
+  :root[data-dfx-cursor][data-dfx-cursor-seen] .dfx-cursor-ring {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  :root[data-dfx-cursor] .dfx-cursor-dot::after,
+  :root[data-dfx-cursor] .dfx-cursor-ring::after {
+    content: "";
+    display: block;
+    border-radius: 50%;
+    transition:
+      transform 260ms var(--dfx-ease),
+      background 220ms ease,
+      border-color 220ms ease;
+  }
+
+  :root[data-dfx-cursor] .dfx-cursor-dot::after {
+    width: 6px;
+    height: 6px;
+    margin: -3px 0 0 -3px;
+    background: var(--color-accent-strong);
+    box-shadow: 0 0 10px rgba(240, 173, 75, 0.7);
+  }
+
+  :root[data-dfx-cursor] .dfx-cursor-ring::after {
+    width: 32px;
+    height: 32px;
+    margin: -16px 0 0 -16px;
+    border: 1px solid rgba(240, 173, 75, 0.55);
+  }
+
+  :root[data-dfx-cursor].dfx-cursor-hot .dfx-cursor-dot::after {
+    transform: scale(0.5);
+  }
+
+  :root[data-dfx-cursor].dfx-cursor-hot .dfx-cursor-ring::after {
+    background: rgba(240, 173, 75, 0.08);
+    border-color: rgba(240, 173, 75, 0.9);
+    transform: scale(1.5);
+  }
+
+  :root[data-dfx-cursor].dfx-cursor-press .dfx-cursor-ring::after {
+    transform: scale(0.72);
+  }
+
+  :root[data-dfx-cursor].dfx-cursor-press.dfx-cursor-hot .dfx-cursor-ring::after {
+    transform: scale(1.15);
+  }
+
+  :root[data-dfx-cursor][data-dfx-cursor-seen] body,
+  :root[data-dfx-cursor][data-dfx-cursor-seen] a,
+  :root[data-dfx-cursor][data-dfx-cursor-seen] button,
+  :root[data-dfx-cursor][data-dfx-cursor-seen] summary {
+    cursor: none;
+  }
+
+  :root[data-dfx-cursor][data-dfx-cursor-seen] input,
+  :root[data-dfx-cursor][data-dfx-cursor-seen] textarea,
+  :root[data-dfx-cursor][data-dfx-cursor-seen] select {
+    cursor: auto;
+  }
+
+  /* --- click shockwave ----------------------------------------------------- */
+
+  :root[data-dfx-cursor] .dfx-wave {
+    display: block;
+    position: fixed;
+    z-index: 190;
+    width: 14px;
+    height: 14px;
+    border: 1px solid rgba(240, 173, 75, 0.75);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: dfxWave 640ms var(--dfx-ease) both;
+  }
+
+  /* --- header: glass on scroll, glide underline nav ------------------------ */
+
+  :root[data-dfx] .site-header {
+    transition:
+      background 360ms ease,
+      border-color 360ms ease,
+      box-shadow 360ms ease;
+  }
+
+  :root[data-dfx] .site-header.dfx-scrolled {
+    background: rgba(3, 3, 3, 0.82);
+    border-bottom-color: rgba(216, 155, 60, 0.22);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(18px);
+  }
+
+  :root[data-dfx] .site-nav__link::after {
+    position: absolute;
+    right: 0;
+    bottom: 21px;
+    left: 0;
+    height: 2px;
+    background: var(--color-accent);
+    content: "";
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 340ms var(--dfx-ease);
+  }
+
+  :root[data-dfx] .site-nav__link:hover::after,
+  :root[data-dfx] .site-nav__link--active::after {
+    transform: scaleX(1);
+  }
+
+  :root[data-dfx-cursor] .site-header__cart svg {
+    transition: transform 320ms var(--dfx-snap);
+  }
+
+  :root[data-dfx-cursor] .site-header__cart:hover svg {
+    transform: translateY(-2px) scale(1.08);
+  }
+
+  :root[data-dfx-cursor] .lucca-logo__asset {
+    transition:
+      transform 380ms var(--dfx-ease),
+      filter 380ms ease;
+  }
+
+  :root[data-dfx-cursor] .lucca-logo-link:hover .lucca-logo__asset {
+    transform: translateY(-1px) scale(1.02);
+    filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.42))
+      drop-shadow(0 0 16px rgba(240, 173, 75, 0.18));
+  }
+
+  /* --- buttons: magnetic pull + shine sweep + press ------------------------ */
+
+  :root[data-dfx-cursor] .home-button {
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(var(--mag-x, 0px), var(--mag-y, 0px), 0);
+    transition:
+      background 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease,
+      box-shadow 260ms ease,
+      transform 320ms var(--dfx-ease);
+  }
+
+  :root[data-dfx-cursor] .home-button:active {
+    transition-duration: 180ms, 180ms, 180ms, 260ms, 120ms;
+    transform: translate3d(var(--mag-x, 0px), var(--mag-y, 0px), 0) scale(0.965);
+  }
+
+  :root[data-dfx-cursor] .home-button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      115deg,
+      transparent 32%,
+      rgba(255, 255, 255, 0.28) 48%,
+      rgba(255, 255, 255, 0.05) 54%,
+      transparent 66%
+    );
+    transform: translateX(-130%);
+    pointer-events: none;
+  }
+
+  :root[data-dfx-cursor] .home-button:hover::after {
+    transform: translateX(130%);
+    transition: transform 720ms var(--dfx-ease);
+  }
+
+  :root[data-dfx-cursor] .home-button--primary:hover {
+    box-shadow:
+      0 14px 34px rgba(240, 173, 75, 0.34),
+      0 2px 10px rgba(240, 173, 75, 0.22);
+  }
+
+  :root[data-dfx-cursor] .home-button--secondary:hover {
+    border-color: var(--color-accent-strong);
+    box-shadow:
+      0 10px 26px rgba(0, 0, 0, 0.35),
+      inset 0 0 22px rgba(240, 173, 75, 0.07);
+  }
+
+  /* --- cards: 3D tilt + glare + lift --------------------------------------- */
+
+  :root[data-dfx-cursor] .home-service-card,
+  :root[data-dfx-cursor] .services-card {
+    position: relative;
+    transform: perspective(950px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transform-origin: center;
+    transition:
+      transform 620ms var(--dfx-ease),
+      border-color 300ms ease,
+      box-shadow 420ms ease;
+  }
+
+  :root[data-dfx-cursor] .home-service-card.dfx-tilting,
+  :root[data-dfx-cursor] .services-card.dfx-tilting {
+    transition:
+      transform 70ms linear,
+      border-color 300ms ease,
+      box-shadow 420ms ease;
+  }
+
+  :root[data-dfx-cursor] .home-service-card:hover {
+    border-color: rgba(240, 173, 75, 0.62);
+    box-shadow:
+      0 24px 48px rgba(0, 0, 0, 0.44),
+      0 0 30px rgba(216, 155, 60, 0.1);
+  }
+
+  :root[data-dfx-cursor] .services-card:hover {
+    border-color: rgba(240, 173, 75, 0.8);
+    box-shadow:
+      inset 0 0 0 1px rgba(0, 0, 0, 0.28),
+      0 26px 54px rgba(0, 0, 0, 0.5),
+      0 0 34px rgba(216, 155, 60, 0.14);
+  }
+
+  :root[data-dfx-cursor] .home-service-card::after,
+  :root[data-dfx-cursor] .services-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: radial-gradient(
+      300px circle at var(--gx, 50%) var(--gy, 50%),
+      rgba(255, 244, 214, 0.14),
+      transparent 62%
+    );
+    opacity: 0;
+    transition: opacity 320ms ease;
+    pointer-events: none;
+  }
+
+  :root[data-dfx-cursor] .home-service-card:hover::after,
+  :root[data-dfx-cursor] .services-card:hover::after {
+    opacity: 1;
+  }
+
+  :root[data-dfx-cursor] .home-service-card__icon {
+    transition: transform 420ms var(--dfx-snap);
+  }
+
+  :root[data-dfx-cursor] .home-service-card:hover .home-service-card__icon {
+    transform: translateY(-4px) scale(1.08);
+  }
+
+  :root[data-dfx-cursor] .services-card__content {
+    transition: transform 460ms var(--dfx-ease);
+  }
+
+  :root[data-dfx-cursor] .services-card:hover .services-card__content {
+    transform: translateY(-4px);
+  }
+
+  :root[data-dfx-cursor] .services-card__price strong {
+    transition:
+      color 300ms ease,
+      text-shadow 300ms ease;
+  }
+
+  :root[data-dfx-cursor] .services-card:hover .services-card__price strong {
+    color: #ffc46f;
+    text-shadow: 0 0 16px rgba(240, 173, 75, 0.5);
+  }
+
+  /* --- footer + inline links: sliding underline ---------------------------- */
+
+  :root[data-dfx] .footer-main a,
+  :root[data-dfx] .footer-contact-item a:not(.footer-inline-link) {
+    background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0 1px;
+    transition:
+      color 200ms ease,
+      background-size 300ms var(--dfx-ease);
+  }
+
+  :root[data-dfx] .footer-main a:hover,
+  :root[data-dfx] .footer-contact-item a:not(.footer-inline-link):hover {
+    background-size: 100% 1px;
+  }
+
+  :root[data-dfx] .footer-inline-link span {
+    display: inline-block;
+    transition: transform 300ms var(--dfx-snap);
+  }
+
+  :root[data-dfx] .footer-inline-link:hover span {
+    transform: translateX(4px);
+  }
+
+  :root[data-dfx] .footer-legal__socials a {
+    transition:
+      color 200ms ease,
+      transform 300ms var(--dfx-snap);
+  }
+
+  :root[data-dfx] .footer-legal__socials a:hover {
+    transform: translateY(-3px);
+  }
+
+  /* --- hero parallax + load choreography ----------------------------------- */
+
+  :root[data-dfx] .home-hero__inner,
+  :root[data-dfx] .services-hero__inner,
+  :root[data-dfx] .book-hero__inner,
+  :root[data-dfx] .faq-policies-hero__inner {
+    position: relative;
+    z-index: 1;
+    transform: translate3d(0, calc(var(--dfx-scroll, 0) * 0.16px), 0);
+  }
+
+  :root[data-dfx] .home-rule {
+    animation: dfxRuleDraw 900ms var(--dfx-ease) both 120ms;
+    transform-origin: left center;
+  }
+
+  :root[data-dfx] .dfx-word {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  :root[data-dfx] .dfx-char {
+    display: inline-block;
+    animation: dfxCharRise 950ms var(--dfx-ease) both;
+    animation-delay: calc(200ms + var(--ci, 0) * 42ms);
+  }
+
+  :root[data-dfx] .home-hero__script {
+    animation: dfxUnsealKey 1100ms var(--dfx-ease) both 620ms;
+  }
+
+  :root[data-dfx] .home-hero__copy {
+    animation: dfxRiseKey 900ms var(--dfx-ease) both 860ms;
+  }
+
+  :root[data-dfx] .home-hero__actions {
+    animation: dfxRiseKey 950ms var(--dfx-ease) both 1020ms;
+  }
+
+  :root[data-dfx] .services-hero__content > *,
+  :root[data-dfx] .book-hero__content > *,
+  :root[data-dfx] .faq-policies-hero__content > * {
+    animation: dfxRiseKey 950ms var(--dfx-ease) both;
+  }
+
+  :root[data-dfx] .services-hero h1,
+  :root[data-dfx] .book-hero h1,
+  :root[data-dfx] .faq-policies-hero h1 {
+    animation-name: dfxHeroFocus;
+    animation-duration: 1150ms;
+  }
+
+  :root[data-dfx] .services-hero__content > *:nth-child(1),
+  :root[data-dfx] .book-hero__content > *:nth-child(1),
+  :root[data-dfx] .faq-policies-hero__content > *:nth-child(1) {
+    animation-delay: 140ms;
+  }
+
+  :root[data-dfx] .services-hero__content > *:nth-child(2),
+  :root[data-dfx] .book-hero__content > *:nth-child(2),
+  :root[data-dfx] .faq-policies-hero__content > *:nth-child(2) {
+    animation-delay: 300ms;
+  }
+
+  :root[data-dfx] .services-hero__content > *:nth-child(3),
+  :root[data-dfx] .book-hero__content > *:nth-child(3),
+  :root[data-dfx] .faq-policies-hero__content > *:nth-child(3) {
+    animation-delay: 480ms;
+  }
+
+  :root[data-dfx] .book-hero__content > *:nth-child(4) {
+    animation-delay: 640ms;
+  }
+
+  :root[data-dfx] .book-hero__content > *:nth-child(5) {
+    animation-delay: 800ms;
+  }
+
+  /* --- scroll reveal signatures -------------------------------------------- */
+
+  :root[data-dfx] [data-dfx-r]:not(.dfx-in):not([data-dfx-r="deal-grid"]) {
+    opacity: 0;
+  }
+
+  :root[data-dfx] [data-dfx-r="deal-grid"]:not(.dfx-in) .home-service-card {
+    opacity: 0;
+  }
+
+  :root[data-dfx] [data-dfx-r="deal-grid"].dfx-in .home-service-card {
+    animation: dfxDeal 950ms var(--dfx-ease) both;
+    animation-delay: calc(var(--dfx-i, 0) * 90ms);
+    transform-origin: 50% 100%;
+  }
+
+  :root[data-dfx] [data-dfx-r].dfx-in {
+    animation-duration: 900ms;
+    animation-timing-function: var(--dfx-ease);
+    animation-fill-mode: both;
+    animation-delay: calc(var(--dfx-i, 0) * 100ms);
+  }
+
+  :root[data-dfx] [data-dfx-r="rise"].dfx-in {
+    animation-name: dfxRiseKey;
+  }
+
+  :root[data-dfx] [data-dfx-r="unseal"].dfx-in {
+    animation-name: dfxUnsealKey;
+    animation-duration: 1100ms;
+  }
+
+  :root[data-dfx] [data-dfx-r="iris"].dfx-in {
+    animation-name: dfxIris;
+    animation-duration: 1150ms;
+  }
+
+  :root[data-dfx] [data-dfx-r="focus"].dfx-in {
+    animation-name: dfxFocus;
+    animation-duration: 1050ms;
+  }
+
+  :root[data-dfx] [data-dfx-r="slide"].dfx-in {
+    animation-name: dfxSlide;
+  }
+
+  :root[data-dfx] [data-dfx-r="slide"]:nth-child(even).dfx-in {
+    animation-name: dfxSlideRight;
+  }
+
+  :root[data-dfx] [data-dfx-r="draw"].dfx-in {
+    animation-name: dfxDraw;
+    animation-duration: 1050ms;
+    transform-origin: center;
+  }
+
+  :root[data-dfx] [data-dfx-r="tilt"].dfx-in {
+    animation-name: dfxTiltIn;
+    animation-duration: 1000ms;
+  }
+
+  :root[data-dfx] [data-dfx-r="pop"].dfx-in {
+    animation-name: dfxPop;
+    animation-timing-function: var(--dfx-snap);
+    animation-duration: 780ms;
+  }
+
+  :root[data-dfx] [data-dfx-r="glow"].dfx-in {
+    animation-name: dfxGlow;
+  }
+
+  /* --- accordion physics ---------------------------------------------------- */
+
+  :root[data-dfx] .book-faq-item,
+  :root[data-dfx] .faq-policy-group,
+  :root[data-dfx] .faq-policy-question {
+    interpolate-size: allow-keywords;
+  }
+
+  :root[data-dfx] .book-faq-item::details-content,
+  :root[data-dfx] .faq-policy-group::details-content,
+  :root[data-dfx] .faq-policy-question::details-content {
+    height: 0;
+    overflow: clip;
+    transition:
+      height 480ms var(--dfx-ease),
+      content-visibility 480ms allow-discrete;
+  }
+
+  :root[data-dfx] .book-faq-item[open]::details-content,
+  :root[data-dfx] .faq-policy-group[open]::details-content,
+  :root[data-dfx] .faq-policy-question[open]::details-content {
+    height: auto;
+  }
+
+  :root[data-dfx] .book-faq-item__plus,
+  :root[data-dfx] .faq-policy-group__toggle,
+  :root[data-dfx] .faq-policy-question__toggle {
+    transition:
+      transform 440ms var(--dfx-snap),
+      opacity 260ms ease;
+  }
+
+  :root[data-dfx]
+    .faq-policy-group[open]
+    > .faq-policy-group__summary
+    .faq-policy-group__toggle {
+    transform: rotate(180deg);
+  }
+
+  :root[data-dfx] .book-faq-item summary,
+  :root[data-dfx] .faq-policy-group__summary,
+  :root[data-dfx] .faq-policy-question__summary {
+    transition: background 240ms ease;
+  }
+
+  :root[data-dfx] .book-faq-item summary:hover,
+  :root[data-dfx] .faq-policy-group__summary:hover,
+  :root[data-dfx] .faq-policy-question__summary:hover {
+    background: rgba(240, 173, 75, 0.05);
+  }
+
+  /* --- feature strip + book steps hover life -------------------------------- */
+
+  :root[data-dfx-cursor] .home-feature-item svg,
+  :root[data-dfx-cursor] .book-step__icon {
+    transition: transform 380ms var(--dfx-snap);
+  }
+
+  :root[data-dfx-cursor] .home-feature-item:hover svg {
+    transform: translateY(-3px) scale(1.06);
+  }
+
+  :root[data-dfx-cursor] .book-step:hover .book-step__icon {
+    transform: translateY(-4px);
+  }
+
+  /* --- keyframes ------------------------------------------------------------ */
+
+  @keyframes dfxProgressFlare {
+    0% {
+      filter: brightness(1);
+    }
+    28% {
+      filter: brightness(2.1);
+      box-shadow: 0 0 26px rgba(240, 173, 75, 0.95);
+    }
+    100% {
+      filter: brightness(1);
+    }
+  }
+
+  @keyframes dfxWave {
+    from {
+      opacity: 0.85;
+      transform: translate(-50%, -50%) scale(0.4);
+    }
+    to {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(5.4);
+    }
+  }
+
+  @keyframes dfxRuleDraw {
+    from {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+  }
+
+  @keyframes dfxCharRise {
+    from {
+      opacity: 0;
+      transform: translateY(0.65em) rotate(4deg);
+    }
+  }
+
+  @keyframes dfxHeroFocus {
+    from {
+      opacity: 0;
+      transform: translateY(34px);
+      filter: blur(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes dfxRiseKey {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+  }
+
+  @keyframes dfxDeal {
+    from {
+      opacity: 0;
+      transform: perspective(1100px) rotateX(-26deg) translateY(64px) scale(0.94);
+    }
+  }
+
+  @keyframes dfxUnsealKey {
+    from {
+      opacity: 0;
+      clip-path: inset(0 100% 0 0);
+      transform: translateX(-16px);
+    }
+    to {
+      opacity: 1;
+      clip-path: inset(0 0 0 0);
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes dfxIris {
+    from {
+      opacity: 0;
+      clip-path: circle(0% at 18% 62%);
+    }
+    to {
+      opacity: 1;
+      clip-path: circle(175% at 18% 62%);
+    }
+  }
+
+  @keyframes dfxFocus {
+    from {
+      opacity: 0;
+      transform: translateY(26px) scale(0.96);
+      filter: blur(7px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes dfxSlide {
+    from {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+  }
+
+  @keyframes dfxSlideRight {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+  }
+
+  @keyframes dfxDraw {
+    from {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+  }
+
+  @keyframes dfxTiltIn {
+    from {
+      opacity: 0;
+      transform: perspective(950px) rotateY(-9deg) translateY(36px);
+    }
+  }
+
+  @keyframes dfxPop {
+    from {
+      opacity: 0;
+      transform: scale(0.88) translateY(24px);
+    }
+  }
+
+  @keyframes dfxGlow {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+      box-shadow: 0 0 0 rgba(216, 155, 60, 0);
+    }
+  }
+}

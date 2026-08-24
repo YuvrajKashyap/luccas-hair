@@ -4,15 +4,36 @@ import { getSiteUrl } from "@/lib/supabase/config";
 
 const siteName = businessInfo.name;
 const defaultDescription =
-  "Premium hair and men's grooming website for Tony Lucca in The Colony, TX, with Square-powered appointment booking.";
+  "Tony Lucca is a hair stylist and men's grooming specialist inside Salon Boutique in The Colony, TX. Classic cuts, fades, beard trims, and styling, with easy online booking through Square.";
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: siteName,
+    default: `${siteName} | Men's Haircuts & Grooming in The Colony, TX`,
     template: `%s | ${siteName}`,
   },
   description: defaultDescription,
+  keywords: [
+    "men's haircut The Colony TX",
+    "hair stylist The Colony",
+    "men's grooming The Colony",
+    "barber The Colony TX",
+    "beard trim The Colony",
+    "Tony Lucca",
+    "Lucca's Hair",
+    "Salon Boutique",
+  ],
+  authors: [{ name: businessInfo.publicPerson }],
+  creator: businessInfo.publicPerson,
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     type: "website",
     siteName,

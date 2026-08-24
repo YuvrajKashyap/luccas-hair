@@ -17,9 +17,9 @@ import { Icon } from "@/components/ui/icons";
 import { TrackableLink } from "@/components/ui/trackable-link";
 
 export const metadata = createPageMetadata({
-  title: "Services",
+  title: "Services & Prices",
   description:
-    "Explore premium haircut and men's grooming services from Lucca's Hair in The Colony, TX.",
+    "Haircuts, fades, beard trims, facials, styling, and kids cuts from Tony Lucca in The Colony, TX. See prices and book your appointment online through Square.",
   path: "/services",
 });
 
@@ -105,9 +105,33 @@ function serviceCardStyle(service: ServiceCard): CSSProperties {
   } as CSSProperties;
 }
 
+const servicesJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Services at Lucca's Hair",
+  itemListElement: serviceCards.map((service, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "Service",
+      name: service.name,
+      description: service.description,
+      provider: {
+        "@type": "HairSalon",
+        name: "Lucca's Hair",
+      },
+      areaServed: "The Colony, TX",
+    },
+  })),
+};
+
 export default function ServicesPage() {
   return (
     <div className="services-page" style={servicesPageStyle()}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd) }}
+      />
       <section className="services-hero" aria-labelledby="services-heading">
         <span
           className="services-hero__layer services-hero__layer--interior"
