@@ -2725,3 +2725,133 @@ textarea {
     gap: 12px 24px;
   }
 }
+
+/* ============================================================================
+ * READABILITY PASS
+ * The mockup type scale ran small (9-11px body copy). These overrides lift
+ * the smallest text and the flattest contrast so the site is comfortable to
+ * read at arm's length, while keeping the approved proportions. They sit
+ * last in this file so they win over the base scale; the phone layer in
+ * mobile.css loads later and keeps its own (already larger) sizes.
+ * ========================================================================== */
+
+.site-nav__link {
+  font-size: 0.67rem;
+}
+
+.home-button {
+  font-size: 0.68rem;
+}
+
+.home-kicker {
+  font-size: 0.68rem;
+}
+
+.home-hero__copy {
+  font-size: 0.8rem;
+}
+
+.home-service-card h3 {
+  font-size: 0.84rem;
+}
+
+.home-service-card p {
+  font-size: 0.68rem;
+  line-height: 1.65;
+}
+
+.home-services__button {
+  width: 172px;
+}
+
+.home-image-panel p,
+.home-products p {
+  font-size: 0.78rem;
+}
+
+.home-feature-item h3 {
+  font-size: 0.72rem;
+}
+
+.home-feature-item p {
+  font-size: 0.72rem;
+}
+
+.book-kicker {
+  font-size: 0.7rem;
+}
+
+.book-hero p:not(.book-kicker) {
+  font-size: 0.84rem;
+}
+
+.book-step p {
+  font-size: 0.78rem;
+}
+
+.book-timezone p {
+  font-size: 0.85rem;
+}
+
+.book-faq-item summary {
+  font-size: 0.8rem;
+}
+
+.book-faq-item p {
+  color: #d8cec0;
+  font-size: 0.78rem;
+}
+
+.book-question-cta__content p:not(.book-kicker) {
+  font-size: 0.8rem;
+}
+
+.services-card p {
+  font-size: 0.72rem;
+}
+
+.services-card__price strong {
+  font-size: 0.95rem;
+}
+
+.services-card__price span {
+  font-size: 0.62rem;
+}
+
+.services-booking-strip p {
+  font-size: 0.78rem;
+}
+
+.faq-policy-question__summary {
+  font-size: 0.85rem;
+}
+
+.faq-policy-question__answer p {
+  color: #ddd4c6;
+  font-size: 0.82rem;
+}
+
+.faq-policy-question__answer span {
+  font-size: 0.62rem;
+}
+
+.faq-policies-help-card__copy span {
+  font-size: 0.86rem;
+}
+
+.footer-kicker {
+  font-size: 0.72rem;
+}
+
+.footer-contact-item p,
+.footer-contact-item a,
+.footer-contact-item span,
+.footer-main p,
+.footer-main a {
+  font-size: 0.74rem;
+}
+
+.footer-legal p,
+.footer-legal a {
+  font-size: 0.72rem;
+}
