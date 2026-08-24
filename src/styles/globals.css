@@ -275,7 +275,10 @@ textarea {
 
 .home-hero {
   position: relative;
-  height: min(600px, 42.45vw);
+  /* Cap high enough that wide monitors keep the window mascot and wordmark
+   * in frame (image is 1717x916; the logo block spans 14%-74% of its height).
+   * Positioned at 32% vertical so ultrawide crops trim floor, not head. */
+  height: min(780px, 42.45vw);
   min-height: 393px;
   border-bottom: 1px solid rgba(246, 239, 227, 0.1);
   background-image:
@@ -286,7 +289,7 @@ textarea {
       rgba(0, 0, 0, 0.08) 100%
     ),
     var(--home-bg-image);
-  background-position: center;
+  background-position: center 32%;
   background-size: cover;
 }
 
@@ -523,24 +526,6 @@ textarea {
   font-size: 0.7rem;
   font-weight: 500;
   line-height: 1.8;
-}
-
-.powered-by {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  margin: 13px 0 0;
-  color: #f7efe3;
-  font-size: 0.58rem;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.powered-by svg {
-  width: 12px;
-  height: 12px;
 }
 
 .home-products {
@@ -1989,11 +1974,6 @@ textarea {
   margin-top: 17px;
 }
 
-.footer-book .powered-by {
-  display: flex;
-  margin-top: 13px;
-}
-
 .footer-legal {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -2448,7 +2428,9 @@ textarea {
 
   .home-hero {
     min-height: 520px;
-    background-position: 60% center;
+    /* Portrait crops of the landscape hero: anchor near the left so the
+     * window mascot (20%-42% across the image) stays in frame. */
+    background-position: 26% center;
   }
 
   .home-hero__inner {

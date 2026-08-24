@@ -171,10 +171,6 @@ export default function HomePage() {
                 <Icon name="calendar" />
                 <span>Book Appointment</span>
               </TrackableLink>
-              <p className="powered-by">
-                <Icon name="square" />
-                Powered By Square
-              </p>
             </div>
           </article>
         </section>

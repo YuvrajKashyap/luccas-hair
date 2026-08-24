@@ -50,8 +50,9 @@
 
   /* --- custom cursor -------------------------------------------------------
    * A quiet, brand-tinted arrow: same silhouette as the system cursor, dark
-   * body with a brass outline, and a brass-filled twin over anything
-   * clickable. Static images, zero runtime cost, zero trailing gimmicks. */
+   * body with a brass outline. Over anything clickable it becomes a brass
+   * pointing hand, matching the system hand so affordance stays obvious.
+   * Static images, zero runtime cost, zero trailing gimmicks. */
 
   :root[data-dfx-cursor] body {
     cursor:
@@ -66,8 +67,8 @@
   :root[data-dfx-cursor] [role="button"],
   :root[data-dfx-cursor] label {
     cursor:
-      url("data:image/svg+xml;utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3E%3Cpath%20d='M2.2%201.8L2.2%2016.8L6.1%2013.2L8.5%2018.9L11.3%2017.7L8.9%2012.1L14.2%2012.1Z'%20fill='%23f0ad4b'%20stroke='%23140e05'%20stroke-width='1.3'%20stroke-linejoin='round'/%3E%3C/svg%3E")
-        2 2,
+      url("data:image/svg+xml;utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3E%3Cpath%20d='M9%203.2a1.6%201.6%200%200%201%203.2%200v8.3h.4l4.6%201.2a3.4%203.4%200%200%201%202.5%203.3a4.4%204.4%200%200%201-4.4%204.4h-3.1a5%205%200%200%201-3.6-1.5l-4.1-4.3a1.7%201.7%200%200%201%202.4-2.4l2.1%201.9Z'%20fill='%23f0ad4b'%20stroke='%23140e05'%20stroke-width='1.2'%20stroke-linejoin='round'/%3E%3C/svg%3E")
+        10 2,
       pointer;
   }
 

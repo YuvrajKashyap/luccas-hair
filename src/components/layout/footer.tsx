@@ -157,10 +157,6 @@ export function Footer() {
               <Icon name="calendar" />
               <span>Book Appointment</span>
             </TrackableLink>
-            <p className="powered-by">
-              <Icon name="square" />
-              Powered By Square
-            </p>
           </div>
         </div>
       </section>
