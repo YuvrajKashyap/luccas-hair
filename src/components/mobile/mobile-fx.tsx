@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
  * requested reduced motion. It flags <html data-mfx="on"> so every entrance,
  * ripple, and instrument in mobile.css stays inert on desktop and for
  * reduced-motion users, then wires:
- *   - bidirectional scroll reveals (IntersectionObserver, per-section signatures)
+ *   - one-shot scroll reveals (IntersectionObserver, per-section signatures)
  *   - a scroll progress hairline
  *   - touch ripples that pool light under the finger on primary controls
  */
@@ -68,10 +68,15 @@ export function MobileFx() {
     reduced.addEventListener("change", syncFlag);
 
     // --- scroll reveals -----------------------------------------------------
+    // One-shot: sections keep their place once revealed instead of hiding
+    // and replaying every time the user scrolls back through.
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          entry.target.classList.toggle("fx-in", entry.isIntersecting);
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fx-in");
+            observer.unobserve(entry.target);
+          }
         }
       },
       { threshold: 0.12, rootMargin: "0px 0px -9% 0px" },

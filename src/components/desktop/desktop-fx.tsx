@@ -8,14 +8,14 @@ import { usePathname } from "next/navigation";
  * when the user has not requested reduced motion. It flags
  * <html data-dfx="on"> so every entrance, instrument, and hover layer in
  * desktop.css stays inert on phones and for reduced-motion users, then wires:
- *   - bidirectional scroll reveals with per-section signatures
+ *   - one-shot scroll reveals with per-section signatures
  *   - a per-letter cascade on the home hero title
  *   - a scroll progress hairline
  *   - an ambient gold-dust canvas inside the page hero that drifts on idle,
  *     swirls away from the pointer, and flares when a booking CTA is clicked
  *   - magnetic pull + shine sweep on buttons, 3D tilt + glare on cards
- *   - a custom gold cursor (dot + trailing ring) on fine pointers
  *   - click shockwaves that ripple out from pressed controls
+ * The cursor itself is a quiet brand-tinted arrow, styled in desktop.css.
  * All decoration is aria-hidden; content order and copy are untouched.
  */
 
@@ -308,8 +308,6 @@ function splitHeroTitle(): () => void {
 export function DesktopFx() {
   const pathname = usePathname();
   const barRef = useRef<HTMLSpanElement>(null);
-  const dotRef = useRef<HTMLDivElement>(null);
-  const ringRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const desktop = window.matchMedia("(min-width: 681px)");
@@ -341,10 +339,15 @@ export function DesktopFx() {
     });
 
     // --- scroll reveals -----------------------------------------------------
+    // One-shot: once a section has arrived it stays put. People are here to
+    // book and go; content must never vanish and replay on the way back up.
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          entry.target.classList.toggle("dfx-in", entry.isIntersecting);
+          if (entry.isIntersecting) {
+            entry.target.classList.add("dfx-in");
+            observer.unobserve(entry.target);
+          }
         }
       },
       { threshold: 0.1, rootMargin: "0px 0px -8% 0px" },
@@ -388,7 +391,6 @@ export function DesktopFx() {
     const paintProgress = () => {
       progressRaf = 0;
       const y = window.scrollY;
-      root.style.setProperty("--dfx-scroll", String(Math.round(y)));
       document.querySelector(".site-header")?.classList.toggle("dfx-scrolled", y > 12);
       const bar = barRef.current;
       if (!bar) return;
@@ -405,7 +407,6 @@ export function DesktopFx() {
     cleanups.push(() => {
       window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(progressRaf);
-      root.style.removeProperty("--dfx-scroll");
       document.querySelector(".site-header")?.classList.remove("dfx-scrolled");
     });
 
@@ -463,61 +464,6 @@ export function DesktopFx() {
       document.removeEventListener("pointerout", onTiltOut);
     });
 
-    // --- custom cursor -------------------------------------------------------
-    const cursor = { x: -100, y: -100, rx: -100, ry: -100, seen: false };
-    let cursorRaf = 0;
-    const paintCursor = () => {
-      cursorRaf = 0;
-      const dot = dotRef.current;
-      const ring = ringRef.current;
-      if (!dot || !ring) return;
-      cursor.rx += (cursor.x - cursor.rx) * 0.16;
-      cursor.ry += (cursor.y - cursor.ry) * 0.16;
-      dot.style.transform = `translate3d(${cursor.x}px, ${cursor.y}px, 0)`;
-      ring.style.transform = `translate3d(${cursor.rx}px, ${cursor.ry}px, 0)`;
-      if (
-        Math.abs(cursor.x - cursor.rx) > 0.2 ||
-        Math.abs(cursor.y - cursor.ry) > 0.2
-      ) {
-        cursorRaf = requestAnimationFrame(paintCursor);
-      }
-    };
-    const onCursorMove = (event: PointerEvent) => {
-      if (root.dataset.dfxCursor !== "on") return;
-      cursor.x = event.clientX;
-      cursor.y = event.clientY;
-      if (!cursor.seen) {
-        cursor.seen = true;
-        cursor.rx = cursor.x;
-        cursor.ry = cursor.y;
-        root.dataset.dfxCursorSeen = "on";
-      }
-      const interactive = (event.target as Element | null)?.closest?.(
-        INTERACTIVE_SELECTOR,
-      );
-      root.classList.toggle("dfx-cursor-hot", Boolean(interactive));
-      if (!cursorRaf) cursorRaf = requestAnimationFrame(paintCursor);
-    };
-    const onCursorDown = () => root.classList.add("dfx-cursor-press");
-    const onCursorUp = () => root.classList.remove("dfx-cursor-press");
-    const onCursorLeave = () => {
-      cursor.seen = false;
-      delete root.dataset.dfxCursorSeen;
-    };
-    window.addEventListener("pointermove", onCursorMove, { passive: true });
-    window.addEventListener("pointerdown", onCursorDown, { passive: true });
-    window.addEventListener("pointerup", onCursorUp, { passive: true });
-    document.documentElement.addEventListener("pointerleave", onCursorLeave);
-    cleanups.push(() => {
-      window.removeEventListener("pointermove", onCursorMove);
-      window.removeEventListener("pointerdown", onCursorDown);
-      window.removeEventListener("pointerup", onCursorUp);
-      document.documentElement.removeEventListener("pointerleave", onCursorLeave);
-      cancelAnimationFrame(cursorRaf);
-      root.classList.remove("dfx-cursor-hot", "dfx-cursor-press");
-      delete root.dataset.dfxCursorSeen;
-    });
-
     // --- click shockwaves + booking flare -----------------------------------
     const onClickWave = (event: PointerEvent) => {
       if (root.dataset.dfxCursor !== "on") return;
@@ -563,12 +509,8 @@ export function DesktopFx() {
   }, [pathname]);
 
   return (
-    <>
-      <div className="dfx-progress" aria-hidden="true">
-        <span ref={barRef} />
-      </div>
-      <div ref={dotRef} className="dfx-cursor-dot" aria-hidden="true" />
-      <div ref={ringRef} className="dfx-cursor-ring" aria-hidden="true" />
-    </>
+    <div className="dfx-progress" aria-hidden="true">
+      <span ref={barRef} />
+    </div>
   );
 }

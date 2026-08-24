@@ -48,74 +48,27 @@
     pointer-events: none;
   }
 
-  /* --- custom cursor ------------------------------------------------------- */
+  /* --- custom cursor -------------------------------------------------------
+   * A quiet, brand-tinted arrow: same silhouette as the system cursor, dark
+   * body with a brass outline, and a brass-filled twin over anything
+   * clickable. Static images, zero runtime cost, zero trailing gimmicks. */
 
-  :root[data-dfx-cursor][data-dfx-cursor-seen] .dfx-cursor-dot,
-  :root[data-dfx-cursor][data-dfx-cursor-seen] .dfx-cursor-ring {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 200;
-    pointer-events: none;
-    will-change: transform;
+  :root[data-dfx-cursor] body {
+    cursor:
+      url("data:image/svg+xml;utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3E%3Cpath%20d='M2.2%201.8L2.2%2016.8L6.1%2013.2L8.5%2018.9L11.3%2017.7L8.9%2012.1L14.2%2012.1Z'%20fill='%23140e05'%20stroke='%23f0ad4b'%20stroke-width='1.3'%20stroke-linejoin='round'/%3E%3C/svg%3E")
+        2 2,
+      default;
   }
 
-  :root[data-dfx-cursor] .dfx-cursor-dot::after,
-  :root[data-dfx-cursor] .dfx-cursor-ring::after {
-    content: "";
-    display: block;
-    border-radius: 50%;
-    transition:
-      transform 260ms var(--dfx-ease),
-      background 220ms ease,
-      border-color 220ms ease;
-  }
-
-  :root[data-dfx-cursor] .dfx-cursor-dot::after {
-    width: 6px;
-    height: 6px;
-    margin: -3px 0 0 -3px;
-    background: var(--color-accent-strong);
-    box-shadow: 0 0 10px rgba(240, 173, 75, 0.7);
-  }
-
-  :root[data-dfx-cursor] .dfx-cursor-ring::after {
-    width: 32px;
-    height: 32px;
-    margin: -16px 0 0 -16px;
-    border: 1px solid rgba(240, 173, 75, 0.55);
-  }
-
-  :root[data-dfx-cursor].dfx-cursor-hot .dfx-cursor-dot::after {
-    transform: scale(0.5);
-  }
-
-  :root[data-dfx-cursor].dfx-cursor-hot .dfx-cursor-ring::after {
-    background: rgba(240, 173, 75, 0.08);
-    border-color: rgba(240, 173, 75, 0.9);
-    transform: scale(1.5);
-  }
-
-  :root[data-dfx-cursor].dfx-cursor-press .dfx-cursor-ring::after {
-    transform: scale(0.72);
-  }
-
-  :root[data-dfx-cursor].dfx-cursor-press.dfx-cursor-hot .dfx-cursor-ring::after {
-    transform: scale(1.15);
-  }
-
-  :root[data-dfx-cursor][data-dfx-cursor-seen] body,
-  :root[data-dfx-cursor][data-dfx-cursor-seen] a,
-  :root[data-dfx-cursor][data-dfx-cursor-seen] button,
-  :root[data-dfx-cursor][data-dfx-cursor-seen] summary {
-    cursor: none;
-  }
-
-  :root[data-dfx-cursor][data-dfx-cursor-seen] input,
-  :root[data-dfx-cursor][data-dfx-cursor-seen] textarea,
-  :root[data-dfx-cursor][data-dfx-cursor-seen] select {
-    cursor: auto;
+  :root[data-dfx-cursor] a,
+  :root[data-dfx-cursor] button,
+  :root[data-dfx-cursor] summary,
+  :root[data-dfx-cursor] [role="button"],
+  :root[data-dfx-cursor] label {
+    cursor:
+      url("data:image/svg+xml;utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%3E%3Cpath%20d='M2.2%201.8L2.2%2016.8L6.1%2013.2L8.5%2018.9L11.3%2017.7L8.9%2012.1L14.2%2012.1Z'%20fill='%23f0ad4b'%20stroke='%23140e05'%20stroke-width='1.3'%20stroke-linejoin='round'/%3E%3C/svg%3E")
+        2 2,
+      pointer;
   }
 
   /* --- click shockwave ----------------------------------------------------- */
@@ -357,16 +310,7 @@
     transform: translateY(-3px);
   }
 
-  /* --- hero parallax + load choreography ----------------------------------- */
-
-  :root[data-dfx] .home-hero__inner,
-  :root[data-dfx] .services-hero__inner,
-  :root[data-dfx] .book-hero__inner,
-  :root[data-dfx] .faq-policies-hero__inner {
-    position: relative;
-    z-index: 1;
-    transform: translate3d(0, calc(var(--dfx-scroll, 0) * 0.16px), 0);
-  }
+  /* --- hero load choreography ----------------------------------------------- */
 
   :root[data-dfx] .home-rule {
     animation: dfxRuleDraw 900ms var(--dfx-ease) both 120ms;

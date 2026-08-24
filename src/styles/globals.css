@@ -79,8 +79,6 @@ textarea {
 
 /* Desktop-only instruments — inert everywhere by default, enabled in desktop.css. */
 .dfx-progress,
-.dfx-cursor-dot,
-.dfx-cursor-ring,
 .dfx-dust,
 .dfx-wave {
   display: none;
